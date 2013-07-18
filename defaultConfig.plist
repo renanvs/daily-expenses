@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>categories</key>
+	<dict>
+		<key>airplane</key>
+		<string>icon_airplane</string>
+		<key>book</key>
+		<string>icon_book</string>
+		<key>bus</key>
+		<string>icon_bus</string>
+		<key>cart</key>
+		<string>icon_cart</string>
+		<key>cocktail</key>
+		<string>icon_cocktail</string>
+		<key>film</key>
+		<string>icon_film</string>
+		<key>gift</key>
+		<string>icon_gift</string>
+		<key>house</key>
+		<string>icon_house</string>
+		<key>label</key>
+		<string>icon_label</string>
+		<key>medical</key>
+		<string>icon_medical</string>
+		<key>mobile</key>
+		<string>icon_mobile</string>
+		<key>pc</key>
+		<string>icon_pc</string>
+		<key>personal</key>
+		<string>icon_personal</string>
+		<key>theater</key>
+		<string>icon_theater</string>
+		<key>ticket</key>
+		<string>icon_ticket</string>
+		<key>transfer</key>
+		<string>icon_transfer</string>
+	</dict>
+</dict>
+</plist>
