@@ -61,7 +61,7 @@
     
     if (self) {
         categoryList = [[NSDictionary alloc] initWithDictionary:[[Config sharedInstance] categoryList]];
-		parcelDatasource = [[NSArray alloc] initWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20", @"21", @"22", @"23", @"24", nil];
+		parcelDatasource = [[NSArray alloc] initWithObjects:@"1", @"2x", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20", @"21", @"22", @"23", @"24", nil];
     }
     
     return self;
@@ -73,7 +73,7 @@
     [super dealloc];
 }
 
-#pragma mark - IBAction
+#pragma mark - IBAction's
 
 -(IBAction)cadastrar:(id)sender{
     item = [[SpendItem alloc] init];
@@ -88,8 +88,6 @@
     item.typeImg = [UIImage imageNamed:item.type];
     [[ItemListModel sharedInstance] addItemToList:item];
     [self back:nil];
-    
-    
 }
 
 -(IBAction)back:(id)sender{
@@ -159,7 +157,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return  categoryList.count;
+    return categoryList.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -193,7 +191,6 @@
     [bgView addSubview:datePicker];
     
     bgView.hidden = NO;
-    
 }
 
 -(void)createParcelPicker{
@@ -248,9 +245,9 @@
 }
 
 -(void)parcelPickerDone:(id)event{
-    self.parcel.text = @"";
+	NSInteger row = [parcelPicker selectedRowInComponent:0];
+	self.parcel.text = [parcelDatasource objectAtIndex:row];
     bgView.hidden = YES;;
-    
 }
 
 #pragma mark - pickerViewDelegate methods
