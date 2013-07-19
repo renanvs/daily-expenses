@@ -230,7 +230,7 @@
 			name = Main;
 			sourceTree = "<group>";
 		};
-		1E07CBF31748F4D300C5F83A /* MainTableCell */ = {
+		1E07CBF31748F4D300C5F83A /* DailyViewTableCell */ = {
 			isa = PBXGroup;
 			children = (
 				1EDEEFBC1748694300A03BE2 /* DailyTableViewCell.h */,
@@ -240,10 +240,10 @@
 				1ECEE062179635A700647B7C /* DailyTableViewHeaderCell.m */,
 				1EDEF0121748795F00A03BE2 /* DailyTableViewHeaderCell.xib */,
 			);
-			name = MainTableCell;
+			name = DailyViewTableCell;
 			sourceTree = "<group>";
 		};
-		1E07CBF41748F52600C5F83A /* AddView */ = {
+		1E07CBF41748F52600C5F83A /* AddDailyItem */ = {
 			isa = PBXGroup;
 			children = (
 				1E6098261783C9AA00491251 /* AddDailyItemFormViewController.h */,
@@ -253,7 +253,7 @@
 				1E33C181178CE5A100F37B62 /* categoryChooseCell.m */,
 				1E33C183178CE5B200F37B62 /* categoryChooseCell.xib */,
 			);
-			name = AddView;
+			name = AddDailyItem;
 			sourceTree = "<group>";
 		};
 		1E07CBFA1748FA4100C5F83A /* SettingsView */ = {
@@ -266,14 +266,14 @@
 			name = SettingsView;
 			sourceTree = "<group>";
 		};
-		1E20860A176AA18900EACD6A /* Class */ = {
+		1E20860A176AA18900EACD6A /* MainClasses */ = {
 			isa = PBXGroup;
 			children = (
-				1E33C179178CC8A300F37B62 /* config */,
+				1E33C179178CC8A300F37B62 /* Config */,
 				1E6098221783B72400491251 /* ItemListModel */,
 				1E20860B176AA19F00EACD6A /* SpendItem */,
 			);
-			name = Class;
+			name = MainClasses;
 			sourceTree = "<group>";
 		};
 		1E20860B176AA19F00EACD6A /* SpendItem */ = {
@@ -289,15 +289,15 @@
 			isa = PBXGroup;
 			children = (
 				1EEAC901178FA4D6000DD075 /* PopoverViewDaily */,
-				1EEAC8EE178F9111000DD075 /* External */,
+				1EEAC8EE178F9111000DD075 /* ExternalClasses */,
 				1E33C17F178CDA5400F37B62 /* ETC */,
-				1E20860A176AA18900EACD6A /* Class */,
+				1E20860A176AA18900EACD6A /* MainClasses */,
 				1E07CBFA1748FA4100C5F83A /* SettingsView */,
-				1E07CBF41748F52600C5F83A /* AddView */,
-				1E07CBF31748F4D300C5F83A /* MainTableCell */,
+				1E07CBF41748F52600C5F83A /* AddDailyItem */,
+				1E07CBF31748F4D300C5F83A /* DailyViewTableCell */,
 				1E07CBF21748F4A500C5F83A /* Main */,
-				1E2798911746C31700DD4AAF /* Images */,
 				1E27986F1746B90F00DD4AAF /* AppDelegate */,
+				1E2798911746C31700DD4AAF /* Images */,
 				1E2798681746B90F00DD4AAF /* Frameworks */,
 				1E2798671746B90F00DD4AAF /* Products */,
 			);
@@ -376,14 +376,14 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		1E33C179178CC8A300F37B62 /* config */ = {
+		1E33C179178CC8A300F37B62 /* Config */ = {
 			isa = PBXGroup;
 			children = (
 				1E33C17A178CC8C300F37B62 /* defaultConfig.plist */,
 				1E33C17C178CCC1000F37B62 /* Config.h */,
 				1E33C17D178CCC1000F37B62 /* Config.m */,
 			);
-			name = config;
+			name = Config;
 			sourceTree = "<group>";
 		};
 		1E33C17F178CDA5400F37B62 /* ETC */ = {
@@ -446,18 +446,13 @@
 			path = categories_icon;
 			sourceTree = "<group>";
 		};
-		1EEAC8EE178F9111000DD075 /* External */ = {
+		1EEAC8EE178F9111000DD075 /* ExternalClasses */ = {
 			isa = PBXGroup;
 			children = (
-				1E3816971795D10100D39CB9 /* TPKeyboardAvoidingScrollView.h */,
-				1E3816981795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m */,
-				1E3816991795D10100D39CB9 /* TPKeyboardAvoidingTableView.h */,
-				1E38169A1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m */,
-				1EEAC8FD178F9E28000DD075 /* PopoverView_Configuration.h */,
-				1EEAC8FE178F9E29000DD075 /* PopoverView.h */,
-				1EEAC8FF178F9E29000DD075 /* PopoverView.m */,
+				1EF71E3E1799A59600EDE66A /* PopoverView */,
+				1EF71E3D1799A55F00EDE66A /* TPKeyboarAvoiding */,
 			);
-			name = External;
+			name = ExternalClasses;
 			sourceTree = "<group>";
 		};
 		1EEAC901178FA4D6000DD075 /* PopoverViewDaily */ = {
@@ -468,6 +463,27 @@
 				1EEAC905178FA526000DD075 /* PopoverDaily.xib */,
 			);
 			name = PopoverViewDaily;
+			sourceTree = "<group>";
+		};
+		1EF71E3D1799A55F00EDE66A /* TPKeyboarAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				1E3816971795D10100D39CB9 /* TPKeyboardAvoidingScrollView.h */,
+				1E3816981795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m */,
+				1E3816991795D10100D39CB9 /* TPKeyboardAvoidingTableView.h */,
+				1E38169A1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m */,
+			);
+			name = TPKeyboarAvoiding;
+			sourceTree = "<group>";
+		};
+		1EF71E3E1799A59600EDE66A /* PopoverView */ = {
+			isa = PBXGroup;
+			children = (
+				1EEAC8FD178F9E28000DD075 /* PopoverView_Configuration.h */,
+				1EEAC8FE178F9E29000DD075 /* PopoverView.h */,
+				1EEAC8FF178F9E29000DD075 /* PopoverView.m */,
+			);
+			name = PopoverView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

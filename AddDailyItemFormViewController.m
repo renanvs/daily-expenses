@@ -8,7 +8,7 @@
 
 #import "AddDailyItemFormViewController.h"
 #import "ItemListModel.h"
-#import "categoryChooseCell.h"
+#import "CategoryChooseCell.h"
 #import "Config.h"
 
 #import "PopoverDaily.h"
@@ -18,6 +18,8 @@
 @end
 
 @implementation AddDailyItemFormViewController
+
+#pragma mark - init, view...
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,10 +36,6 @@
     [self setBackground];
     
     // Do any additional setup after loading the view from its nib.
-}
-
--(void)viewWillAppear:(BOOL)animated{
-	parcelDatasource = [[NSArray alloc] initWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,12 +61,21 @@
     
     if (self) {
         categoryList = [[NSDictionary alloc] initWithDictionary:[[Config sharedInstance] categoryList]];
+		parcelDatasource = [[NSArray alloc] initWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20", @"21", @"22", @"23", @"24", nil];
     }
     
     return self;
 }
 
--(void)cadastrar:(id)sender{
+- (void)dealloc {
+    [_typeBt release];
+    [_typeLabel release];
+    [super dealloc];
+}
+
+#pragma mark - IBAction
+
+-(IBAction)cadastrar:(id)sender{
     item = [[SpendItem alloc] init];
     NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
     
@@ -85,7 +92,7 @@
     
 }
 
--(void)back:(id)sender{
+-(IBAction)back:(id)sender{
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -101,9 +108,21 @@
     [self createParcelPicker];
 }
 
+- (IBAction)closeCategoryChooseView:(id)sender {
+    self.categoryView.hidden = YES;
+}
+
+#pragma mark - textFieldDelegate Methods
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
+    return YES;
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if (textField == self.dateStr) {
+        return NO;
+    }
     return YES;
 }
 
@@ -113,13 +132,11 @@
 //    }
 }
 
-- (IBAction)closeCategoryChooseView:(id)sender {
-    self.categoryView.hidden = YES;
-}
+#pragma mark - tableViewDelegate Methods
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"categoryChooseCell";
-    categoryChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    CategoryChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     NSInteger row = indexPath.row;
     NSArray *allKeys = [categoryList allKeys];
     NSString *key = [allKeys objectAtIndex:row];
@@ -129,8 +146,8 @@
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         
         for (id currentObject in topLevelObjects) {
-            if ([currentObject isKindOfClass:[categoryChooseCell class]]) {
-                cell = (categoryChooseCell*)currentObject;
+            if ([currentObject isKindOfClass:[CategoryChooseCell class]]) {
+                cell = (CategoryChooseCell*)currentObject;
                 cell.icon.image = [UIImage imageNamed:objectValue];
                 cell.label.text = key;
                 break;
@@ -153,6 +170,8 @@
     [self.typeBt setImage:iconImg forState:UIControlStateNormal];
     self.categoryView.hidden = YES;
 }
+
+#pragma mark - create dataPicker and pickerView
 
 -(void)createDatePicker{
 	[self removeElementsFromView:bgView];
@@ -198,11 +217,27 @@
     
 }
 
+#pragma mark - other methods
+
 -(void)removeElementsFromView:(UIView*)viewR{
 	for (id object in [viewR subviews]) {
 		[object removeFromSuperview];
 	}
 }
+
+-(void)setBackground{
+    bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    [bgView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:.5]];
+    bgView.hidden = YES;
+    [self.view addSubview:bgView];
+    
+}
+
+- (IBAction)test:(id)sender {
+    [self setBackground];
+}
+
+#pragma mark - Pickers Done Button
 
 -(void)dataPickerDone:(id)event{
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
@@ -218,6 +253,8 @@
     
 }
 
+#pragma mark - pickerViewDelegate methods
+
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }
@@ -230,28 +267,4 @@
     return [parcelDatasource objectAtIndex:row];
 }
 
--(void)setBackground{
-    bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    [bgView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:.5]];
-    bgView.hidden = YES;
-    [self.view addSubview:bgView];
-    
-}
-
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if (textField == self.dateStr) {
-        return NO;
-    }
-    return YES;
-}
-
-- (void)dealloc {
-    [_typeBt release];
-    [_typeLabel release];
-    [super dealloc];
-}
-
-- (IBAction)test:(id)sender {
-    [self setBackground];
-}
 @end

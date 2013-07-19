@@ -11,8 +11,8 @@
 #import "PopoverDaily.h"
 
 @implementation DailyTableViewCell
-//@synthesize label, price, icon;
 
+#pragma mark - init methods
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -20,13 +20,6 @@
         [self addGesture];
     }
     return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 
@@ -43,6 +36,8 @@
     [self addGestureRecognizer:[tap autorelease]];
 }
 
+#pragma mark - popover
+
 - (void)tapped:(UITapGestureRecognizer *)tap
 {
     point = [tap locationInView:self.popoverView];
@@ -51,6 +46,11 @@
     
 }
 
-
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+	
+    // Configure the view for the selected state
+}
 
 @end

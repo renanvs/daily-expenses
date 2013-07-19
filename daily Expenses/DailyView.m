@@ -24,29 +24,7 @@
 @synthesize changeViewTypeSegmentControl;
 @synthesize listItens, totalValue;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - tableView delegate
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return listItens.count;
@@ -76,6 +54,12 @@
     return headerView.view;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
+}
+
+#pragma mark - IBAction
+
 -(IBAction)addDailyItem:(id)sender{
     AddDailyItemFormViewController *dailyViewItem = [[AddDailyItemFormViewController alloc] init];
     [self presentViewController:dailyViewItem animated:YES completion:nil];
@@ -102,10 +86,14 @@
 	
 }
 
+#pragma mark - other methods
+
 -(void)alertTest:(NSString*)text{
 	UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"TESTE" message:text delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
 }
+
+#pragma mark - init, view...
 
 -(id)init{
     self = [super init];
@@ -122,9 +110,38 @@
     [dailyTableView reloadData];
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
+
+#pragma mark - rotate methods
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
 	return  YES;
@@ -142,12 +159,5 @@
 	}else{
 		self.view = landscapeView;
 	}
-}
-
-- (void)dealloc {
-    [super dealloc];
-}
-- (void)viewDidUnload {
-    [super viewDidUnload];
 }
 @end

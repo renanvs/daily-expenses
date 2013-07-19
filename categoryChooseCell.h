@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface categoryChooseCell : UITableViewCell
+@interface CategoryChooseCell : UITableViewCell
 
 @property (assign) IBOutlet UILabel *label;
 @property (assign) IBOutlet UIImageView *icon;

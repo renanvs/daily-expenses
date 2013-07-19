@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 renan veloso silva. All rights reserved.
 //
 
-#import "categoryChooseCell.h"
+#import "CategoryChooseCell.h"
 
-@implementation categoryChooseCell
+@implementation CategoryChooseCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
