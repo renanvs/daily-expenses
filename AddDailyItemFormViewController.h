@@ -11,30 +11,33 @@
 #import "SpendItem.h"
 #import "TPKeyboardAvoidingScrollView.h"
 
-@interface AddDailyItemFormViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, PopoverViewDelegate>{
+@interface AddDailyItemFormViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, PopoverViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     NSDictionary * categoryList;
     CGPoint point;
     SpendItem *item;
     
     UIDatePicker *datePicker;
+    UIPickerView *parcelPicker;
     UIButton *dataPickerDoneBt;
+    UIButton *parcelPickerDoneBt;
     UIView *bgView;
+    NSArray *parcelDatasource;
 }
 
 @property (assign, nonatomic) IBOutlet UITextField *label;
-@property (assign, nonatomic) IBOutlet UITextField *type;
-@property (retain, nonatomic) IBOutlet UIButton *typeBt;
 @property (retain, nonatomic) IBOutlet UILabel *typeLabel;
 @property (assign, nonatomic) IBOutlet UITextField *parcel;
 @property (assign, nonatomic) IBOutlet UITextField *value;
 @property (assign, nonatomic) IBOutlet UITextField *dateStr;
 @property (assign, nonatomic) IBOutlet UITextView *note;
 @property (assign, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *tpScrollView;
+@property (assign, nonatomic) IBOutlet UIButton *typeBt;
 
 -(IBAction)cadastrar:(id)sender;
 -(IBAction)back:(id)sender;
 - (IBAction)selectType:(id)sender;
 - (IBAction)showDatePicker:(id)sender;
+- (IBAction)showParcelPicker:(id)sender;
 - (IBAction)test:(id)sender;
 
 - (IBAction)closeCategoryChooseView:(id)sender;

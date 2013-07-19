@@ -32,9 +32,12 @@
 {
     [super viewDidLoad];
     [self setBackground];
-    [self createDatePicker];
     
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+	parcelDatasource = [[NSArray alloc] initWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,14 +48,12 @@
 
 - (void)viewDidUnload {
     [self setLabel:nil];
-    [self setType:nil];
     [self setParcel:nil];
     [self setValue:nil];
     [self setDateStr:nil];
     [self setNote:nil];
     [self setCategoryChooseTable:nil];
     [self setCategoryView:nil];
-    [self setTypeBt:nil];
     [self setTypeLabel:nil];
     [super viewDidUnload];
 }
@@ -62,19 +63,17 @@
     
     if (self) {
         categoryList = [[NSDictionary alloc] initWithDictionary:[[Config sharedInstance] categoryList]];
-        
     }
     
     return self;
 }
-
 
 -(void)cadastrar:(id)sender{
     item = [[SpendItem alloc] init];
     NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
     
     item.label = self.label.text;
-    item.type = self.type.text;
+    item.type = self.typeLabel.text;
     item.parcel = [formatter numberFromString:self.parcel.text];
     item.value = [formatter numberFromString:self.value.text];
     item.dateStr = self.dateStr.text;
@@ -95,9 +94,11 @@
 }
 
 - (IBAction)showDatePicker:(id)sender {
-    datePicker.hidden = NO;
-    dataPickerDoneBt.hidden = NO;
-    bgView.hidden = NO;
+    [self createDatePicker];
+}
+
+- (IBAction)showParcelPicker:(id)sender {
+    [self createParcelPicker];
 }
 
 
@@ -107,9 +108,9 @@
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-    if (textField == self.type){
-        [textField resignFirstResponder];
-    }
+//    if (textField == self.type){
+//        [textField resignFirstResponder];
+//    }
 }
 
 - (IBAction)closeCategoryChooseView:(id)sender {
@@ -154,8 +155,8 @@
 }
 
 -(void)createDatePicker{
+	[self removeElementsFromView:bgView];
     datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, (480-216), 320, 216)];
-    datePicker.hidden = YES;
     datePicker.datePickerMode = UIDatePickerModeDate;
     datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt-BR"];
     datePicker.calendar = [datePicker.locale objectForKey:NSLocaleCalendar];
@@ -165,26 +166,69 @@
     self.dateStr.text = [outputFormatter stringFromDate:[datePicker date]];
     
     dataPickerDoneBt = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    dataPickerDoneBt.hidden = YES;
     dataPickerDoneBt.frame = CGRectMake((320-70), (480-216-30), 70, 30);
     [dataPickerDoneBt setTitle:@"choose" forState:UIControlStateNormal];
-    [dataPickerDoneBt addTarget:self action:@selector(DataPickerDone:) forControlEvents:UIControlEventTouchUpInside];
+    [dataPickerDoneBt addTarget:self action:@selector(dataPickerDone:) forControlEvents:UIControlEventTouchUpInside];
     
     [bgView addSubview:dataPickerDoneBt];
     [bgView addSubview:datePicker];
     
+    bgView.hidden = NO;
+    
 }
 
--(void)DataPickerDone:(id)event{
+-(void)createParcelPicker{
+	[self removeElementsFromView:bgView];
+    parcelPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, (480-216), 320, 216)];
+    parcelPicker.delegate = self;
+    parcelPicker.dataSource = self;
+    parcelPicker.showsSelectionIndicator = YES;
+    
+    self.parcel.text = @"";
+    
+    parcelPickerDoneBt = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    parcelPickerDoneBt.frame = CGRectMake((320-70), (480-216-30), 70, 30);
+    [parcelPickerDoneBt setTitle:@"Done" forState:UIControlStateNormal];
+    [parcelPickerDoneBt addTarget:self action:@selector(parcelPickerDone:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [bgView addSubview:parcelPickerDoneBt];
+    [bgView addSubview:parcelPicker];
+    
+    bgView.hidden = NO;
+    
+}
+
+-(void)removeElementsFromView:(UIView*)viewR{
+	for (id object in [viewR subviews]) {
+		[object removeFromSuperview];
+	}
+}
+
+-(void)dataPickerDone:(id)event{
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"dd/MM/yyyy"];
     [outputFormatter setLocale:datePicker.locale];
     self.dateStr.text = [outputFormatter stringFromDate:[datePicker date]];
-    datePicker.hidden = YES;
-    dataPickerDoneBt.hidden = YES;
     bgView.hidden = YES;
 }
 
+-(void)parcelPickerDone:(id)event{
+    self.parcel.text = @"";
+    bgView.hidden = YES;;
+    
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return parcelDatasource.count;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return [parcelDatasource objectAtIndex:row];
+}
 
 -(void)setBackground{
     bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
