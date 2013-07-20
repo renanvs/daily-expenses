@@ -19,6 +19,15 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
         portImg = [UIImage imageNamed:@"dailyCellTopBar.png"];
         landImg = [UIImage imageNamed:@"dailyCellTopBarLand.png"];
+        
+        UIDeviceOrientation devOri = [[UIDevice currentDevice] orientation];
+        
+        if (devOri == UIInterfaceOrientationPortrait || devOri == UIInterfaceOrientationPortraitUpsideDown || devOri == UIDeviceOrientationUnknown){
+            headerImg.image = portImg;
+        }else{
+            headerImg.image = landImg;
+            
+        }
     }
     return self;
 }
