@@ -69,7 +69,7 @@ static id _instance;
     //item.typeImg = [UIImage imageNamed:item.type];
     item = [self verifyAllFields:item];
     [listItens addObject:item];
-    [self saveToPlist];
+    [self saveItemToPlist];
     self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [item.value floatValue]];
 }
 
@@ -115,7 +115,7 @@ static id _instance;
     
 }
 
--(void)saveToPlist{
+-(void)saveItemToPlist{
     NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentFolder = [documentPath objectAtIndex:0];
     
@@ -133,6 +133,49 @@ static id _instance;
     [addData writeToFile:newPlistFile atomically:YES];
 
 
+}
+
+-(void)refreshPlistFileBasedOnList{
+    NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentFolder = [documentPath objectAtIndex:0];
+    
+    newPlistFile = [documentFolder stringByAppendingPathComponent:@"NewPlist.plist"];
+    
+    NSString *bundleFile = [[NSBundle mainBundle]pathForResource:@"itemList" ofType:@"plist"];
+    
+    [[NSFileManager defaultManager]copyItemAtPath:bundleFile toPath:newPlistFile error:nil];
+    
+    
+    NSMutableArray *addData = [NSMutableArray arrayWithContentsOfFile:newPlistFile];
+    
+    NSInteger verify = 0;
+    NSMutableArray *itensToRemove = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *item in addData) {
+        for (SpendItem *itemC in listItens) {
+            NSString *itemId = [[item objectForKey:@"id"] stringValue];
+            NSString *itemCId = [itemC.item_id stringValue];
+            if ([itemId isEqualToString:itemCId]) {
+                verify++;
+            }
+        }
+        
+        if (verify == 0) {
+            [itensToRemove addObject:item];
+        }
+        
+        verify = 0;
+    }
+    
+    //for (NSDictionary *item in itensToRemove) {
+        [addData removeObjectsInArray:itensToRemove];
+    //}
+    
+    //[addData addObject:[self addItem:[listItens lastObject]]];
+    //[addData objectAtIndex:0];
+    [addData writeToFile:newPlistFile atomically:YES];
+    
+    
 }
 
 -(NSDictionary*)addItem:(SpendItem*)item{
@@ -164,6 +207,11 @@ static id _instance;
         }
     }
     return itemToReturn;
+}
+
+-(void)removeItemByIndexPath :(NSInteger)index{
+    [listItens removeObjectAtIndex:index];
+    [self refreshPlistFileBasedOnList];
 }
 
 @end

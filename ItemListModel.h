@@ -23,6 +23,7 @@
 
 -(SpendItem*)getSpendItemById:(NSNumber*)idValue;
 
+-(void)removeItemByIndexPath :(NSInteger)index;
 
 
 @end

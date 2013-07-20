@@ -58,6 +58,20 @@
     return 44;
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        [tableView beginUpdates];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [[ItemListModel sharedInstance] removeItemByIndexPath:indexPath.row];
+        [tableView endUpdates];
+        [tableView reloadData];
+    }
+}
+
 #pragma mark - IBAction
 
 -(IBAction)addDailyItem:(id)sender{
