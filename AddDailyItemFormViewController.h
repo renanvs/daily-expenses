@@ -12,16 +12,23 @@
 #import "TPKeyboardAvoidingScrollView.h"
 
 @interface AddDailyItemFormViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, PopoverViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
-    NSDictionary * categoryList;
-    CGPoint point;
+    
     SpendItem *item;
     
     UIDatePicker *datePicker;
-    UIPickerView *parcelPicker;
     UIButton *dataPickerDoneBt;
+	
+	UIPickerView *parcelPicker;
     UIButton *parcelPickerDoneBt;
-    UIView *bgView;
     NSArray *parcelDatasource;
+	
+	NSDictionary * categoryList;
+	UIButton *categoryTableDoneBt;
+	UITableView *categoryTableView;
+	
+	UIView *bgView;
+    
+    UIButton *closeKeyboardBt;
 }
 
 @property (assign, nonatomic) IBOutlet UITextField *label;
@@ -38,11 +45,6 @@
 - (IBAction)selectType:(id)sender;
 - (IBAction)showDatePicker:(id)sender;
 - (IBAction)showParcelPicker:(id)sender;
-- (IBAction)test:(id)sender;
-
-- (IBAction)closeCategoryChooseView:(id)sender;
-@property (assign, nonatomic) IBOutlet UITableView *categoryChooseTable;
-@property (assign, nonatomic) IBOutlet UIView *categoryView;
 
 
 @end

@@ -50,8 +50,6 @@
     [self setValue:nil];
     [self setDateStr:nil];
     [self setNote:nil];
-    [self setCategoryChooseTable:nil];
-    [self setCategoryView:nil];
     [self setTypeLabel:nil];
     [super viewDidUnload];
 }
@@ -62,6 +60,8 @@
     if (self) {
         categoryList = [[NSDictionary alloc] initWithDictionary:[[Config sharedInstance] categoryList]];
 		parcelDatasource = [[NSArray alloc] initWithObjects:@"1", @"2x", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20", @"21", @"22", @"23", @"24", nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
     
     return self;
@@ -95,7 +95,7 @@
 }
 
 - (IBAction)selectType:(id)sender {
-    self.categoryView.hidden = NO;
+    [self createCategoryTableView];
 }
 
 - (IBAction)showDatePicker:(id)sender {
@@ -106,28 +106,20 @@
     [self createParcelPicker];
 }
 
-- (IBAction)closeCategoryChooseView:(id)sender {
-    self.categoryView.hidden = YES;
-}
-
 #pragma mark - textFieldDelegate Methods
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
-}
+
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if (textField == self.dateStr) {
+    if (textField == self.dateStr || textField == self.parcel) {
         return NO;
     }
     return YES;
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-//    if (textField == self.type){
-//        [textField resignFirstResponder];
-//    }
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - tableViewDelegate Methods
@@ -166,7 +158,7 @@
     self.typeLabel.text = [allKeys objectAtIndex:row];
     UIImage *iconImg = [UIImage imageNamed:[categoryList objectForKey:[allKeys objectAtIndex:row]]];
     [self.typeBt setImage:iconImg forState:UIControlStateNormal];
-    self.categoryView.hidden = YES;
+    bgView.hidden = YES;
 }
 
 #pragma mark - create dataPicker and pickerView
@@ -214,6 +206,49 @@
     
 }
 
+-(void)createCategoryTableView{
+	[self removeElementsFromView:bgView];
+	categoryTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 260, 360) style:UITableViewStylePlain];
+	categoryTableView.delegate = self;
+	categoryTableView.dataSource = self;
+    [self setItem:categoryTableView inCenterView:bgView padLeft:0 padTop:45 padRight:0 padBottom:0];
+	
+	categoryTableDoneBt = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	categoryTableDoneBt.frame = CGRectMake(0, 0, 70, 30);
+	[categoryTableDoneBt setTitle:@"Close" forState:UIControlStateNormal];
+	[categoryTableDoneBt addTarget:self action:@selector(categoryTableDone:) forControlEvents:UIControlEventTouchUpInside];
+    [self setItem:categoryTableDoneBt inView:categoryTableView side:@"right" UpDown:@"top" padLeft:0 padTop:0 padRight:0 padBottom:0];
+	
+	[bgView addSubview:categoryTableView];
+	[bgView addSubview:categoryTableDoneBt];
+	
+	bgView.hidden = NO;
+}
+
+#pragma mark - keyboard methods
+-(void)keyboardDidShow:(NSNotification*)notification{
+    NSDictionary *keyboardInfo = [notification userInfo];
+    NSValue *keyboardFrameValue = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrameRect = [keyboardFrameValue CGRectValue];
+    
+    closeKeyboardBt = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    closeKeyboardBt.frame = CGRectMake((keyboardFrameRect.size.width-70), (keyboardFrameRect.origin.y-30), 70, 30);
+    [closeKeyboardBt setTitle:@"Fechar" forState:UIControlStateNormal];
+    [closeKeyboardBt addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:closeKeyboardBt];
+}
+
+-(void)keyboardWillHide:(NSNotification*)notification{
+    [closeKeyboardBt removeFromSuperview];
+}
+
+-(void)closeKeyboard:(id)event{
+    for (UITextField *tf in [self.tpScrollView subviews]) {
+        [tf resignFirstResponder];
+        
+    }
+}
+
 #pragma mark - other methods
 
 -(void)removeElementsFromView:(UIView*)viewR{
@@ -230,11 +265,47 @@
     
 }
 
-- (IBAction)test:(id)sender {
-    [self setBackground];
+- (void)setItem:(UIView*)subView inCenterView:(UIView*)viewR padLeft:(CGFloat)l  padTop:(CGFloat)t padRight:(CGFloat)r padBottom:(CGFloat)b{
+    CGRect CGItem = subView.frame;
+    CGRect CGView = viewR.frame;
+    
+    CGFloat w = CGItem.size.width;
+    CGFloat h = CGItem.size.height;
+    CGFloat x = (CGView.size.width/2) - (CGItem.size.width/2) + l - r;
+    CGFloat y = (CGView.size.height/2) - (CGItem.size.height/2) + t - b;
+    
+    CGRect newRect = CGRectMake(x, y, w, h);
+    
+    subView.frame = newRect;
+    
 }
 
-#pragma mark - Pickers Done Button
+- (void)setItem:(UIView*)subView inView:(UIView*)viewR side:(NSString*)side UpDown:(NSString*)updown padLeft:(CGFloat)l  padTop:(CGFloat)t padRight:(CGFloat)r padBottom:(CGFloat)b{
+    CGRect CGItem = subView.frame;
+    CGRect CGView = viewR.frame;
+    
+    CGFloat newX;
+    CGFloat newY;
+    
+    if([updown isEqualToString:@"up"]){
+        newY = CGView.origin.y - CGItem.size.height + t - b;
+    }else{
+        newY = CGView.origin.y + CGView.size.height + t - b;
+    }
+    
+    if([side isEqualToString:@"left"]){
+        newX = CGView.origin.x +l - r;
+    }else{
+        newX = CGView.origin.x + CGView.size.width - CGItem.size.width + l - r;
+    }
+    
+    CGRect newRect = CGRectMake(newX, newY, CGItem.size.width, CGItem.size.height);
+    
+    subView.frame = newRect;
+    
+}
+
+#pragma mark - Pickers and Table Done Button
 
 -(void)dataPickerDone:(id)event{
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
@@ -248,6 +319,10 @@
 	NSInteger row = [parcelPicker selectedRowInComponent:0];
 	self.parcel.text = [parcelDatasource objectAtIndex:row];
     bgView.hidden = YES;;
+}
+
+-(void)categoryTableDone:(id)event{
+	bgView.hidden = YES;
 }
 
 #pragma mark - pickerViewDelegate methods
