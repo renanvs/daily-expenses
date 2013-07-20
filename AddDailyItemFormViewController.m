@@ -59,7 +59,7 @@
     
     if (self) {
         categoryList = [[NSDictionary alloc] initWithDictionary:[[Config sharedInstance] categoryList]];
-		parcelDatasource = [[NSArray alloc] initWithObjects:@"1", @"2x", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20", @"21", @"22", @"23", @"24", nil];
+		parcelDatasource = [[NSArray alloc] initWithObjects:@"1x", @"2x", @"3x", @"4x", @"5x", @"6x", @"7x", @"8x", @"9x", @"10x", @"11x", @"12x", @"13x", @"14x", @"15x", @"16x", @"17x", @"18x", @"19x", @"20x", @"21x", @"22x", @"23x", @"24x", nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
@@ -81,7 +81,7 @@
     
     item.label = self.label.text;
     item.type = self.typeLabel.text;
-    item.parcel = [formatter numberFromString:self.parcel.text];
+    item.parcel = [formatter numberFromString:[self.parcel.text stringByReplacingOccurrencesOfString:@"x" withString:@""]];
     item.value = [formatter numberFromString:self.value.text];
     item.dateStr = self.dateStr.text;
     item.notes = self.note.text;
@@ -95,14 +95,17 @@
 }
 
 - (IBAction)selectType:(id)sender {
+    [self closeKeyboard];
     [self createCategoryTableView];
 }
 
 - (IBAction)showDatePicker:(id)sender {
+    [self closeKeyboard];
     [self createDatePicker];
 }
 
 - (IBAction)showParcelPicker:(id)sender {
+    [self closeKeyboard];
     [self createParcelPicker];
 }
 
@@ -217,7 +220,7 @@
 	categoryTableDoneBt.frame = CGRectMake(0, 0, 70, 30);
 	[categoryTableDoneBt setTitle:@"Close" forState:UIControlStateNormal];
 	[categoryTableDoneBt addTarget:self action:@selector(categoryTableDone:) forControlEvents:UIControlEventTouchUpInside];
-    [self setItem:categoryTableDoneBt inView:categoryTableView side:@"right" UpDown:@"top" padLeft:0 padTop:0 padRight:0 padBottom:0];
+    [self setItem:categoryTableDoneBt inView:categoryTableView side:@"right" UpDown:@"up" padLeft:0 padTop:0 padRight:0 padBottom:0];
 	
 	[bgView addSubview:categoryTableView];
 	[bgView addSubview:categoryTableDoneBt];
@@ -234,7 +237,7 @@
     closeKeyboardBt = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     closeKeyboardBt.frame = CGRectMake((keyboardFrameRect.size.width-70), (keyboardFrameRect.origin.y-30), 70, 30);
     [closeKeyboardBt setTitle:@"Fechar" forState:UIControlStateNormal];
-    [closeKeyboardBt addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
+    [closeKeyboardBt addTarget:self action:@selector(closeKeyboard) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:closeKeyboardBt];
 }
 
@@ -242,7 +245,7 @@
     [closeKeyboardBt removeFromSuperview];
 }
 
--(void)closeKeyboard:(id)event{
+-(void)closeKeyboard{
     for (UITextField *tf in [self.tpScrollView subviews]) {
         [tf resignFirstResponder];
         
