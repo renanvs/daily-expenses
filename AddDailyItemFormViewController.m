@@ -325,7 +325,20 @@
 }
 
 -(void)categoryTableDone:(id)event{
-	bgView.hidden = YES;
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:2];
+//    CGAffineTransform transform = CGAffineTransformMakeTranslation(0, 480);
+//    categoryTableView.transform = transform;
+//    [UIView commitAnimations];
+	CGRect categoryRect = categoryTableView.frame;
+	[UIView animateWithDuration:.5 animations:^{
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+		[categoryTableView setFrame:CGRectMake(categoryRect.origin.x, categoryRect.origin.y + categoryRect.size.height,
+											   categoryRect.size.width,categoryRect.size.height)];
+	}completion:^(BOOL finished){
+		bgView.hidden = YES;
+	}];
+	
 }
 
 #pragma mark - pickerViewDelegate methods
