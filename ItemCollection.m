@@ -10,7 +10,7 @@
 
 @implementation NSString(isNull)
 
-+ (BOOL ) IsEmpty:(NSString *) aString {
++ (BOOL) IsEmpty:(NSString *) aString {
     
     if ((NSNull *) aString == [NSNull null]) {
         return YES;
@@ -66,7 +66,6 @@ static id _instance;
 -(void)addItemToList:(SpendItem*)item{
     int addId = [[[listItens lastObject] item_id] intValue] +1;
     item.item_id = [NSNumber numberWithInt:addId];
-    //item.typeImg = [UIImage imageNamed:item.type];
     item = [self verifyAllFields:item];
     [listItens addObject:item];
     [self saveItemToPlist];
@@ -80,10 +79,7 @@ static id _instance;
     if ([NSString IsEmpty:item.notes])item.notes = @"";
     
     if (!item.value)item.value = [NSNumber numberWithInt:0];
-    
-    
     if (!item.parcel)item.parcel = [NSNumber numberWithInt:0];
-    
     
     return item;
 }
@@ -111,8 +107,6 @@ static id _instance;
         self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [item.value floatValue]];
         [listItens addObject:item];
     }
-    
-    
 }
 
 -(void)saveItemToPlist{
@@ -131,8 +125,6 @@ static id _instance;
     [addData addObject:[self addItem:[listItens lastObject]]];
     
     [addData writeToFile:newPlistFile atomically:YES];
-
-
 }
 
 -(void)refreshPlistFileBasedOnList{
@@ -167,15 +159,8 @@ static id _instance;
         verify = 0;
     }
     
-    //for (NSDictionary *item in itensToRemove) {
-        [addData removeObjectsInArray:itensToRemove];
-    //}
-    
-    //[addData addObject:[self addItem:[listItens lastObject]]];
-    //[addData objectAtIndex:0];
+	[addData removeObjectsInArray:itensToRemove];
     [addData writeToFile:newPlistFile atomically:YES];
-    
-    
 }
 
 -(NSDictionary*)addItem:(SpendItem*)item{
