@@ -7,7 +7,7 @@
 //
 
 #import "PopoverDaily.h"
-#import "ItemListModel.h"
+#import "ItemCollection.h"
 
 
 @implementation PopoverDaily
@@ -15,7 +15,7 @@
 -(id)initWithId:(NSNumber*)idValue{
     self = [super init];
     if(self){
-        item = [[ItemListModel sharedInstance] getSpendItemById:idValue];
+        item = [[ItemCollection sharedInstance] getSpendItemById:idValue];
     }
     return self;
 }

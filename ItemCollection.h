@@ -1,5 +1,5 @@
 //
-//  ItemListModel.h
+//  itemCollection.h
 //  daily Expenses
 //
 //  Created by renan veloso silva on 02/07/13.
@@ -10,14 +10,14 @@
 #import "SpendItem.h"
 #import "Config.h"
 
-@interface ItemListModel : NSObject{
+@interface ItemCollection : NSObject{
     NSString *newPlistFile;
 }
 
 @property (strong) NSMutableArray *listItens;
 @property (strong) NSNumber *totalValue;
 
-+(ItemListModel *) sharedInstance;
++(ItemCollection *) sharedInstance;
 
 -(void)addItemToList:(SpendItem*)item;
 

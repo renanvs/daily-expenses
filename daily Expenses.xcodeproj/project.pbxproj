@@ -34,7 +34,7 @@
 		1E38169B1795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3816981795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m */; };
 		1E38169C1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E38169A1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m */; };
 		1E3940751754355300A5DC86 /* CategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E3940741754355300A5DC86 /* CategoryView.xib */; };
-		1E6098251783B74300491251 /* ItemListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098241783B74300491251 /* ItemListModel.m */; };
+		1E6098251783B74300491251 /* ItemCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098241783B74300491251 /* ItemCollection.m */; };
 		1E6098291783C9AA00491251 /* AddDailyItemFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098271783C9AA00491251 /* AddDailyItemFormViewController.m */; };
 		1E60982A1783C9AA00491251 /* AddDailyItemFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E6098281783C9AA00491251 /* AddDailyItemFormViewController.xib */; };
 		1E735BB0178BB9D300D2527C /* itemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E735BAF178BB9D300D2527C /* itemList.plist */; };
@@ -140,8 +140,8 @@
 		1E3816991795D10100D39CB9 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
 		1E38169A1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		1E3940741754355300A5DC86 /* CategoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryView.xib; sourceTree = "<group>"; };
-		1E6098231783B74300491251 /* ItemListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemListModel.h; sourceTree = "<group>"; };
-		1E6098241783B74300491251 /* ItemListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemListModel.m; sourceTree = "<group>"; };
+		1E6098231783B74300491251 /* ItemCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCollection.h; sourceTree = "<group>"; };
+		1E6098241783B74300491251 /* ItemCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCollection.m; sourceTree = "<group>"; };
 		1E6098261783C9AA00491251 /* AddDailyItemFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDailyItemFormViewController.h; sourceTree = "<group>"; };
 		1E6098271783C9AA00491251 /* AddDailyItemFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDailyItemFormViewController.m; sourceTree = "<group>"; };
 		1E6098281783C9AA00491251 /* AddDailyItemFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDailyItemFormViewController.xib; sourceTree = "<group>"; };
@@ -284,7 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				1E33C179178CC8A300F37B62 /* Config */,
-				1E6098221783B72400491251 /* ItemListModel */,
+				1E6098221783B72400491251 /* ItemCollection */,
 				1E20860B176AA19F00EACD6A /* SpendItem */,
 			);
 			name = MainClasses;
@@ -411,14 +411,14 @@
 			name = ETC;
 			sourceTree = "<group>";
 		};
-		1E6098221783B72400491251 /* ItemListModel */ = {
+		1E6098221783B72400491251 /* ItemCollection */ = {
 			isa = PBXGroup;
 			children = (
-				1E6098231783B74300491251 /* ItemListModel.h */,
-				1E6098241783B74300491251 /* ItemListModel.m */,
+				1E6098231783B74300491251 /* ItemCollection.h */,
+				1E6098241783B74300491251 /* ItemCollection.m */,
 				1E735BAF178BB9D300D2527C /* itemList.plist */,
 			);
-			name = ItemListModel;
+			name = ItemCollection;
 			sourceTree = "<group>";
 		};
 		1EA2969B179F1D8E00C646B0 /* Daily */ = {
@@ -664,7 +664,7 @@
 				1E07CBF81748F58100C5F83A /* AddDailyItemViewController.m in Sources */,
 				1E07CBFE1748FA6900C5F83A /* SettingsViewController.m in Sources */,
 				1E20860E176AA47800EACD6A /* SpendItem.m in Sources */,
-				1E6098251783B74300491251 /* ItemListModel.m in Sources */,
+				1E6098251783B74300491251 /* ItemCollection.m in Sources */,
 				1E6098291783C9AA00491251 /* AddDailyItemFormViewController.m in Sources */,
 				1E33C17E178CCC1000F37B62 /* Config.m in Sources */,
 				1E33C182178CE5A100F37B62 /* categoryChooseCell.m in Sources */,

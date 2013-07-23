@@ -8,7 +8,7 @@
 
 #import "DailyView.h"
 #import "DailyTableViewCell.h"
-#import "ItemListModel.h"
+#import "ItemCollection.h"
 #import "DailyTableViewHeaderCell.h"
 
 @implementation DailyView
@@ -28,9 +28,9 @@
 -(id)init{
     self = [super init];
     if (self){
-        listItens = [[ItemListModel sharedInstance] listItens];
+        listItens = [[ItemCollection sharedInstance] listItens];
 		
-		NSString * totalValueStr = [[[ItemListModel sharedInstance] totalValue] stringValue];
+		NSString * totalValueStr = [[[ItemCollection sharedInstance] totalValue] stringValue];
 		totalValue.text = [NSString stringWithFormat:@"R$ %@", totalValueStr];
 		[dailyTableView reloadData];
     }
@@ -80,7 +80,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete){
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [[ItemListModel sharedInstance] removeItemByIndexPath:indexPath.row];
+        [[ItemCollection sharedInstance] removeItemByIndexPath:indexPath.row];
         [tableView endUpdates];
         [tableView reloadData];
     }

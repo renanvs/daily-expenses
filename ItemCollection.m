@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 renan veloso silva. All rights reserved.
 //
 
-#import "ItemListModel.h"
+#import "ItemCollection.h"
 
 @implementation NSString(isNull)
 
@@ -32,12 +32,12 @@
 
 @end
 
-@implementation ItemListModel
+@implementation ItemCollection
 
 static id _instance;
 @synthesize listItens;
 
-+ (ItemListModel *) sharedInstance{
++ (ItemCollection *) sharedInstance{
     @synchronized(self){
         if (!_instance) {
             _instance = [[self alloc] init];

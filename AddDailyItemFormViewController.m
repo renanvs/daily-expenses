@@ -7,7 +7,7 @@
 //
 
 #import "AddDailyItemFormViewController.h"
-#import "ItemListModel.h"
+#import "ItemCollection.h"
 #import "CategoryChooseCell.h"
 #import "Config.h"
 
@@ -87,7 +87,7 @@
     item.dateStr = self.dateStr.text;
     item.notes = self.note.text;
     item.typeImg = [UIImage imageNamed:item.type];
-    [[ItemListModel sharedInstance] addItemToList:item];
+    [[ItemCollection sharedInstance] addItemToList:item];
     [self back:nil];
 }
 
