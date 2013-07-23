@@ -34,6 +34,7 @@
 {
     [super viewDidLoad];
     [self setBackground];
+    [self getCurrentDate];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -306,6 +307,12 @@
     
     subView.frame = newRect;
     
+}
+
+-(void)getCurrentDate{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    self.dateStr.text = [formatter stringFromDate:[NSDate date]];
 }
 
 #pragma mark - Pickers and Table Done Button
