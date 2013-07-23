@@ -21,8 +21,9 @@
 
 @implementation MainView
 @synthesize dailyTableView;
+@synthesize listItens;
 @synthesize changeViewTypeSegmentControl;
-@synthesize listItens, totalValue;
+@synthesize totalValue;
 
 #pragma mark - tableView delegate
 

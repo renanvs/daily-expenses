@@ -38,6 +38,10 @@
 		1E6098291783C9AA00491251 /* AddDailyItemFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098271783C9AA00491251 /* AddDailyItemFormViewController.m */; };
 		1E60982A1783C9AA00491251 /* AddDailyItemFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E6098281783C9AA00491251 /* AddDailyItemFormViewController.xib */; };
 		1E735BB0178BB9D300D2527C /* itemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E735BAF178BB9D300D2527C /* itemList.plist */; };
+		1EA296A0179F1DEC00C646B0 /* DailyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA2969F179F1DEC00C646B0 /* DailyView.m */; };
+		1EA296A3179F1DFB00C646B0 /* MonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA296A2179F1DFB00C646B0 /* MonthView.m */; };
+		1EA296A6179F1E0B00C646B0 /* FilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA296A5179F1E0B00C646B0 /* FilterView.m */; };
+		1EA296A8179F1E2400C646B0 /* DailyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EA296A7179F1E2400C646B0 /* DailyView.xib */; };
 		1ECEE05F1796354200647B7C /* dailyCellTopBarLand.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECEE05D1796354200647B7C /* dailyCellTopBarLand.png */; };
 		1ECEE0601796354200647B7C /* dailyCellTopBarLand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECEE05E1796354200647B7C /* dailyCellTopBarLand@2x.png */; };
 		1ECEE063179635A700647B7C /* DailyTableViewHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECEE062179635A700647B7C /* DailyTableViewHeaderCell.m */; };
@@ -142,6 +146,13 @@
 		1E6098271783C9AA00491251 /* AddDailyItemFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDailyItemFormViewController.m; sourceTree = "<group>"; };
 		1E6098281783C9AA00491251 /* AddDailyItemFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDailyItemFormViewController.xib; sourceTree = "<group>"; };
 		1E735BAF178BB9D300D2527C /* itemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = itemList.plist; sourceTree = "<group>"; };
+		1EA2969E179F1DEC00C646B0 /* DailyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyView.h; sourceTree = "<group>"; };
+		1EA2969F179F1DEC00C646B0 /* DailyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyView.m; sourceTree = "<group>"; };
+		1EA296A1179F1DFB00C646B0 /* MonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthView.h; sourceTree = "<group>"; };
+		1EA296A2179F1DFB00C646B0 /* MonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthView.m; sourceTree = "<group>"; };
+		1EA296A4179F1E0B00C646B0 /* FilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterView.h; sourceTree = "<group>"; };
+		1EA296A5179F1E0B00C646B0 /* FilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterView.m; sourceTree = "<group>"; };
+		1EA296A7179F1E2400C646B0 /* DailyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyView.xib; sourceTree = "<group>"; };
 		1ECEE05D1796354200647B7C /* dailyCellTopBarLand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dailyCellTopBarLand.png; sourceTree = "<group>"; };
 		1ECEE05E1796354200647B7C /* dailyCellTopBarLand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dailyCellTopBarLand@2x.png"; sourceTree = "<group>"; };
 		1ECEE061179635A700647B7C /* DailyTableViewHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyTableViewHeaderCell.h; sourceTree = "<group>"; };
@@ -223,6 +234,9 @@
 		1E07CBF21748F4A500C5F83A /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				1EA2969D179F1DBA00C646B0 /* Filter */,
+				1EA2969C179F1DB300C646B0 /* Month */,
+				1EA2969B179F1D8E00C646B0 /* Daily */,
 				1E27988C1746BA3800DD4AAF /* MainView.h */,
 				1E27988D1746BA3800DD4AAF /* MainView.m */,
 				1E27988E1746BA3800DD4AAF /* MainView.xib */,
@@ -405,6 +419,34 @@
 				1E735BAF178BB9D300D2527C /* itemList.plist */,
 			);
 			name = ItemListModel;
+			sourceTree = "<group>";
+		};
+		1EA2969B179F1D8E00C646B0 /* Daily */ = {
+			isa = PBXGroup;
+			children = (
+				1EA2969E179F1DEC00C646B0 /* DailyView.h */,
+				1EA2969F179F1DEC00C646B0 /* DailyView.m */,
+				1EA296A7179F1E2400C646B0 /* DailyView.xib */,
+			);
+			name = Daily;
+			sourceTree = "<group>";
+		};
+		1EA2969C179F1DB300C646B0 /* Month */ = {
+			isa = PBXGroup;
+			children = (
+				1EA296A1179F1DFB00C646B0 /* MonthView.h */,
+				1EA296A2179F1DFB00C646B0 /* MonthView.m */,
+			);
+			name = Month;
+			sourceTree = "<group>";
+		};
+		1EA2969D179F1DBA00C646B0 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				1EA296A4179F1E0B00C646B0 /* FilterView.h */,
+				1EA296A5179F1E0B00C646B0 /* FilterView.m */,
+			);
+			name = Filter;
 			sourceTree = "<group>";
 		};
 		1EDEEFD11748705300A03BE2 /* categories_icon */ = {
@@ -604,6 +646,7 @@
 				1EEAC906178FA526000DD075 /* PopoverDaily.xib in Resources */,
 				1ECEE05F1796354200647B7C /* dailyCellTopBarLand.png in Resources */,
 				1ECEE0601796354200647B7C /* dailyCellTopBarLand@2x.png in Resources */,
+				1EA296A8179F1E2400C646B0 /* DailyView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +673,9 @@
 				1E38169B1795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				1E38169C1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m in Sources */,
 				1ECEE063179635A700647B7C /* DailyTableViewHeaderCell.m in Sources */,
+				1EA296A0179F1DEC00C646B0 /* DailyView.m in Sources */,
+				1EA296A3179F1DFB00C646B0 /* MonthView.m in Sources */,
+				1EA296A6179F1E0B00C646B0 /* FilterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

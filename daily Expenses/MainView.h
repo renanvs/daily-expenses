@@ -14,11 +14,12 @@
 	IBOutlet UIView *landscapeView;
 }
 
-@property (strong) IBOutlet UITableView *dailyTableView;
 @property (strong) IBOutlet UIButton *addDailyItemButton;
-@property (strong) IBOutlet UILabel *totalValue;
 @property (strong) IBOutlet UISegmentedControl *changeViewTypeSegmentControl;
+/////
+@property (strong) IBOutlet UITableView *dailyTableView;
 @property (strong) NSMutableArray *listItens;
+@property (strong) IBOutlet UILabel *totalValue;
 
 -(IBAction)addDailyItem:(id)sender;
 -(IBAction)settings:(id)sender;
