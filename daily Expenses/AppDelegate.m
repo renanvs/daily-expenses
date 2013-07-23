@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "DailyView.h"
+#import "MainView.h"
 
 
 @implementation AppDelegate
@@ -16,10 +16,10 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    DailyView *daily = [[DailyView alloc]init];
+    MainView *mainView = [[MainView alloc]init];
     //self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     itemList = [[NSMutableArray alloc] init];
-    self.window.rootViewController = daily;
+    self.window.rootViewController = mainView;
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self.window makeKeyAndVisible];
     return YES;

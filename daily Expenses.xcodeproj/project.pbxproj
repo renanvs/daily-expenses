@@ -25,8 +25,8 @@
 		1E27987C1746B91000DD4AAF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E27987B1746B91000DD4AAF /* Default.png */; };
 		1E27987E1746B91000DD4AAF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E27987D1746B91000DD4AAF /* Default@2x.png */; };
 		1E2798801746B91000DD4AAF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E27987F1746B91000DD4AAF /* Default-568h@2x.png */; };
-		1E27988F1746BA3800DD4AAF /* DailyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E27988D1746BA3800DD4AAF /* DailyView.m */; };
-		1E2798901746BA3800DD4AAF /* DailyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E27988E1746BA3800DD4AAF /* DailyView.xib */; };
+		1E27988F1746BA3800DD4AAF /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E27988D1746BA3800DD4AAF /* MainView.m */; };
+		1E2798901746BA3800DD4AAF /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E27988E1746BA3800DD4AAF /* MainView.xib */; };
 		1E33C17B178CC8C300F37B62 /* defaultConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E33C17A178CC8C300F37B62 /* defaultConfig.plist */; };
 		1E33C17E178CCC1000F37B62 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33C17D178CCC1000F37B62 /* Config.m */; };
 		1E33C182178CE5A100F37B62 /* categoryChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33C181178CE5A100F37B62 /* categoryChooseCell.m */; };
@@ -122,9 +122,9 @@
 		1E27987B1746B91000DD4AAF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		1E27987D1746B91000DD4AAF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1E27987F1746B91000DD4AAF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		1E27988C1746BA3800DD4AAF /* DailyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DailyView.h; path = "daily Expenses/DailyView.h"; sourceTree = "<group>"; };
-		1E27988D1746BA3800DD4AAF /* DailyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DailyView.m; path = "daily Expenses/DailyView.m"; sourceTree = "<group>"; };
-		1E27988E1746BA3800DD4AAF /* DailyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DailyView.xib; path = "daily Expenses/DailyView.xib"; sourceTree = "<group>"; };
+		1E27988C1746BA3800DD4AAF /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainView.h; path = "daily Expenses/MainView.h"; sourceTree = "<group>"; };
+		1E27988D1746BA3800DD4AAF /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainView.m; path = "daily Expenses/MainView.m"; sourceTree = "<group>"; };
+		1E27988E1746BA3800DD4AAF /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainView.xib; path = "daily Expenses/MainView.xib"; sourceTree = "<group>"; };
 		1E33C17A178CC8C300F37B62 /* defaultConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaultConfig.plist; sourceTree = "<group>"; };
 		1E33C17C178CCC1000F37B62 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		1E33C17D178CCC1000F37B62 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
@@ -223,9 +223,9 @@
 		1E07CBF21748F4A500C5F83A /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				1E27988C1746BA3800DD4AAF /* DailyView.h */,
-				1E27988D1746BA3800DD4AAF /* DailyView.m */,
-				1E27988E1746BA3800DD4AAF /* DailyView.xib */,
+				1E27988C1746BA3800DD4AAF /* MainView.h */,
+				1E27988D1746BA3800DD4AAF /* MainView.m */,
+				1E27988E1746BA3800DD4AAF /* MainView.xib */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -541,7 +541,7 @@
 				1E27987C1746B91000DD4AAF /* Default.png in Resources */,
 				1E27987E1746B91000DD4AAF /* Default@2x.png in Resources */,
 				1E2798801746B91000DD4AAF /* Default-568h@2x.png in Resources */,
-				1E2798901746BA3800DD4AAF /* DailyView.xib in Resources */,
+				1E2798901746BA3800DD4AAF /* MainView.xib in Resources */,
 				1EDEEFC01748699400A03BE2 /* DailyTableViewCell.xib in Resources */,
 				1EDEEFC91748704A00A03BE2 /* dailyBar.png in Resources */,
 				1EDEEFCA1748704A00A03BE2 /* dailyBar@2x.png in Resources */,
@@ -616,7 +616,7 @@
 			files = (
 				1E2798761746B90F00DD4AAF /* main.m in Sources */,
 				1E27987A1746B90F00DD4AAF /* AppDelegate.m in Sources */,
-				1E27988F1746BA3800DD4AAF /* DailyView.m in Sources */,
+				1E27988F1746BA3800DD4AAF /* MainView.m in Sources */,
 				1EDEEFBE1748694300A03BE2 /* DailyTableViewCell.m in Sources */,
 				1E07CBF81748F58100C5F83A /* AddDailyItemViewController.m in Sources */,
 				1E07CBFE1748FA6900C5F83A /* SettingsViewController.m in Sources */,

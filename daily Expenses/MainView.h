@@ -1,5 +1,5 @@
 //
-//  DailyView.h
+//  MainView.h
 //  daily Expenses
 //
 //  Created by renan veloso silva on 17/05/13.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface DailyView : UIViewController <UITableViewDelegate, UITableViewDataSource>{
+@interface MainView : UIViewController <UITableViewDelegate, UITableViewDataSource>{
 	IBOutlet UIView *portraitView;
 	IBOutlet UIView *landscapeView;
 }

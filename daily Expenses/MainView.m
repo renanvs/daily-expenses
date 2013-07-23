@@ -1,12 +1,12 @@
 //
-//  DailyView.m
+//  MainView.m
 //  daily Expenses
 //
 //  Created by renan veloso silva on 17/05/13.
 //  Copyright (c) 2013 renan veloso silva. All rights reserved.
 //
 
-#import "DailyView.h"
+#import "MainView.h"
 #import "DailyTableViewCell.h"
 #import "AddDailyItemViewController.h"
 #import "AddDailyItemFormViewController.h"
@@ -15,11 +15,11 @@
 #import "DailyTableViewHeaderCell.h"
 
 
-@interface DailyView ()
+@interface MainView ()
 
 @end
 
-@implementation DailyView
+@implementation MainView
 @synthesize dailyTableView;
 @synthesize changeViewTypeSegmentControl;
 @synthesize listItens, totalValue;
