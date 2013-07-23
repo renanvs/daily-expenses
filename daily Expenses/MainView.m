@@ -25,6 +25,54 @@
 @synthesize changeViewTypeSegmentControl;
 @synthesize totalValue;
 
+#pragma mark - init, view...
+
+-(id)init{
+    self = [super init];
+    if (self){
+        listItens = [[ItemListModel sharedInstance] listItens];
+    }
+    return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSString * totalValueStr = [[[ItemListModel sharedInstance] totalValue] stringValue];
+    totalValue.text = [NSString stringWithFormat:@"R$ %@", totalValueStr];
+    [dailyTableView reloadData];
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
+
 #pragma mark - tableView delegate
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -95,6 +143,10 @@
 			[self alertTest:@"Second View"];
 			break;
 		}
+		case 2:{
+			[self alertTest:@"Third View"];
+			break;
+		}
 		default:
 			break;
 	}
@@ -106,54 +158,6 @@
 -(void)alertTest:(NSString*)text{
 	UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"TESTE" message:text delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
-}
-
-#pragma mark - init, view...
-
--(id)init{
-    self = [super init];
-    if (self){
-        listItens = [[ItemListModel sharedInstance] listItens];
-    }
-    return self;
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    NSString * totalValueStr = [[[ItemListModel sharedInstance] totalValue] stringValue];
-    totalValue.text = [NSString stringWithFormat:@"R$ %@", totalValueStr];
-    [dailyTableView reloadData];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc {
-    [super dealloc];
-}
-- (void)viewDidUnload {
-    [super viewDidUnload];
 }
 
 #pragma mark - rotate methods
