@@ -25,5 +25,7 @@
 
 -(void)removeItemByIndexPath :(NSInteger)index;
 
+-(void)updateItemToList:(SpendItem*)item;
+
 
 @end

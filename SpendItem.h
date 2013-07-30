@@ -16,10 +16,13 @@
 @property (strong) NSNumber *parcel;
 @property (strong) NSNumber *value;
 @property (strong) NSDate *date;
-@property (strong) NSString *dateStr;
-@property (strong) NSDateFormatter *dateFormat;
+@property (strong) NSString *dateSpent;
 @property (strong) NSString *notes;
 @property (strong) UIImage *typeImg;
+
+
+@property (strong) NSString *dateCreated;
+@property (strong) NSString *dateUpdated;
 
 
 

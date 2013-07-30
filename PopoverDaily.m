@@ -25,7 +25,7 @@
     _category.text = item.type;
     _parcel.text = [item.parcel stringValue];
     _value.text = [item.value stringValue];
-    _date.text = item.dateStr;
+    _date.text = item.dateSpent;
     _notes.text = item.notes;
 }
 

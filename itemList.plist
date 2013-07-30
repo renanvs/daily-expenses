@@ -6,15 +6,19 @@
 		<key>id</key>
 		<integer>0</integer>
 		<key>label</key>
-		<string>LABEL</string>
+		<string>ERROR</string>
 		<key>type</key>
-		<string>label</string>
+		<string>house</string>
 		<key>parcel</key>
 		<integer>3</integer>
 		<key>value</key>
 		<integer>666</integer>
-		<key>dateStr</key>
+		<key>dateSpent</key>
 		<string>12/03/1989</string>
+		<key>dateCreated</key>
+		<string>12/03/1990</string>
+		<key>dateUpdated</key>
+		<string>12/03/1991</string>
 		<key>notes</key>
 		<string>Notes annotation</string>
 	</dict>

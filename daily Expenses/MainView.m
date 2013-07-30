@@ -121,6 +121,12 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DailyTableViewCell *cell = (DailyTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    AddDailyItemFormViewController *dailyViewItem = [[AddDailyItemFormViewController alloc] initWithId:cell.item.item_id];
+    [self presentViewController:dailyViewItem animated:YES completion:nil];
+}
+
 #pragma mark - IBAction
 
 -(IBAction)addDailyItem:(id)sender{

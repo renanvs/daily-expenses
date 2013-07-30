@@ -41,4 +41,16 @@ static id _instance;
     categoryList = [[NSDictionary alloc]initWithDictionary:[arrayPlist objectForKey:@"categories"]];
 }
 
+
+-(UIImage*)getImageByCategoryLabel:(NSString*)label{
+    NSString *value;
+    for (NSString *key in categoryList) {
+        value = [categoryList objectForKey:key];
+        if ([key isEqualToString:label]) {
+            break;
+        }
+    }
+    
+    return [UIImage imageNamed:value];
+}
 @end

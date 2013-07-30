@@ -14,4 +14,6 @@
 
 @property (strong) NSDictionary *categoryList;
 
+-(UIImage*)getImageByCategoryLabel:(NSString*)label;
+
 @end

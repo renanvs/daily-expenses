@@ -29,6 +29,8 @@
 	UIView *bgView;
     
     UIButton *closeKeyboardBt;
+	
+	NSString *state;
 }
 
 @property (assign, nonatomic) IBOutlet UITextField *label;
@@ -39,12 +41,15 @@
 @property (assign, nonatomic) IBOutlet UITextView *note;
 @property (assign, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *tpScrollView;
 @property (assign, nonatomic) IBOutlet UIButton *typeBt;
+@property (assign, nonatomic) IBOutlet UIBarButtonItem *add;
 
 -(IBAction)cadastrar:(id)sender;
 -(IBAction)back:(id)sender;
 - (IBAction)selectType:(id)sender;
 - (IBAction)showDatePicker:(id)sender;
 - (IBAction)showParcelPicker:(id)sender;
+
+-(id)initWithId:(NSNumber*)itemId;
 
 
 @end

@@ -10,6 +10,7 @@
 #import "ItemCollection.h"
 #import "CategoryChooseCell.h"
 #import "Config.h"
+#import "Utility.h"
 
 #import "PopoverDaily.h"
 
@@ -18,6 +19,8 @@
 @end
 
 @implementation AddDailyItemFormViewController
+
+@synthesize label, typeLabel, parcel, value, dateStr, note, typeBt, add;
 
 #pragma mark - init, view...
 
@@ -34,7 +37,15 @@
 {
     [super viewDidLoad];
     [self setBackground];
-    [self getCurrentDate];
+    if ([state isEqualToString:@"update"]){
+        [self populateToForm];
+        [add setTitle:@"Atualizar"];
+    }else{
+        self.add.title = @"Cadastrar";
+        self.dateStr.text = [[Utility sharedInstance] getCurrentDate];
+    }
+    
+    
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -59,36 +70,44 @@
     self =[super init];
     
     if (self) {
-        categoryList = [[NSDictionary alloc] initWithDictionary:[[Config sharedInstance] categoryList]];
-		parcelDatasource = [[NSArray alloc] initWithObjects:@"1x", @"2x", @"3x", @"4x", @"5x", @"6x", @"7x", @"8x", @"9x", @"10x", @"11x", @"12x", @"13x", @"14x", @"15x", @"16x", @"17x", @"18x", @"19x", @"20x", @"21x", @"22x", @"23x", @"24x", nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+		state = @"new";
+        [self initialize];
     }
     
     return self;
 }
 
+-(id)initWithId:(NSNumber*)itemId{
+    self =[super init];
+    
+    if (self) {
+		state = @"update";
+        item = [[ItemCollection sharedInstance] getSpendItemById:itemId];
+        [self initialize];
+    }
+    
+    return self;
+}
+
+-(void)initialize{
+	categoryList = [[NSDictionary alloc] initWithDictionary:[[Config sharedInstance] categoryList]];
+	parcelDatasource = [[NSArray alloc] initWithObjects:@"1x", @"2x", @"3x", @"4x", @"5x", @"6x", @"7x", @"8x",
+						@"9x", @"10x", @"11x", @"12x", @"13x", @"14x", @"15x",
+						@"16x", @"17x", @"18x", @"19x", @"20x", @"21x", @"22x",
+						@"23x", @"24x", nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
 - (void)dealloc {
-    [_typeBt release];
-    [_typeLabel release];
     [super dealloc];
 }
 
 #pragma mark - IBAction's
 
 -(IBAction)cadastrar:(id)sender{
-    item = [[SpendItem alloc] init];
-    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
-    
-    item.label = self.label.text;
-    item.type = self.typeLabel.text;
-    item.parcel = [formatter numberFromString:[self.parcel.text stringByReplacingOccurrencesOfString:@"x" withString:@""]];
-    item.value = [formatter numberFromString:self.value.text];
-    item.dateStr = self.dateStr.text;
-    item.notes = self.note.text;
-    item.typeImg = [UIImage imageNamed:item.type];
-    [[ItemCollection sharedInstance] addItemToList:item];
-    [self back:nil];
+    [self addItem];
 }
 
 -(IBAction)back:(id)sender{
@@ -111,8 +130,6 @@
 }
 
 #pragma mark - textFieldDelegate Methods
-
-
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if (textField == self.dateStr || textField == self.parcel) {
@@ -168,8 +185,8 @@
 #pragma mark - create dataPicker and pickerView
 
 -(void)createDatePicker{
-	[self removeElementsFromView:bgView];
-    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, (480-216), 320, 216)];
+	[[Utility sharedInstance] removeElementsFromView:bgView];
+	datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, (480-216), 320, 216)];
     datePicker.datePickerMode = UIDatePickerModeDate;
     datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt-BR"];
     datePicker.calendar = [datePicker.locale objectForKey:NSLocaleCalendar];
@@ -179,7 +196,8 @@
     self.dateStr.text = [outputFormatter stringFromDate:[datePicker date]];
     
     dataPickerDoneBt = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    dataPickerDoneBt.frame = CGRectMake((320-70), (480-216-30), 70, 30);
+    dataPickerDoneBt.frame = CGRectMake(0, 0, 70, 30);
+	[[Utility sharedInstance] setItem:dataPickerDoneBt inView:datePicker side:@"right" UpDown:@"up" padLeft:0 padTop:0 padRight:0 padBottom:0];
     [dataPickerDoneBt setTitle:@"choose" forState:UIControlStateNormal];
     [dataPickerDoneBt addTarget:self action:@selector(dataPickerDone:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -190,7 +208,7 @@
 }
 
 -(void)createParcelPicker{
-	[self removeElementsFromView:bgView];
+	[[Utility sharedInstance] removeElementsFromView:bgView];
     parcelPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, (480-216), 320, 216)];
     parcelPicker.delegate = self;
     parcelPicker.dataSource = self;
@@ -199,7 +217,8 @@
     self.parcel.text = @"";
     
     parcelPickerDoneBt = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    parcelPickerDoneBt.frame = CGRectMake((320-70), (480-216-30), 70, 30);
+    parcelPickerDoneBt.frame = CGRectMake(0, 0, 70, 30);
+	[[Utility sharedInstance] setItem:parcelPickerDoneBt inView:parcelPicker side:@"right" UpDown:@"up" padLeft:0 padTop:0 padRight:0 padBottom:0];
     [parcelPickerDoneBt setTitle:@"Done" forState:UIControlStateNormal];
     [parcelPickerDoneBt addTarget:self action:@selector(parcelPickerDone:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -211,17 +230,17 @@
 }
 
 -(void)createCategoryTableView{
-	[self removeElementsFromView:bgView];
+	[[Utility sharedInstance] removeElementsFromView:bgView];
 	categoryTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 260, 360) style:UITableViewStylePlain];
 	categoryTableView.delegate = self;
 	categoryTableView.dataSource = self;
-    [self setItem:categoryTableView inCenterView:bgView padLeft:0 padTop:45 padRight:0 padBottom:0];
+	[[Utility sharedInstance] setItem:categoryTableView inCenterView:bgView padLeft:0 padTop:45 padRight:0 padBottom:0];
 	
 	categoryTableDoneBt = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	categoryTableDoneBt.frame = CGRectMake(0, 0, 70, 30);
 	[categoryTableDoneBt setTitle:@"Close" forState:UIControlStateNormal];
 	[categoryTableDoneBt addTarget:self action:@selector(categoryTableDone:) forControlEvents:UIControlEventTouchUpInside];
-    [self setItem:categoryTableDoneBt inView:categoryTableView side:@"right" UpDown:@"up" padLeft:0 padTop:0 padRight:0 padBottom:0];
+	[[Utility sharedInstance]setItem:categoryTableDoneBt inView:categoryTableView side:@"right" UpDown:@"up" padLeft:0 padTop:0 padRight:0 padBottom:0];
 	
 	[bgView addSubview:categoryTableView];
 	[bgView addSubview:categoryTableDoneBt];
@@ -255,12 +274,6 @@
 
 #pragma mark - other methods
 
--(void)removeElementsFromView:(UIView*)viewR{
-	for (id object in [viewR subviews]) {
-		[object removeFromSuperview];
-	}
-}
-
 -(void)setBackground{
     bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     [bgView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:.5]];
@@ -269,50 +282,41 @@
     
 }
 
-- (void)setItem:(UIView*)subView inCenterView:(UIView*)viewR padLeft:(CGFloat)l  padTop:(CGFloat)t padRight:(CGFloat)r padBottom:(CGFloat)b{
-    CGRect CGItem = subView.frame;
-    CGRect CGView = viewR.frame;
-    
-    CGFloat w = CGItem.size.width;
-    CGFloat h = CGItem.size.height;
-    CGFloat x = (CGView.size.width/2) - (CGItem.size.width/2) + l - r;
-    CGFloat y = (CGView.size.height/2) - (CGItem.size.height/2) + t - b;
-    
-    CGRect newRect = CGRectMake(x, y, w, h);
-    
-    subView.frame = newRect;
-    
+-(void)populateToForm{
+	UIImage *categoryImage;
+    self.label.text = item.label;
+	self.typeLabel.text = item.type;
+	self.parcel.text = [NSString stringWithFormat:@"%@x",[item.parcel stringValue]];
+	self.value.text = [item.value stringValue];
+	self.dateStr.text = [item dateSpent];
+	self.note.text = item.notes;
+    categoryImage = [[Config sharedInstance] getImageByCategoryLabel:item.type];
+	[self.typeBt setImage:categoryImage forState:UIControlStateNormal];
+	
 }
 
-- (void)setItem:(UIView*)subView inView:(UIView*)viewR side:(NSString*)side UpDown:(NSString*)updown padLeft:(CGFloat)l  padTop:(CGFloat)t padRight:(CGFloat)r padBottom:(CGFloat)b{
-    CGRect CGItem = subView.frame;
-    CGRect CGView = viewR.frame;
+-(void)addItem{
+    if (!item) {
+		item = [[SpendItem alloc] init];
+	}
+	
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
     
-    CGFloat newX;
-    CGFloat newY;
+    item.label = self.label.text;
+    item.type = self.typeLabel.text;
+    item.parcel = [formatter numberFromString:[self.parcel.text stringByReplacingOccurrencesOfString:@"x" withString:@""]];
+    item.value = [formatter numberFromString:self.value.text];
+    item.dateSpent = self.dateStr.text;
+    item.notes = self.note.text;
+    item.typeImg = [UIImage imageNamed:item.type];
     
-    if([updown isEqualToString:@"up"]){
-        newY = CGView.origin.y - CGItem.size.height + t - b;
+    if ([state isEqualToString:@"update"]) {
+        [[ItemCollection sharedInstance] updateItemToList:item];
     }else{
-        newY = CGView.origin.y + CGView.size.height + t - b;
+        [[ItemCollection sharedInstance] addItemToList:item];
     }
     
-    if([side isEqualToString:@"left"]){
-        newX = CGView.origin.x +l - r;
-    }else{
-        newX = CGView.origin.x + CGView.size.width - CGItem.size.width + l - r;
-    }
-    
-    CGRect newRect = CGRectMake(newX, newY, CGItem.size.width, CGItem.size.height);
-    
-    subView.frame = newRect;
-    
-}
-
--(void)getCurrentDate{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy"];
-    self.dateStr.text = [formatter stringFromDate:[NSDate date]];
+    [self back:nil];
 }
 
 #pragma mark - Pickers and Table Done Button

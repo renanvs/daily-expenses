@@ -32,7 +32,9 @@
 }
 
 -(void)addGesture{
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+    UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+//    [tap setMinimumPressDuration:6];
+    //UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
     [self addGestureRecognizer:[tap autorelease]];
 }
 
@@ -40,10 +42,16 @@
 
 - (void)tapped:(UITapGestureRecognizer *)tap
 {
-    point = [tap locationInView:self.popoverView];
-    PopoverDaily *test = [[PopoverDaily alloc] initWithId:_item.item_id];
-    [PopoverView showPopoverAtPoint:point inView:self.popoverView withContentView:test.view delegate:nil];
-    
+    if (tap.state == UIGestureRecognizerStateEnded) {
+        NSLog(@"UIGestureRecognizerStateEnded");
+        //Do Whatever You want on End of Gesture
+    }
+    else if (tap.state == UIGestureRecognizerStateBegan){
+        NSLog(@"UIGestureRecognizerStateBegan.");
+        point = [tap locationInView:self.popoverView];
+        PopoverDaily *test = [[PopoverDaily alloc] initWithId:_item.item_id];
+        [PopoverView showPopoverAtPoint:point inView:self.popoverView withContentView:test.view delegate:nil];    }
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

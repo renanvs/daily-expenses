@@ -7,30 +7,31 @@
 //
 
 #import "ItemCollection.h"
+#import "Utility.h"
 
-@implementation NSString(isNull)
-
-+ (BOOL) IsEmpty:(NSString *) aString {
-    
-    if ((NSNull *) aString == [NSNull null]) {
-        return YES;
-    }
-    
-    if (aString == nil) {
-        return YES;
-    } else if ([aString length] == 0) {
-        return YES;
-    } else {
-        aString = [aString stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if ([aString length] == 0) {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
-
-@end
+//@implementation NSString(isNull)
+//
+//+ (BOOL) IsEmpty:(NSString *) aString {
+//    
+//    if ((NSNull *) aString == [NSNull null]) {
+//        return YES;
+//    }
+//    
+//    if (aString == nil) {
+//        return YES;
+//    } else if ([aString length] == 0) {
+//        return YES;
+//    } else {
+//        aString = [aString stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//        if ([aString length] == 0) {
+//            return YES;
+//        }
+//    }
+//    
+//    return NO;
+//}
+//
+//@end
 
 @implementation ItemCollection
 
@@ -72,12 +73,40 @@ static id _instance;
     self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [item.value floatValue]];
 }
 
--(SpendItem*)verifyAllFields:(SpendItem*)item{
-    if ([NSString IsEmpty:item.label])item.label = @"";
-    if ([NSString IsEmpty:item.type])item.type = @"label";
-    if ([NSString IsEmpty:item.dateStr])item.dateStr = @"";
-    if ([NSString IsEmpty:item.notes])item.notes = @"";
+-(void)updateItemToList:(SpendItem*)item{
+    NSNumber *totalValue;
+    item = [self verifyAllFields:item];
     
+    [listItens setObject:item atIndexedSubscript:[self findIndexById:item.item_id]];
+    [self saveItemToPlist];
+    
+    for (SpendItem *itemR in listItens) {
+        totalValue = [NSNumber numberWithFloat:[totalValue floatValue] + [itemR.value floatValue]];
+    }
+    
+    self.totalValue = totalValue;
+}
+
+-(NSInteger)findIndexById:(NSNumber*)item_id{
+    
+    for (int i=0; i<listItens.count; i++) {
+        if ([[listItens objectAtIndex:i] item_id] == item_id) {
+            return i;
+        }
+    }
+    
+    return 0;
+}
+
+-(SpendItem*)verifyAllFields:(SpendItem*)item{
+    if ([[Utility sharedInstance]IsEmptyString:item.label]) item.label = @"";
+	if ([[Utility sharedInstance]IsEmptyString:item.type]) item.type = @"label";
+	if ([[Utility sharedInstance]IsEmptyString:item.dateSpent]) item.dateSpent = @"";
+	if ([[Utility sharedInstance]IsEmptyString:item.notes]) item.notes = @"";
+	
+	if ([[Utility sharedInstance]IsEmptyString:item.dateCreated]) item.dateCreated = [[Utility sharedInstance] getCurrentDate];
+	if ([[Utility sharedInstance]IsEmptyString:item.dateUpdated]) item.dateUpdated = @"";
+	
     if (!item.value)item.value = [NSNumber numberWithInt:0];
     if (!item.parcel)item.parcel = [NSNumber numberWithInt:0];
     
@@ -101,7 +130,9 @@ static id _instance;
         item.type = [dict objectForKey:@"type"];
         item.parcel = [dict objectForKey:@"parcel"];
         item.value = [dict objectForKey:@"value"];
-        item.dateStr = [dict objectForKey:@"dateStr"];
+        item.dateSpent = [dict objectForKey:@"dateSpent"];
+        item.dateUpdated = [dict objectForKey:@"dateUpdated"];
+        item.dateCreated = [dict objectForKey:@"dateCreated"];
         item.notes = [dict objectForKey:@"notes"];
         item.typeImg = [self getTypeImage:item.type];
         self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [item.value floatValue]];
@@ -166,7 +197,9 @@ static id _instance;
 -(NSDictionary*)addItem:(SpendItem*)item{
     NSDictionary* itemDict = [[NSDictionary alloc]initWithObjectsAndKeys:
                               item.item_id, @"id",
-                              item.dateStr,@"dateStr",
+                              item.dateSpent,@"dateSpent",
+							  item.dateCreated,@"dateCreated",
+							  item.dateUpdated,@"dateUpdated",
                               item.label, @"label",
                               item.notes, @"notes",
                               item.parcel, @"parcel",
