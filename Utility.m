@@ -20,7 +20,9 @@ static id _instance;
     return _instance;
 }
 
-- (BOOL) IsEmptyString:(NSString *) aString{
+#pragma mark - validate
+
+- (BOOL)isEmptyString:(NSString *) aString{
     
     if ((NSNull *) aString == [NSNull null]) {
         return YES;
@@ -40,17 +42,23 @@ static id _instance;
     return NO;
 }
 
+#pragma mark - get methods
+
 -(NSString*)getCurrentDate{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd/MM/yyyy"];
     return [formatter stringFromDate:[NSDate date]];
 }
 
+#pragma mark - remove
+
 -(void)removeElementsFromView:(UIView*)viewR{
 	for (id object in [viewR subviews]) {
 		[object removeFromSuperview];
 	}
 }
+
+#pragma mark - setItem position
 
 - (void)setItem:(UIView*)subView inCenterView:(UIView*)viewR padLeft:(CGFloat)l  padTop:(CGFloat)t padRight:(CGFloat)r padBottom:(CGFloat)b{
     CGRect CGItem = subView.frame;
@@ -91,4 +99,5 @@ static id _instance;
     subView.frame = newRect;
     
 }
+
 @end

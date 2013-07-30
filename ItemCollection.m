@@ -73,6 +73,7 @@ static id _instance;
 -(void)addItemToList:(SpendItem*)item{
     int addId = [[[listItens lastObject] item_id] intValue] +1;
     item.item_id = [NSNumber numberWithInt:addId];
+	item.dateCreated = [[Utility sharedInstance] getCurrentDate];
     item = [self verifyAllFields:item];
     [listItens addObject:item];
     [self saveItemToPlist];
@@ -81,6 +82,7 @@ static id _instance;
 
 -(void)updateItemToList:(SpendItem*)item{
     self.totalValue = 0;
+	item.dateUpdated = [[Utility sharedInstance] getCurrentDate];
 	item = [self verifyAllFields:item];
     
     [listItens setObject:item atIndexedSubscript:[self findIndexById:item.item_id]];
@@ -105,7 +107,6 @@ static id _instance;
             return i;
         }
     }
-    
     return 0;
 }
 
@@ -131,13 +132,13 @@ static id _instance;
 #pragma mark - verify method
 
 -(SpendItem*)verifyAllFields:(SpendItem*)item{
-    if ([[Utility sharedInstance]IsEmptyString:item.label]) item.label = @"";
-	if ([[Utility sharedInstance]IsEmptyString:item.type]) item.type = @"label";
-	if ([[Utility sharedInstance]IsEmptyString:item.dateSpent]) item.dateSpent = @"";
-	if ([[Utility sharedInstance]IsEmptyString:item.notes]) item.notes = @"";
+    if ([[Utility sharedInstance]isEmptyString:item.label]) item.label = @"";
+	if ([[Utility sharedInstance]isEmptyString:item.type]) item.type = @"label";
+	if ([[Utility sharedInstance]isEmptyString:item.dateSpent]) item.dateSpent = @"";
+	if ([[Utility sharedInstance]isEmptyString:item.notes]) item.notes = @"";
 	
-	if ([[Utility sharedInstance]IsEmptyString:item.dateCreated]) item.dateCreated = [[Utility sharedInstance] getCurrentDate];
-	if ([[Utility sharedInstance]IsEmptyString:item.dateUpdated]) item.dateUpdated = @"";
+	if ([[Utility sharedInstance]isEmptyString:item.dateCreated]) item.dateCreated = @"";
+	if ([[Utility sharedInstance]isEmptyString:item.dateUpdated]) item.dateUpdated = @"";
 	
     if (!item.value)item.value = [NSNumber numberWithInt:0];
     if (!item.parcel)item.parcel = [NSNumber numberWithInt:0];
@@ -216,9 +217,9 @@ static id _instance;
 -(NSDictionary*)addItem:(SpendItem*)item{
     NSDictionary* itemDict = [[NSDictionary alloc]initWithObjectsAndKeys:
                               item.item_id, @"id",
-                              item.dateSpent,@"dateSpent",
-							  item.dateCreated,@"dateCreated",
-							  item.dateUpdated,@"dateUpdated",
+                              item.dateSpent, @"dateSpent",
+							  item.dateCreated, @"dateCreated",
+							  item.dateUpdated, @"dateUpdated",
                               item.label, @"label",
                               item.notes, @"notes",
                               item.parcel, @"parcel",

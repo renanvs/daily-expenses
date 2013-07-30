@@ -14,7 +14,7 @@
 
 -(NSString*)getCurrentDate;
 
-- (BOOL) IsEmptyString:(NSString *) aString;
+- (BOOL)isEmptyString:(NSString *) aString;
 
 -(void)removeElementsFromView:(UIView*)viewR;
 
