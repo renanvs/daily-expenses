@@ -9,30 +9,6 @@
 #import "ItemCollection.h"
 #import "Utility.h"
 
-//@implementation NSString(isNull)
-//
-//+ (BOOL) IsEmpty:(NSString *) aString {
-//    
-//    if ((NSNull *) aString == [NSNull null]) {
-//        return YES;
-//    }
-//    
-//    if (aString == nil) {
-//        return YES;
-//    } else if ([aString length] == 0) {
-//        return YES;
-//    } else {
-//        aString = [aString stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//        if ([aString length] == 0) {
-//            return YES;
-//        }
-//    }
-//    
-//    return NO;
-//}
-//
-//@end
-
 @implementation ItemCollection
 
 static id _instance;
@@ -74,17 +50,15 @@ static id _instance;
 }
 
 -(void)updateItemToList:(SpendItem*)item{
-    NSNumber *totalValue;
-    item = [self verifyAllFields:item];
+    self.totalValue = 0;
+	item = [self verifyAllFields:item];
     
     [listItens setObject:item atIndexedSubscript:[self findIndexById:item.item_id]];
-    [self saveItemToPlist];
+    [self updatePlistFileBasedOnList];
     
     for (SpendItem *itemR in listItens) {
-        totalValue = [NSNumber numberWithFloat:[totalValue floatValue] + [itemR.value floatValue]];
+        self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [itemR.value floatValue]];
     }
-    
-    self.totalValue = totalValue;
 }
 
 -(NSInteger)findIndexById:(NSNumber*)item_id{
@@ -146,11 +120,6 @@ static id _instance;
     
     newPlistFile = [documentFolder stringByAppendingPathComponent:@"NewPlist.plist"];
     
-    NSString *bundleFile = [[NSBundle mainBundle]pathForResource:@"itemList" ofType:@"plist"];
-    
-    [[NSFileManager defaultManager]copyItemAtPath:bundleFile toPath:newPlistFile error:nil];
-    
-    
     NSMutableArray *addData = [NSMutableArray arrayWithContentsOfFile:newPlistFile];
     
     [addData addObject:[self addItem:[listItens lastObject]]];
@@ -158,7 +127,24 @@ static id _instance;
     [addData writeToFile:newPlistFile atomically:YES];
 }
 
--(void)refreshPlistFileBasedOnList{
+-(void)updatePlistFileBasedOnList{
+    NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentFolder = [documentPath objectAtIndex:0];
+    
+    newPlistFile = [documentFolder stringByAppendingPathComponent:@"NewPlist.plist"];
+    
+    NSMutableArray *addData = [NSMutableArray arrayWithContentsOfFile:newPlistFile];
+    
+	[addData removeAllObjects];
+	
+    for (SpendItem *itemR in listItens) {
+		[addData addObject:[self addItem:itemR]];
+	}
+	
+	[addData writeToFile:newPlistFile atomically:YES];
+}
+
+-(void)removePlistFileBasedOnList{
     NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentFolder = [documentPath objectAtIndex:0];
     
@@ -229,7 +215,7 @@ static id _instance;
 
 -(void)removeItemByIndexPath :(NSInteger)index{
     [listItens removeObjectAtIndex:index];
-    [self refreshPlistFileBasedOnList];
+    [self removePlistFileBasedOnList];
 }
 
 @end
