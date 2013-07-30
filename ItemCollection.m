@@ -72,7 +72,7 @@ static id _instance;
 
 -(void)addItemToList:(SpendItem*)item{
     int addId = [[[listItens lastObject] item_id] intValue] +1;
-    item.item_id = [NSNumber numberWithInt:addId];
+    item.item_id = [NSString stringWithFormat:@"%d",addId];
 	item.dateCreated = [[Utility sharedInstance] getCurrentDate];
     item = [self verifyAllFields:item];
     [listItens addObject:item];
@@ -100,10 +100,10 @@ static id _instance;
 
 #pragma mark - auxiliar methods
 
--(NSInteger)findIndexById:(NSNumber*)item_id{
+-(NSInteger)findIndexById:(NSString*)item_id{
     
     for (int i=0; i<listItens.count; i++) {
-        if ([[listItens objectAtIndex:i] item_id] == item_id) {
+        if ([[[listItens objectAtIndex:i] item_id] isEqualToString:item_id]){
             return i;
         }
     }
@@ -118,10 +118,10 @@ static id _instance;
     return image;
 }
 
--(SpendItem*)getSpendItemById:(NSNumber*)idValue{
+-(SpendItem*)getSpendItemById:(NSString*)idValue{
     SpendItem *itemToReturn;
     for (SpendItem* item in listItens) {
-        if (item.item_id == idValue) {
+        if ([item.item_id isEqualToString:idValue]){
             itemToReturn = item;
             break;
         }
@@ -140,8 +140,8 @@ static id _instance;
 	if ([[Utility sharedInstance]isEmptyString:item.dateCreated]) item.dateCreated = @"";
 	if ([[Utility sharedInstance]isEmptyString:item.dateUpdated]) item.dateUpdated = @"";
 	
-    if (!item.value)item.value = [NSNumber numberWithInt:0];
-    if (!item.parcel)item.parcel = [NSNumber numberWithInt:0];
+	if ([[Utility sharedInstance]isEmptyString:item.value]) item.value = @"0";
+	if ([[Utility sharedInstance]isEmptyString:item.parcel]) item.parcel = @"1";
     
     return item;
 }
@@ -197,7 +197,7 @@ static id _instance;
     for (NSDictionary *item in addData) {
         for (SpendItem *itemC in listItens) {
             NSString *itemId = [[item objectForKey:@"id"] stringValue];
-            NSString *itemCId = [itemC.item_id stringValue];
+            NSString *itemCId = itemC.item_id;
             if ([itemId isEqualToString:itemCId]) {
                 verify++;
             }

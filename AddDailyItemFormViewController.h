@@ -49,7 +49,7 @@
 - (IBAction)showDatePicker:(id)sender;
 - (IBAction)showParcelPicker:(id)sender;
 
--(id)initWithId:(NSNumber*)itemId;
+-(id)initWithId:(NSString*)itemId;
 
 
 @end

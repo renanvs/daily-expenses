@@ -12,7 +12,7 @@
 
 @implementation PopoverDaily
 
--(id)initWithId:(NSNumber*)idValue{
+-(id)initWithId:(NSString*)idValue{
     self = [super init];
     if(self){
         item = [[ItemCollection sharedInstance] getSpendItemById:idValue];
@@ -23,8 +23,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     _name.text = item.label;
     _category.text = item.type;
-    _parcel.text = [item.parcel stringValue];
-    _value.text = [item.value stringValue];
+    _parcel.text = item.parcel;
+    _value.text = item.value;
     _date.text = item.dateSpent;
     _notes.text = item.notes;
 }

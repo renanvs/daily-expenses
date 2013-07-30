@@ -77,10 +77,10 @@
     return self;
 }
 
--(id)initWithId:(NSNumber*)itemId{
+-(id)initWithId:(NSString*)itemId{
     self =[super init];
     
-    if (self) {
+	if (self) {
 		state = @"update";
         item = [[ItemCollection sharedInstance] getSpendItemById:itemId];
         [self initialize];
@@ -286,9 +286,9 @@
 	UIImage *categoryImage;
     self.label.text = item.label;
 	self.typeLabel.text = item.type;
-	self.parcel.text = [NSString stringWithFormat:@"%@x",[item.parcel stringValue]];
-	self.value.text = [item.value stringValue];
-	self.dateStr.text = [item dateSpent];
+	self.parcel.text = [NSString stringWithFormat:@"%@x",item.parcel];
+	self.value.text = item.value;
+	self.dateStr.text = item.dateSpent;
 	self.note.text = item.notes;
     categoryImage = [[Config sharedInstance] getImageByCategoryLabel:item.type];
 	[self.typeBt setImage:categoryImage forState:UIControlStateNormal];
@@ -300,12 +300,10 @@
 		item = [[SpendItem alloc] init];
 	}
 	
-    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
-    
     item.label = self.label.text;
     item.type = self.typeLabel.text;
-    item.parcel = [formatter numberFromString:[self.parcel.text stringByReplacingOccurrencesOfString:@"x" withString:@""]];
-    item.value = [formatter numberFromString:self.value.text];
+    item.parcel = [self.parcel.text stringByReplacingOccurrencesOfString:@"x" withString:@""];
+    item.value = self.value.text;
     item.dateSpent = self.dateStr.text;
     item.notes = self.note.text;
     item.typeImg = [UIImage imageNamed:item.type];

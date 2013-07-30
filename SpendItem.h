@@ -10,12 +10,11 @@
 
 @interface SpendItem : NSObject
 
-@property (strong) NSNumber *item_id;
+@property (strong) NSString *item_id;
 @property (strong) NSString *label;
 @property (strong) NSString *type;
-@property (strong) NSNumber *parcel;
-@property (strong) NSNumber *value;
-@property (strong) NSDate *date;
+@property (strong) NSString *parcel;
+@property (strong) NSString *value;
 @property (strong) NSString *dateSpent;
 @property (strong) NSString *notes;
 @property (strong) UIImage *typeImg;

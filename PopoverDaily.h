@@ -20,7 +20,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *date;
 @property (retain, nonatomic) IBOutlet UITextView *notes;
 
--(id)initWithId:(NSNumber*)idValue;
+-(id)initWithId:(NSString*)idValue;
 
 
 @end
