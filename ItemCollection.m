@@ -23,6 +23,8 @@ static id _instance;
     return _instance;
 }
 
+#pragma mark - init methods
+
 -(id)init{
     self = [super init];
     
@@ -39,6 +41,34 @@ static id _instance;
     [self loadData];
 }
 
+-(void)loadData{
+    NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentFolder = [documentPath objectAtIndex:0];
+    newPlistFile = [documentFolder stringByAppendingPathComponent:@"NewPlist.plist"];
+    NSArray *arrayPlist = [NSArray arrayWithContentsOfFile:newPlistFile];
+    if (!arrayPlist) {
+        NSString *bundlePathOfPlist = [[NSBundle mainBundle] pathForResource:@"itemList" ofType:@"plist"];
+        arrayPlist = [NSArray arrayWithContentsOfFile:bundlePathOfPlist];
+    }
+	
+    for (NSDictionary *dict in arrayPlist) {
+        SpendItem *item = [[SpendItem alloc] init];
+        item.item_id = [dict objectForKey:@"id"];
+        item.label = [dict objectForKey:@"label"];
+        item.type = [dict objectForKey:@"type"];
+        item.parcel = [dict objectForKey:@"parcel"];
+        item.value = [dict objectForKey:@"value"];
+        item.dateSpent = [dict objectForKey:@"dateSpent"];
+        item.dateUpdated = [dict objectForKey:@"dateUpdated"];
+        item.dateCreated = [dict objectForKey:@"dateCreated"];
+        item.notes = [dict objectForKey:@"notes"];
+        item.typeImg = [self getTypeImage:item.type];
+        self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [item.value floatValue]];
+        [listItens addObject:item];
+    }
+}
+
+#pragma mark - add, update, remove Item
 
 -(void)addItemToList:(SpendItem*)item{
     int addId = [[[listItens lastObject] item_id] intValue] +1;
@@ -61,6 +91,13 @@ static id _instance;
     }
 }
 
+-(void)removeItemByIndexPath :(NSInteger)index{
+    [listItens removeObjectAtIndex:index];
+    [self removePlistFileBasedOnList];
+}
+
+#pragma mark - auxiliar methods
+
 -(NSInteger)findIndexById:(NSNumber*)item_id{
     
     for (int i=0; i<listItens.count; i++) {
@@ -71,6 +108,27 @@ static id _instance;
     
     return 0;
 }
+
+-(UIImage*)getTypeImage:(NSString*)type{
+    NSDictionary *catategoryList = [[Config sharedInstance] categoryList];
+    
+    UIImage *image = [UIImage imageNamed:[catategoryList objectForKey:type]];
+    
+    return image;
+}
+
+-(SpendItem*)getSpendItemById:(NSNumber*)idValue{
+    SpendItem *itemToReturn;
+    for (SpendItem* item in listItens) {
+        if (item.item_id == idValue) {
+            itemToReturn = item;
+            break;
+        }
+    }
+    return itemToReturn;
+}
+
+#pragma mark - verify method
 
 -(SpendItem*)verifyAllFields:(SpendItem*)item{
     if ([[Utility sharedInstance]IsEmptyString:item.label]) item.label = @"";
@@ -87,32 +145,7 @@ static id _instance;
     return item;
 }
 
--(void)loadData{
-    NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentFolder = [documentPath objectAtIndex:0];
-    newPlistFile = [documentFolder stringByAppendingPathComponent:@"NewPlist.plist"];
-    NSArray *arrayPlist = [NSArray arrayWithContentsOfFile:newPlistFile];
-    if (!arrayPlist) {
-        NSString *bundlePathOfPlist = [[NSBundle mainBundle] pathForResource:@"itemList" ofType:@"plist"];
-        arrayPlist = [NSArray arrayWithContentsOfFile:bundlePathOfPlist];
-    }
-        
-    for (NSDictionary *dict in arrayPlist) {
-        SpendItem *item = [[SpendItem alloc] init];
-        item.item_id = [dict objectForKey:@"id"];
-        item.label = [dict objectForKey:@"label"];
-        item.type = [dict objectForKey:@"type"];
-        item.parcel = [dict objectForKey:@"parcel"];
-        item.value = [dict objectForKey:@"value"];
-        item.dateSpent = [dict objectForKey:@"dateSpent"];
-        item.dateUpdated = [dict objectForKey:@"dateUpdated"];
-        item.dateCreated = [dict objectForKey:@"dateCreated"];
-        item.notes = [dict objectForKey:@"notes"];
-        item.typeImg = [self getTypeImage:item.type];
-        self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [item.value floatValue]];
-        [listItens addObject:item];
-    }
-}
+#pragma mark - save, update, remove methods from plist
 
 -(void)saveItemToPlist{
     NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -192,30 +225,6 @@ static id _instance;
                               item.value, @"value",
                               item.type, @"type", nil];
     return itemDict;
-}
-
--(UIImage*)getTypeImage:(NSString*)type{
-    NSDictionary *catategoryList = [[Config sharedInstance] categoryList];
-    
-    UIImage *image = [UIImage imageNamed:[catategoryList objectForKey:type]];
-    
-    return image;
-}
-
--(SpendItem*)getSpendItemById:(NSNumber*)idValue{
-    SpendItem *itemToReturn;
-    for (SpendItem* item in listItens) {
-        if (item.item_id == idValue) {
-            itemToReturn = item;
-            break;
-        }
-    }
-    return itemToReturn;
-}
-
--(void)removeItemByIndexPath :(NSInteger)index{
-    [listItens removeObjectAtIndex:index];
-    [self removePlistFileBasedOnList];
 }
 
 @end
