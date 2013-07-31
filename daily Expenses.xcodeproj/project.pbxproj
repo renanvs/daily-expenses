@@ -34,6 +34,7 @@
 		1E38169B1795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3816981795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m */; };
 		1E38169C1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E38169A1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m */; };
 		1E3940751754355300A5DC86 /* CategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E3940741754355300A5DC86 /* CategoryView.xib */; };
+		1E3BAB6317A85BD4001FF44F /* FilterItens.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BAB6217A85BD4001FF44F /* FilterItens.m */; };
 		1E6098251783B74300491251 /* ItemCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098241783B74300491251 /* ItemCollection.m */; };
 		1E6098291783C9AA00491251 /* AddDailyItemFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098271783C9AA00491251 /* AddDailyItemFormViewController.m */; };
 		1E60982A1783C9AA00491251 /* AddDailyItemFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E6098281783C9AA00491251 /* AddDailyItemFormViewController.xib */; };
@@ -141,6 +142,8 @@
 		1E3816991795D10100D39CB9 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
 		1E38169A1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		1E3940741754355300A5DC86 /* CategoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryView.xib; sourceTree = "<group>"; };
+		1E3BAB6117A85BD4001FF44F /* FilterItens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterItens.h; sourceTree = "<group>"; };
+		1E3BAB6217A85BD4001FF44F /* FilterItens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterItens.m; sourceTree = "<group>"; };
 		1E6098231783B74300491251 /* ItemCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCollection.h; sourceTree = "<group>"; };
 		1E6098241783B74300491251 /* ItemCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCollection.m; sourceTree = "<group>"; };
 		1E6098261783C9AA00491251 /* AddDailyItemFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDailyItemFormViewController.h; sourceTree = "<group>"; };
@@ -421,6 +424,8 @@
 				1E6098231783B74300491251 /* ItemCollection.h */,
 				1E6098241783B74300491251 /* ItemCollection.m */,
 				1E735BAF178BB9D300D2527C /* itemList.plist */,
+				1E3BAB6117A85BD4001FF44F /* FilterItens.h */,
+				1E3BAB6217A85BD4001FF44F /* FilterItens.m */,
 			);
 			name = ItemCollection;
 			sourceTree = "<group>";
@@ -690,6 +695,7 @@
 				1EA296A3179F1DFB00C646B0 /* MonthView.m in Sources */,
 				1EA296A6179F1E0B00C646B0 /* FilterView.m in Sources */,
 				1EA686E317A6F30C002D437C /* Utility.m in Sources */,
+				1E3BAB6317A85BD4001FF44F /* FilterItens.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,6 +49,7 @@ static id _instance;
     if (!arrayPlist) {
         NSString *bundlePathOfPlist = [[NSBundle mainBundle] pathForResource:@"itemList" ofType:@"plist"];
         arrayPlist = [NSArray arrayWithContentsOfFile:bundlePathOfPlist];
+		
     }
 	
     for (NSDictionary *dict in arrayPlist) {
@@ -66,6 +67,7 @@ static id _instance;
         self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [item.value floatValue]];
         [listItens addObject:item];
     }
+	//[self filterItensByLabel];
 }
 
 #pragma mark - add, update, remove Item
@@ -226,6 +228,14 @@ static id _instance;
                               item.value, @"value",
                               item.type, @"type", nil];
     return itemDict;
+}
+
+#pragma mark - filter itens
+
+-(void)filterItensByLabel{
+	FilterItens* filter = [[FilterItens alloc] init];
+	listItens = [NSMutableArray arrayWithArray:[filter filterBySpendDate:listItens ascending:NO]];
+	
 }
 
 @end

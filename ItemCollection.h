@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SpendItem.h"
 #import "Config.h"
+#import "FilterItens.h"
 
 @interface ItemCollection : NSObject{
     NSString *newPlistFile;

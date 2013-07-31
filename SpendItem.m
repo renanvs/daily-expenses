@@ -10,6 +10,10 @@
 
 @implementation SpendItem
 
-
+-(NSString *)description{
+	NSString *desc = [NSString stringWithFormat:@"ID: %@,\nLabel: %@,\nType: %@,\nParcel: %@,\nValue: %@,\nDateSpent: %@,\nDateCreated: %@,\nDateUpdated: %@ \n",self.item_id, self.label, self.type, self.parcel, self.value, self.dateSpent, self.dateCreated, self.dateUpdated];
+	
+	return desc;
+}
 
 @end
