@@ -164,11 +164,6 @@ static id _instance;
 }
 
 -(void)updatePlistFileBasedOnList{
-    NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentFolder = [documentPath objectAtIndex:0];
-    
-    newPlistFile = [documentFolder stringByAppendingPathComponent:@"NewPlist.plist"];
-    
     NSMutableArray *addData = [NSMutableArray arrayWithContentsOfFile:newPlistFile];
     
 	[addData removeAllObjects];
@@ -181,16 +176,6 @@ static id _instance;
 }
 
 -(void)removePlistFileBasedOnList{
-    NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentFolder = [documentPath objectAtIndex:0];
-    
-    newPlistFile = [documentFolder stringByAppendingPathComponent:@"NewPlist.plist"];
-    
-    NSString *bundleFile = [[NSBundle mainBundle]pathForResource:@"itemList" ofType:@"plist"];
-    
-    [[NSFileManager defaultManager]copyItemAtPath:bundleFile toPath:newPlistFile error:nil];
-    
-    
     NSMutableArray *addData = [NSMutableArray arrayWithContentsOfFile:newPlistFile];
     
     NSInteger verify = 0;
