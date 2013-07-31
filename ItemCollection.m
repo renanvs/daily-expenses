@@ -42,14 +42,17 @@ static id _instance;
 }
 
 -(void)loadData{
-    NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSFileManager *filemgr;
+	filemgr = [NSFileManager defaultManager];
+    
+	NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentFolder = [documentPath objectAtIndex:0];
-    newPlistFile = [documentFolder stringByAppendingPathComponent:@"NewPlist.plist"];
+    newPlistFile = [[NSString alloc] initWithString:[documentFolder stringByAppendingPathComponent:@"NewPlist.plist"]];
     NSArray *arrayPlist = [NSArray arrayWithContentsOfFile:newPlistFile];
     if (!arrayPlist) {
         NSString *bundlePathOfPlist = [[NSBundle mainBundle] pathForResource:@"itemList" ofType:@"plist"];
         arrayPlist = [NSArray arrayWithContentsOfFile:bundlePathOfPlist];
-		
+		[filemgr createFileAtPath:newPlistFile contents:nil attributes:nil];
     }
 	
     for (NSDictionary *dict in arrayPlist) {
@@ -151,15 +154,12 @@ static id _instance;
 #pragma mark - save, update, remove methods from plist
 
 -(void)saveItemToPlist{
-    NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentFolder = [documentPath objectAtIndex:0];
-    
-    newPlistFile = [documentFolder stringByAppendingPathComponent:@"NewPlist.plist"];
-    
     NSMutableArray *addData = [NSMutableArray arrayWithContentsOfFile:newPlistFile];
-    
-    [addData addObject:[self addItem:[listItens lastObject]]];
-    
+	
+    for (SpendItem *itemR in listItens) {
+		[addData addObject:[self addItem:itemR]];
+	}
+	
     [addData writeToFile:newPlistFile atomically:YES];
 }
 
