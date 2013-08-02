@@ -13,6 +13,7 @@
 #import "SettingsViewController.h"
 #import "ItemCollection.h"
 #import "DailyTableViewHeaderCell.h"
+#import "Utility.h"
 
 
 @interface MainView ()
@@ -21,7 +22,7 @@
 
 @implementation MainView
 @synthesize dailyTableView;
-@synthesize listItens;
+@synthesize listItens, allItens;
 @synthesize changeViewTypeSegmentControl;
 @synthesize totalValue;
 
@@ -31,6 +32,8 @@
     self = [super init];
     if (self){
         listItens = [[ItemCollection sharedInstance] listItens];
+        allItens = [[ItemCollection sharedInstance] allItens];
+        dateValue = [[NSString alloc] initWithString:[[Utility sharedInstance]getCurrentDate]];
     }
     return self;
 }
@@ -40,6 +43,7 @@
     NSString * totalValueStr = [[[ItemCollection sharedInstance] totalValue] stringValue];
     totalValue.text = [NSString stringWithFormat:@"R$ %@", totalValueStr];
     [dailyTableView reloadData];
+    self.currentDate.text = dateValue;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -118,6 +122,8 @@
         [[ItemCollection sharedInstance] removeItemByIndexPath:indexPath.row];
         [tableView endUpdates];
         [tableView reloadData];
+        NSString * totalValueStr = [[[ItemCollection sharedInstance] totalValue] stringValue];
+        totalValue.text = [NSString stringWithFormat:@"R$ %@", totalValueStr];
     }
 }
 
@@ -157,6 +163,12 @@
 			break;
 	}
 	
+}
+
+- (IBAction)goToDayBefore:(id)sender {
+}
+
+- (IBAction)goToDayAfter:(id)sender {
 }
 
 #pragma mark - other methods

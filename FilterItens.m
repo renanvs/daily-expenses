@@ -29,11 +29,26 @@
 	return newList;
 }
 
--(NSArray*)filterBySpendDate:(NSMutableArray*)list ascending:(BOOL)asc{
+-(NSArray*)filterBySpentDate:(NSMutableArray*)list ascending:(BOOL)asc{
 	NSArray *newList;
 	NSSortDescriptor *descriptor;
 	descriptor = [NSSortDescriptor sortDescriptorWithKey:@"dateSpent" ascending:asc];
 	newList = [list sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]];
+	
+	return newList;
+}
+
+-(NSArray*)filterByDate:(NSString*)date onList:(NSMutableArray*)list{
+    NSArray *newList;
+    NSMutableArray *tempList = [[NSMutableArray alloc] init];
+    
+	for (SpendItem *itemR in list) {
+        if ([itemR.dateSpent isEqualToString:date]) {
+            [tempList addObject:itemR];
+        }
+    }
+	
+    newList = [NSArray arrayWithArray:tempList];
 	
 	return newList;
 }

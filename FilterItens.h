@@ -12,5 +12,7 @@
 
 -(NSArray*)filterByLabel:(NSMutableArray*)list ascending:(BOOL)asc;
 -(NSArray*)filterByCreatedDate:(NSMutableArray*)list ascending:(BOOL)asc;
--(NSArray*)filterBySpendDate:(NSMutableArray*)list ascending:(BOOL)asc;
+-(NSArray*)filterBySpentDate:(NSMutableArray*)list ascending:(BOOL)asc;
+
+-(NSArray*)filterByDate:(NSString*)date onList:(NSMutableArray*)list;
 @end

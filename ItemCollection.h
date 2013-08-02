@@ -16,6 +16,7 @@
 }
 
 @property (strong) NSMutableArray *listItens;
+@property (strong) NSMutableArray *allItens;
 @property (strong) NSNumber *totalValue;
 
 +(ItemCollection *) sharedInstance;

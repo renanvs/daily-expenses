@@ -12,7 +12,7 @@
 @implementation ItemCollection
 
 static id _instance;
-@synthesize listItens;
+@synthesize listItens, allItens;
 
 + (ItemCollection *) sharedInstance{
     @synchronized(self){
@@ -37,6 +37,7 @@ static id _instance;
 
 -(void)inicialize{
     listItens = [[NSMutableArray alloc]init];
+    allItens = [[NSMutableArray alloc]init];
     self.totalValue = [[NSNumber alloc] init];
     [self loadData];
 }
@@ -53,6 +54,7 @@ static id _instance;
         NSString *bundlePathOfPlist = [[NSBundle mainBundle] pathForResource:@"itemList" ofType:@"plist"];
         arrayPlist = [NSArray arrayWithContentsOfFile:bundlePathOfPlist];
 		[filemgr createFileAtPath:newPlistFile contents:nil attributes:nil];
+        [arrayPlist writeToFile:newPlistFile atomically:YES];
     }
 	
     for (NSDictionary *dict in arrayPlist) {
@@ -67,39 +69,39 @@ static id _instance;
         item.dateCreated = [dict objectForKey:@"dateCreated"];
         item.notes = [dict objectForKey:@"notes"];
         item.typeImg = [self getTypeImage:item.type];
-        self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [item.value floatValue]];
-        [listItens addObject:item];
+        [allItens addObject:item];
     }
-	//[self filterItensByLabel];
+	[self filterItensByCurrentDate];
 }
 
 #pragma mark - add, update, remove Item
 
 -(void)addItemToList:(SpendItem*)item{
-    int addId = [[[listItens lastObject] item_id] intValue] +1;
+    int addId = [self getBiggerId] +1;
+    //int addId = [[[listItens lastObject] item_id] intValue] +1;
     item.item_id = [NSString stringWithFormat:@"%d",addId];
 	item.dateCreated = [[Utility sharedInstance] getCurrentDate];
+	item.typeImg = [self getTypeImage:item.type];
     item = [self verifyAllFields:item];
-    [listItens addObject:item];
+    [allItens addObject:item];
     [self saveItemToPlist];
-    self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [item.value floatValue]];
+    [self getTotalValue];
 }
 
 -(void)updateItemToList:(SpendItem*)item{
-    self.totalValue = 0;
-	item.dateUpdated = [[Utility sharedInstance] getCurrentDate];
+    item.dateUpdated = [[Utility sharedInstance] getCurrentDate];
 	item = [self verifyAllFields:item];
     
-    [listItens setObject:item atIndexedSubscript:[self findIndexById:item.item_id]];
+    [allItens setObject:item atIndexedSubscript:[self findIndexById:item.item_id]];
     [self updatePlistFileBasedOnList];
     
-    for (SpendItem *itemR in listItens) {
-        self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [itemR.value floatValue]];
-    }
+    [self getTotalValue];
+    
+    
 }
 
 -(void)removeItemByIndexPath :(NSInteger)index{
-    [listItens removeObjectAtIndex:index];
+    [allItens removeObjectAtIndex:index];
     [self removePlistFileBasedOnList];
 }
 
@@ -107,8 +109,8 @@ static id _instance;
 
 -(NSInteger)findIndexById:(NSString*)item_id{
     
-    for (int i=0; i<listItens.count; i++) {
-        if ([[[listItens objectAtIndex:i] item_id] isEqualToString:item_id]){
+    for (int i=0; i<allItens.count; i++) {
+        if ([[[allItens objectAtIndex:i] item_id] isEqualToString:item_id]){
             return i;
         }
     }
@@ -125,13 +127,32 @@ static id _instance;
 
 -(SpendItem*)getSpendItemById:(NSString*)idValue{
     SpendItem *itemToReturn;
-    for (SpendItem* item in listItens) {
+    for (SpendItem* item in allItens) {
         if ([item.item_id isEqualToString:idValue]){
             itemToReturn = item;
             break;
         }
     }
     return itemToReturn;
+}
+
+-(int)getBiggerId{
+    SpendItem *itemR = [allItens objectAtIndex:0];
+    int biggerId = [itemR.item_id intValue];
+    for (int i=1; i<allItens.count; i++) {
+        itemR = [allItens objectAtIndex:i];
+        if ([itemR.item_id intValue] > biggerId){
+            biggerId = [itemR.item_id intValue];
+        }
+    }
+    return biggerId;
+}
+
+-(void)getTotalValue{
+    self.totalValue = 0;
+    for (SpendItem *itemR in listItens) {
+        self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [itemR.value floatValue]];
+    }
 }
 
 #pragma mark - verify method
@@ -156,10 +177,10 @@ static id _instance;
 -(void)saveItemToPlist{
     NSMutableArray *addData = [NSMutableArray arrayWithContentsOfFile:newPlistFile];
 	
-    for (SpendItem *itemR in listItens) {
-		[addData addObject:[self addItem:itemR]];
-	}
-	
+//    for (SpendItem *itemR in listItens) {
+//		[addData addObject:[self addItem:itemR]];
+//	}
+	[addData addObject:[self addItem:[allItens lastObject]]];
     [addData writeToFile:newPlistFile atomically:YES];
 }
 
@@ -168,7 +189,7 @@ static id _instance;
     
 	[addData removeAllObjects];
 	
-    for (SpendItem *itemR in listItens) {
+    for (SpendItem *itemR in allItens) {
 		[addData addObject:[self addItem:itemR]];
 	}
 	
@@ -182,8 +203,8 @@ static id _instance;
     NSMutableArray *itensToRemove = [[NSMutableArray alloc] init];
     
     for (NSDictionary *item in addData) {
-        for (SpendItem *itemC in listItens) {
-            NSString *itemId = [[item objectForKey:@"id"] stringValue];
+        for (SpendItem *itemC in allItens) {
+            NSString *itemId = [item objectForKey:@"id"];
             NSString *itemCId = itemC.item_id;
             if ([itemId isEqualToString:itemCId]) {
                 verify++;
@@ -192,6 +213,9 @@ static id _instance;
         
         if (verify == 0) {
             [itensToRemove addObject:item];
+            float total = [self.totalValue floatValue];
+            float itemToRemoveVelu = [[item objectForKey:@"value"] floatValue];
+            self.totalValue = [NSNumber numberWithFloat: (total - itemToRemoveVelu)];
         }
         
         verify = 0;
@@ -217,10 +241,11 @@ static id _instance;
 
 #pragma mark - filter itens
 
--(void)filterItensByLabel{
+-(void)filterItensByCurrentDate{
 	FilterItens* filter = [[FilterItens alloc] init];
-	listItens = [NSMutableArray arrayWithArray:[filter filterBySpendDate:listItens ascending:NO]];
-	
+	//listItens = [NSMutableArray arrayWithArray:[filter filterBySpentDate:allItens ascending:NO]];
+    listItens = [[NSMutableArray alloc] initWithArray:[filter filterByDate:[[Utility sharedInstance] getCurrentDate] onList:allItens]];
+    [self getTotalValue];
 }
 
 @end
