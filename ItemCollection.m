@@ -36,7 +36,7 @@ static id _instance;
 }
 
 -(void)inicialize{
-    listItens = [[NSMutableArray alloc]init];
+    //listItens = [[NSMutableArray alloc]init];
     allItens = [[NSMutableArray alloc]init];
     self.totalValue = [[NSNumber alloc] init];
     [self loadData];
@@ -85,7 +85,7 @@ static id _instance;
     item = [self verifyAllFields:item];
     [allItens addObject:item];
     [self saveItemToPlist];
-    [self getTotalValue];
+    [self filterItensByCurrentDate];
 }
 
 -(void)updateItemToList:(SpendItem*)item{
@@ -100,8 +100,10 @@ static id _instance;
     
 }
 
--(void)removeItemByIndexPath :(NSInteger)index{
-    [allItens removeObjectAtIndex:index];
+-(void)removeItemBySpendItem :(SpendItem*)item{
+    
+    [allItens removeObject:item];
+    [listItens removeObject:item];
     [self removePlistFileBasedOnList];
 }
 
@@ -244,7 +246,14 @@ static id _instance;
 -(void)filterItensByCurrentDate{
 	FilterItens* filter = [[FilterItens alloc] init];
 	//listItens = [NSMutableArray arrayWithArray:[filter filterBySpentDate:allItens ascending:NO]];
-    listItens = [[NSMutableArray alloc] initWithArray:[filter filterByDate:[[Utility sharedInstance] getCurrentDate] onList:allItens]];
+    if (listItens) {
+        [listItens removeAllObjects];
+        [listItens addObjectsFromArray :[NSMutableArray arrayWithArray:[filter filterByDate:[[Utility sharedInstance] getCurrentDate] onList:allItens]]];
+        //listItens = [NSMutableArray arrayWithArray:[filter filterByDate:[[Utility sharedInstance] getCurrentDate] onList:allItens]];
+    }else{
+        listItens = [[NSMutableArray alloc] initWithArray:[filter filterByDate:[[Utility sharedInstance] getCurrentDate] onList:allItens]];
+    }
+    
     [self getTotalValue];
 }
 

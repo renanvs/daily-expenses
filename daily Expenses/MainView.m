@@ -119,7 +119,9 @@
     if (editingStyle == UITableViewCellEditingStyleDelete){
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [[ItemCollection sharedInstance] removeItemByIndexPath:indexPath.row];
+        //[[ItemCollection sharedInstance] removeItemByIndexPath:indexPath.row];
+        DailyTableViewCell *cell = (DailyTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+        [[ItemCollection sharedInstance] removeItemBySpendItem:cell.item];
         [tableView endUpdates];
         [tableView reloadData];
         NSString * totalValueStr = [[[ItemCollection sharedInstance] totalValue] stringValue];
