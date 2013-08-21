@@ -13,6 +13,7 @@
 +(Config*)sharedInstance;
 
 @property (strong) NSDictionary *categoryList;
+@property (assign) bool hasLog;
 
 -(UIImage*)getImageByCategoryLabel:(NSString*)label;
 

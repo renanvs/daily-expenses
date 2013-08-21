@@ -13,11 +13,15 @@
 
 @interface ItemCollection : NSObject{
     NSString *newPlistFile;
+    bool hasLog;
+    NSArray* monthList;
 }
 
 @property (strong) NSMutableArray *listItens;
 @property (strong) NSMutableArray *allItens;
 @property (strong) NSNumber *totalValue;
+@property (strong) NSMutableString *totalValueStr;
+@property (strong) NSString *dateInCurrentView;
 
 +(ItemCollection *) sharedInstance;
 
@@ -28,6 +32,14 @@
 -(void)removeItemBySpendItem :(SpendItem*)item;
 
 -(void)updateItemToList:(SpendItem*)item;
+
+-(void)getListDayBefore;
+
+-(void)getListDayAfter;
+
+-(NSArray*)getAvailableMonths;
+
+-(NSDictionary*)getItensByMonthList:(NSArray*)monthListR;
 
 
 @end

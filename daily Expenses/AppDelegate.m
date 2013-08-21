@@ -8,21 +8,26 @@
 
 #import "AppDelegate.h"
 #import "MainView.h"
+#import "Config.h"
 
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self loadCustomConf];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     MainView *mainView = [[MainView alloc]init];
-    //self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     itemList = [[NSMutableArray alloc] init];
+    
     self.window.rootViewController = mainView;
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+-(void)loadCustomConf{
+    [Config sharedInstance].hasLog = true;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

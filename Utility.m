@@ -20,6 +20,25 @@ static id _instance;
     return _instance;
 }
 
+-(id)init{
+    self = [super init];
+    if (self) {
+        monthList =[[NSArray alloc]initWithObjects:@"janeiro",
+                    @"fevereiro",
+                    @"março",
+                    @"abril",
+                    @"maio",
+                    @"junho",
+                    @"julho",
+                    @"agosto",
+                    @"setembro",
+                    @"outubro",
+                    @"novembro",
+                    @"dezembro",nil];
+    }
+    return self;
+}
+
 #pragma mark - validate
 
 - (BOOL)isEmptyString:(NSString *) aString{
@@ -49,6 +68,41 @@ static id _instance;
     [formatter setDateFormat:@"dd/MM/yyyy"];
     return [formatter stringFromDate:[NSDate date]];
 }
+
+-(NSString*)getDayBefore:(NSString*)currentDate{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateComponents *component = [[NSDateComponents alloc] init];
+    [component setDay:-1];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    
+    NSDate *currentDay= [formatter dateFromString:currentDate];
+    NSDate *dayBefore = [[NSCalendar currentCalendar] dateByAddingComponents:component toDate:currentDay options:0];
+    return [formatter stringFromDate:dayBefore];
+}
+
+-(NSString*)getDayAfter:(NSString*)currentDate{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateComponents *component = [[NSDateComponents alloc] init];
+    [component setDay:+1];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    
+    NSDate *currentDay= [formatter dateFromString:currentDate];
+    NSDate *dayAfter = [[NSCalendar currentCalendar] dateByAddingComponents:component toDate:currentDay options:0];
+    return [formatter stringFromDate:dayAfter];
+}
+
+-(NSString*)getMonthByDate:(NSString*)dateS{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate* dateFromString = [dateFormatter dateFromString:dateS];
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:(NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit) fromDate:dateFromString];
+    
+    NSInteger monthIndex = [components month];
+    NSString* monthStr = [monthList objectAtIndex:(monthIndex-1)];
+    return monthStr;
+}
+
 
 #pragma mark - remove
 

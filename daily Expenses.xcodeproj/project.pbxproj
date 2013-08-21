@@ -38,10 +38,10 @@
 		1E6098251783B74300491251 /* ItemCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098241783B74300491251 /* ItemCollection.m */; };
 		1E6098291783C9AA00491251 /* AddDailyItemFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098271783C9AA00491251 /* AddDailyItemFormViewController.m */; };
 		1E60982A1783C9AA00491251 /* AddDailyItemFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E6098281783C9AA00491251 /* AddDailyItemFormViewController.xib */; };
+		1E682F8417C3203100FBCCB2 /* MonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E682F8317C3203100FBCCB2 /* MonthViewController.m */; };
+		1E682F8617C3204200FBCCB2 /* MonthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E682F8517C3204200FBCCB2 /* MonthViewController.xib */; };
 		1E735BB0178BB9D300D2527C /* itemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E735BAF178BB9D300D2527C /* itemList.plist */; };
 		1EA296A0179F1DEC00C646B0 /* DailyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA2969F179F1DEC00C646B0 /* DailyView.m */; };
-		1EA296A3179F1DFB00C646B0 /* MonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA296A2179F1DFB00C646B0 /* MonthView.m */; };
-		1EA296A6179F1E0B00C646B0 /* FilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA296A5179F1E0B00C646B0 /* FilterView.m */; };
 		1EA296A8179F1E2400C646B0 /* DailyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EA296A7179F1E2400C646B0 /* DailyView.xib */; };
 		1EA686E317A6F30C002D437C /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA686E217A6F30C002D437C /* Utility.m */; };
 		1ECEE05F1796354200647B7C /* dailyCellTopBarLand.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECEE05D1796354200647B7C /* dailyCellTopBarLand.png */; };
@@ -149,13 +149,12 @@
 		1E6098261783C9AA00491251 /* AddDailyItemFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDailyItemFormViewController.h; sourceTree = "<group>"; };
 		1E6098271783C9AA00491251 /* AddDailyItemFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDailyItemFormViewController.m; sourceTree = "<group>"; };
 		1E6098281783C9AA00491251 /* AddDailyItemFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDailyItemFormViewController.xib; sourceTree = "<group>"; };
+		1E682F8217C3203100FBCCB2 /* MonthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthViewController.h; sourceTree = "<group>"; };
+		1E682F8317C3203100FBCCB2 /* MonthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthViewController.m; sourceTree = "<group>"; };
+		1E682F8517C3204200FBCCB2 /* MonthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthViewController.xib; sourceTree = "<group>"; };
 		1E735BAF178BB9D300D2527C /* itemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = itemList.plist; sourceTree = "<group>"; };
 		1EA2969E179F1DEC00C646B0 /* DailyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyView.h; sourceTree = "<group>"; };
 		1EA2969F179F1DEC00C646B0 /* DailyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyView.m; sourceTree = "<group>"; };
-		1EA296A1179F1DFB00C646B0 /* MonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthView.h; sourceTree = "<group>"; };
-		1EA296A2179F1DFB00C646B0 /* MonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthView.m; sourceTree = "<group>"; };
-		1EA296A4179F1E0B00C646B0 /* FilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterView.h; sourceTree = "<group>"; };
-		1EA296A5179F1E0B00C646B0 /* FilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterView.m; sourceTree = "<group>"; };
 		1EA296A7179F1E2400C646B0 /* DailyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyView.xib; sourceTree = "<group>"; };
 		1EA686E117A6F30C002D437C /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		1EA686E217A6F30C002D437C /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
@@ -240,7 +239,6 @@
 		1E07CBF21748F4A500C5F83A /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				1EA2969D179F1DBA00C646B0 /* Filter */,
 				1EA2969C179F1DB300C646B0 /* Month */,
 				1EA2969B179F1D8E00C646B0 /* Daily */,
 				1E27988C1746BA3800DD4AAF /* MainView.h */,
@@ -443,19 +441,11 @@
 		1EA2969C179F1DB300C646B0 /* Month */ = {
 			isa = PBXGroup;
 			children = (
-				1EA296A1179F1DFB00C646B0 /* MonthView.h */,
-				1EA296A2179F1DFB00C646B0 /* MonthView.m */,
+				1E682F8217C3203100FBCCB2 /* MonthViewController.h */,
+				1E682F8317C3203100FBCCB2 /* MonthViewController.m */,
+				1E682F8517C3204200FBCCB2 /* MonthViewController.xib */,
 			);
 			name = Month;
-			sourceTree = "<group>";
-		};
-		1EA2969D179F1DBA00C646B0 /* Filter */ = {
-			isa = PBXGroup;
-			children = (
-				1EA296A4179F1E0B00C646B0 /* FilterView.h */,
-				1EA296A5179F1E0B00C646B0 /* FilterView.m */,
-			);
-			name = Filter;
 			sourceTree = "<group>";
 		};
 		1EA686E017A6F2E5002D437C /* Utility */ = {
@@ -665,6 +655,7 @@
 				1ECEE05F1796354200647B7C /* dailyCellTopBarLand.png in Resources */,
 				1ECEE0601796354200647B7C /* dailyCellTopBarLand@2x.png in Resources */,
 				1EA296A8179F1E2400C646B0 /* DailyView.xib in Resources */,
+				1E682F8617C3204200FBCCB2 /* MonthViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,10 +683,9 @@
 				1E38169C1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m in Sources */,
 				1ECEE063179635A700647B7C /* DailyTableViewHeaderCell.m in Sources */,
 				1EA296A0179F1DEC00C646B0 /* DailyView.m in Sources */,
-				1EA296A3179F1DFB00C646B0 /* MonthView.m in Sources */,
-				1EA296A6179F1E0B00C646B0 /* FilterView.m in Sources */,
 				1EA686E317A6F30C002D437C /* Utility.m in Sources */,
 				1E3BAB6317A85BD4001FF44F /* FilterItens.m in Sources */,
+				1E682F8417C3203100FBCCB2 /* MonthViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,8 +731,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "D6EFA74E-E63E-4189-ADB9-60C2E8740BFF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D6EFA74E-E63E-4189-ADB9-60C2E8740BFF";
+				PROVISIONING_PROFILE = "7F3BB23E-D14D-45E8-A9A6-42818745BCBF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7F3BB23E-D14D-45E8-A9A6-42818745BCBF";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

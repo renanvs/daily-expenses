@@ -34,16 +34,26 @@
         listItens = [[ItemCollection sharedInstance] listItens];
         allItens = [[ItemCollection sharedInstance] allItens];
         dateValue = [[NSString alloc] initWithString:[[Utility sharedInstance]getCurrentDate]];
+        
+        
     }
     return self;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    NSString * totalValueStr = [[[ItemCollection sharedInstance] totalValue] stringValue];
-    totalValue.text = [NSString stringWithFormat:@"R$ %@", totalValueStr];
+    totalValueStr = [[ItemCollection sharedInstance] totalValueStr];
+    //totalValue.text = [NSString stringWithFormat:@"R$ %@", totalValueStr];
+    totalValue.text = totalValueStr;
     [dailyTableView reloadData];
-    self.currentDate.text = dateValue;
+    
+    self.currentDate.text = [[ItemCollection sharedInstance] dateInCurrentView];
+    
+    if ([self.currentDate.text isEqualToString:[[Utility sharedInstance] getCurrentDate]]){
+        self.goNextButton.enabled = NO;
+        self.goNextButton.alpha = .5;
+    }
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -61,7 +71,7 @@
 	
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-    
+        
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +90,7 @@
 #pragma mark - tableView delegate
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return listItens.count;
+   return listItens.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -124,8 +134,8 @@
         [[ItemCollection sharedInstance] removeItemBySpendItem:cell.item];
         [tableView endUpdates];
         [tableView reloadData];
-        NSString * totalValueStr = [[[ItemCollection sharedInstance] totalValue] stringValue];
-        totalValue.text = [NSString stringWithFormat:@"R$ %@", totalValueStr];
+        ////NSString * totalValueStr = [[[ItemCollection sharedInstance] totalValue] stringValue];
+        self.totalValue.text = totalValueStr;
     }
 }
 
@@ -168,9 +178,30 @@
 }
 
 - (IBAction)goToDayBefore:(id)sender {
+    [[ItemCollection sharedInstance] getListDayBefore];
+    [dailyTableView reloadData];
+    self.currentDate.text = [[ItemCollection sharedInstance] dateInCurrentView];
+    if (![self.currentDate.text isEqualToString:[[Utility sharedInstance] getCurrentDate]]){
+        self.goNextButton.enabled = YES;
+        self.goNextButton.alpha = 1;
+    }
+    self.totalValue.text = totalValueStr;
 }
 
 - (IBAction)goToDayAfter:(id)sender {
+    [[ItemCollection sharedInstance] getListDayAfter];
+    [dailyTableView reloadData];
+    self.currentDate.text = [[ItemCollection sharedInstance] dateInCurrentView];
+    if ([self.currentDate.text isEqualToString:[[Utility sharedInstance] getCurrentDate]]){
+        self.goNextButton.enabled = NO;
+        self.goNextButton.alpha = .5;
+    }
+    self.totalValue.text = totalValueStr;
+}
+
+- (IBAction)showRelatorio:(id)sender {
+    MonthViewController* mvc = [[MonthViewController alloc]init];
+    [self presentViewController:mvc animated:YES completion:nil];
 }
 
 #pragma mark - other methods

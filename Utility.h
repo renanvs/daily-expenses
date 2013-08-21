@@ -8,11 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Utility : NSObject
+@interface Utility : NSObject{
+    NSArray* monthList;
+}
 
 +(Utility *) sharedInstance;
 
 -(NSString*)getCurrentDate;
+
+-(NSString*)getDayBefore:(NSString*)currentDate;
+
+-(NSString*)getDayAfter:(NSString*)currentDate;
+
+-(NSString*)getMonthByDate:(NSString*)dateS;
 
 - (BOOL)isEmptyString:(NSString *) aString;
 

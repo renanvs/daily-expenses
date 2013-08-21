@@ -12,7 +12,7 @@
 @implementation ItemCollection
 
 static id _instance;
-@synthesize listItens, allItens;
+@synthesize listItens, allItens, dateInCurrentView;
 
 + (ItemCollection *) sharedInstance{
     @synchronized(self){
@@ -37,8 +37,23 @@ static id _instance;
 
 -(void)inicialize{
     //listItens = [[NSMutableArray alloc]init];
+    monthList =[NSArray arrayWithObjects:@"janeiro",
+                      @"fevereiro",
+                      @"março",
+                      @"abril",
+                      @"maio",
+                      @"junho",
+                      @"julho",
+                      @"agosto",
+                      @"setembro",
+                      @"outubro",
+                      @"novembro",
+                      @"dezembro",nil];
+    hasLog = [Config sharedInstance].hasLog;
     allItens = [[NSMutableArray alloc]init];
     self.totalValue = [[NSNumber alloc] init];
+    self.totalValueStr = [[NSMutableString alloc] init];
+    dateInCurrentView = [[NSString alloc] initWithString:[[Utility sharedInstance] getCurrentDate]];
     [self loadData];
 }
 
@@ -49,6 +64,13 @@ static id _instance;
 	NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentFolder = [documentPath objectAtIndex:0];
     newPlistFile = [[NSString alloc] initWithString:[documentFolder stringByAppendingPathComponent:@"NewPlist.plist"]];
+    
+    if (hasLog){
+        NSString* temp = newPlistFile;
+        temp = [temp stringByReplacingOccurrencesOfString:@" " withString:@"\\ "];
+        NSLog(@"file path: %@",temp);
+    }
+    
     NSArray *arrayPlist = [NSArray arrayWithContentsOfFile:newPlistFile];
     if (!arrayPlist) {
         NSString *bundlePathOfPlist = [[NSBundle mainBundle] pathForResource:@"itemList" ofType:@"plist"];
@@ -155,6 +177,12 @@ static id _instance;
     for (SpendItem *itemR in listItens) {
         self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [itemR.value floatValue]];
     }
+    
+    if ([[Utility sharedInstance] isEmptyString:[self.totalValue stringValue]]) {
+        [self.totalValueStr setString:@"0"];
+    }else{
+        [self.totalValueStr setString:[self.totalValue stringValue]];
+    }
 }
 
 #pragma mark - verify method
@@ -218,6 +246,7 @@ static id _instance;
             float total = [self.totalValue floatValue];
             float itemToRemoveVelu = [[item objectForKey:@"value"] floatValue];
             self.totalValue = [NSNumber numberWithFloat: (total - itemToRemoveVelu)];
+            [self.totalValueStr setString:[self.totalValue stringValue]];
         }
         
         verify = 0;
@@ -256,5 +285,54 @@ static id _instance;
     
     [self getTotalValue];
 }
+
+-(void)getListDayBefore{
+    FilterItens* filter = [[FilterItens alloc] init];
+    [listItens removeAllObjects];
+    
+   dateInCurrentView = [[NSString alloc] initWithString:[[Utility sharedInstance] getDayBefore:dateInCurrentView]] ;
+    
+    [listItens addObjectsFromArray:[NSArray arrayWithArray:[filter filterByDate:dateInCurrentView onList:allItens]]];
+    [self getTotalValue];
+}
+
+-(void)getListDayAfter{
+    FilterItens* filter = [[FilterItens alloc] init];
+    [listItens removeAllObjects];
+    
+    dateInCurrentView = [[NSString alloc] initWithString:[[Utility sharedInstance] getDayAfter:dateInCurrentView]] ;
+    
+    [listItens addObjectsFromArray:[NSArray arrayWithArray:[filter filterByDate:dateInCurrentView onList:allItens]]];
+    [self getTotalValue];
+}
+
+-(NSArray*)getAvailableMonths{
+    NSMutableArray* months = [[NSMutableArray alloc] init];
+    for (SpendItem* itemR in allItens) {
+        NSString*currentMonth = [[Utility sharedInstance] getMonthByDate:itemR.dateSpent];
+        if (![months containsObject:currentMonth]) {
+            [months addObject:currentMonth];
+        }
+    }
+    return months;
+}
+
+-(NSDictionary*)getItensByMonthList:(NSArray*)monthListR{
+    NSMutableDictionary* monthsItensList = [[NSMutableDictionary alloc] init];
+    NSMutableArray* tempItemList = [[NSMutableArray alloc] init];
+    
+    for (NSString* monthR in monthListR) {
+        for (SpendItem* itemR in allItens) {
+            if ([[[Utility sharedInstance] getMonthByDate:itemR.dateSpent] isEqualToString:monthR]) {
+                [tempItemList addObject:itemR];
+            }
+        }
+        [monthsItensList setObject:tempItemList forKey:monthR];
+        tempItemList = [[NSMutableArray alloc] init];
+    }
+    
+    return monthsItensList;
+}
+
 
 @end
