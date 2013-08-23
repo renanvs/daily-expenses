@@ -7,6 +7,15 @@
 //
 
 #import "Utility.h"
+@implementation NSString (custom)
+
+-(BOOL)test{
+
+    return YES;
+}
+
+@end
+
 
 @implementation Utility
 
@@ -100,6 +109,7 @@ static id _instance;
     
     NSInteger monthIndex = [components month];
     NSString* monthStr = [monthList objectAtIndex:(monthIndex-1)];
+    [monthStr test];
     return monthStr;
 }
 
