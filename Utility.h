@@ -24,6 +24,10 @@
 
 - (BOOL)isEmptyString:(NSString *) aString;
 
+-(BOOL)stringToBool:(NSString*)value;
+
+-(NSString*)boolToString:(BOOL)value;
+
 -(void)removeElementsFromView:(UIView*)viewR;
 
 - (void)setItem:(UIView*)subView inCenterView:(UIView*)viewR padLeft:(CGFloat)l  padTop:(CGFloat)t padRight:(CGFloat)r padBottom:(CGFloat)b;

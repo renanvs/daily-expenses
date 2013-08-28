@@ -70,6 +70,26 @@ static id _instance;
     return NO;
 }
 
+-(BOOL)stringToBool:(NSString*)value{
+    if ([value isEqualToString:@"0"]) {
+        return NO;
+    }else if ([value isEqualToString:@"1"]) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+-(NSString*)boolToString:(BOOL)value{
+    if (value) {
+        return @"1";
+    }else if (!value) {
+        return @"0";
+    }else{
+        return @"0";
+    }
+}
+
 #pragma mark - get methods
 
 -(NSString*)getCurrentDate{

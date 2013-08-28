@@ -56,6 +56,7 @@
     cell.icon.image = currentSpendItem.typeImg;
     cell.label.text = currentSpendItem.label;
     cell.price.text = [NSString stringWithFormat:@"%@",currentSpendItem.value];
+    [cell.typeView setBackgroundColor:currentSpendItem.isCredit ? [UIColor greenColor] : [UIColor redColor]];
     cell.item = currentSpendItem;
     
     return cell;

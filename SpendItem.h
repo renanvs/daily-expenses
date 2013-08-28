@@ -18,6 +18,8 @@
 @property (strong) NSString *dateSpent;
 @property (strong) NSString *notes;
 @property (strong) UIImage *typeImg;
+@property BOOL isSpent;
+@property BOOL isCredit;
 
 
 @property (strong) NSString *dateCreated;

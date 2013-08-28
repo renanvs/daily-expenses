@@ -37,6 +37,18 @@
 {
     [super viewDidLoad];
     [self setBackground];
+    
+    CGRect spendRect = CGRectMake(0, 0, 240, 30);
+    spent = [[SSCheckBoxView alloc] initWithFrame:spendRect style:kSSCheckBoxViewStyleGlossy checked:YES];
+    CGRect creditRect = CGRectMake(0, 40, 240, 30);
+    credit = [[SSCheckBoxView alloc] initWithFrame:creditRect style:kSSCheckBoxViewStyleGlossy checked:NO];
+    [spent setText:@"Gasto"];
+    [credit setText:@"Crédito"];
+    [spent setStateChangedTarget:self selector:@selector(checkBoxViewChangedState:)];
+    [credit setStateChangedTarget:self selector:@selector(checkBoxViewChangedState:)];
+    [self.typeView addSubview:spent];
+    [self.typeView addSubview:credit];
+    
     if ([state isEqualToString:@"update"]){
         [self populateToForm];
         [add setTitle:@"Atualizar"];
@@ -48,6 +60,22 @@
     
     
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void) checkBoxViewChangedState:(SSCheckBoxView *)checkBox
+{
+    if (checkBox == spent) {
+        credit.checked = !checkBox.checked;
+    }else if(checkBox == credit) {
+        spent.checked = !checkBox.checked;
+    }
+    
+    if (credit.checked) {
+        [self.value setTextColor:[UIColor greenColor]];
+    }else if (spent.checked){
+        [self.value setTextColor:[UIColor redColor]];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,6 +91,7 @@
     [self setDateStr:nil];
     [self setNote:nil];
     [self setTypeLabel:nil];
+    [self setTypeView:nil];
     [super viewDidUnload];
 }
 
@@ -101,6 +130,7 @@
 }
 
 - (void)dealloc {
+    [_typeView release];
     [super dealloc];
 }
 
@@ -292,6 +322,15 @@
 	self.note.text = item.notes;
     categoryImage = [[Config sharedInstance] getImageByCategoryLabel:item.type];
 	[self.typeBt setImage:categoryImage forState:UIControlStateNormal];
+    
+    credit.checked = item.isCredit;
+    spent.checked = item.isSpent;
+    
+    if (credit.checked) {
+        [self.value setTextColor:[UIColor greenColor]];
+    }else if (spent.checked){
+        [self.value setTextColor:[UIColor redColor]];
+    }
 	
 }
 
@@ -307,6 +346,8 @@
     item.dateSpent = self.dateStr.text;
     item.notes = self.note.text;
     item.typeImg = [UIImage imageNamed:item.type];
+    item.isCredit = credit.checked;
+    item.isSpent = spent.checked;
     
     if ([state isEqualToString:@"update"]) {
         [[ItemCollection sharedInstance] updateItemToList:item];

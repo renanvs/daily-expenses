@@ -85,12 +85,15 @@ static id _instance;
         item.label = [dict objectForKey:@"label"];
         item.type = [dict objectForKey:@"type"];
         item.parcel = [dict objectForKey:@"parcel"];
+        item.isCredit = [[Utility sharedInstance] stringToBool:[dict objectForKey:@"isCredit"]];
+        item.isSpent = [[Utility sharedInstance] stringToBool:[dict objectForKey:@"isSpent"]];
         item.value = [dict objectForKey:@"value"];
         item.dateSpent = [dict objectForKey:@"dateSpent"];
         item.dateUpdated = [dict objectForKey:@"dateUpdated"];
         item.dateCreated = [dict objectForKey:@"dateCreated"];
         item.notes = [dict objectForKey:@"notes"];
         item.typeImg = [self getTypeImage:item.type];
+        
         [allItens addObject:item];
     }
 	[self filterItensByCurrentDate];
@@ -113,7 +116,7 @@ static id _instance;
 -(void)updateItemToList:(SpendItem*)item{
     item.dateUpdated = [[Utility sharedInstance] getCurrentDate];
 	item = [self verifyAllFields:item];
-    
+    item.typeImg = [self getTypeImage:item.type];
     [allItens setObject:item atIndexedSubscript:[self findIndexById:item.item_id]];
     [self updatePlistFileBasedOnList];
     
@@ -175,7 +178,8 @@ static id _instance;
 -(void)getTotalValue{
     self.totalValue = 0;
     for (SpendItem *itemR in listItens) {
-        self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [itemR.value floatValue]];
+        
+        self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [self getValue:itemR.value isChecked:itemR.isCredit]];
     }
     
     if ([[Utility sharedInstance] isEmptyString:[self.totalValue stringValue]]) {
@@ -183,6 +187,15 @@ static id _instance;
     }else{
         [self.totalValueStr setString:[self.totalValue stringValue]];
     }
+}
+
+-(float)getValue:(NSString*)valueR isChecked:(BOOL)isChecked{
+    float realValue;
+    realValue = [valueR floatValue];
+    if (!isChecked){
+        realValue = (-1)*realValue;
+    }
+    return realValue;
 }
 
 #pragma mark - verify method
@@ -266,7 +279,10 @@ static id _instance;
                               item.notes, @"notes",
                               item.parcel, @"parcel",
                               item.value, @"value",
-                              item.type, @"type", nil];
+                              item.type, @"type",
+                              [[Utility sharedInstance] boolToString:item.isSpent], @"isSpent",
+                              [[Utility sharedInstance] boolToString:item.isCredit], @"isCredit",
+                              nil];
     return itemDict;
 }
 

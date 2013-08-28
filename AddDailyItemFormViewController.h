@@ -10,6 +10,7 @@
 #import "PopoverView.h"
 #import "SpendItem.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "SSCheckBoxView.h"
 
 @interface AddDailyItemFormViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, PopoverViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     
@@ -31,6 +32,9 @@
     UIButton *closeKeyboardBt;
 	
 	NSString *state;
+    
+    SSCheckBoxView* spent;
+    SSCheckBoxView* credit;
 }
 
 @property (assign, nonatomic) IBOutlet UITextField *label;
@@ -42,6 +46,7 @@
 @property (assign, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *tpScrollView;
 @property (assign, nonatomic) IBOutlet UIButton *typeBt;
 @property (assign, nonatomic) IBOutlet UIBarButtonItem *add;
+@property (retain, nonatomic) IBOutlet UIView *typeView;
 
 -(IBAction)cadastrar:(id)sender;
 -(IBAction)back:(id)sender;
