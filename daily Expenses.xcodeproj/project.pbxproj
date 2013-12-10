@@ -11,8 +11,6 @@
 		1E07CBEF1748F31100C5F83A /* dailyCellTopBar2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E07CBEB1748F31100C5F83A /* dailyCellTopBar2@2x.png */; };
 		1E07CBF01748F31100C5F83A /* bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E07CBEC1748F31100C5F83A /* bg1.png */; };
 		1E07CBF11748F31100C5F83A /* bg1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E07CBED1748F31100C5F83A /* bg1@2x.png */; };
-		1E07CBF81748F58100C5F83A /* AddDailyItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E07CBF61748F58100C5F83A /* AddDailyItemViewController.m */; };
-		1E07CBF91748F58100C5F83A /* AddDailyItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E07CBF71748F58100C5F83A /* AddDailyItemViewController.xib */; };
 		1E07CBFE1748FA6900C5F83A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E07CBFC1748FA6900C5F83A /* SettingsViewController.m */; };
 		1E07CBFF1748FA6900C5F83A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E07CBFD1748FA6900C5F83A /* SettingsViewController.xib */; };
 		1E0AE9D117CD928A0043170F /* cb_box_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E0AE9B817CD928A0043170F /* cb_box_off.png */; };
@@ -55,7 +53,6 @@
 		1E33C184178CE5B200F37B62 /* categoryChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E33C183178CE5B200F37B62 /* categoryChooseCell.xib */; };
 		1E38169B1795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3816981795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m */; };
 		1E38169C1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E38169A1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m */; };
-		1E3940751754355300A5DC86 /* CategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E3940741754355300A5DC86 /* CategoryView.xib */; };
 		1E3BAB6317A85BD4001FF44F /* FilterItens.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BAB6217A85BD4001FF44F /* FilterItens.m */; };
 		1E6098251783B74300491251 /* ItemCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098241783B74300491251 /* ItemCollection.m */; };
 		1E6098291783C9AA00491251 /* AddDailyItemFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098271783C9AA00491251 /* AddDailyItemFormViewController.m */; };
@@ -63,8 +60,6 @@
 		1E682F8417C3203100FBCCB2 /* MonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E682F8317C3203100FBCCB2 /* MonthViewController.m */; };
 		1E682F8617C3204200FBCCB2 /* MonthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E682F8517C3204200FBCCB2 /* MonthViewController.xib */; };
 		1E735BB0178BB9D300D2527C /* itemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E735BAF178BB9D300D2527C /* itemList.plist */; };
-		1EA296A0179F1DEC00C646B0 /* DailyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA2969F179F1DEC00C646B0 /* DailyView.m */; };
-		1EA296A8179F1E2400C646B0 /* DailyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EA296A7179F1E2400C646B0 /* DailyView.xib */; };
 		1EA686E317A6F30C002D437C /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA686E217A6F30C002D437C /* Utility.m */; };
 		1ECEE05F1796354200647B7C /* dailyCellTopBarLand.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECEE05D1796354200647B7C /* dailyCellTopBarLand.png */; };
 		1ECEE0601796354200647B7C /* dailyCellTopBarLand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECEE05E1796354200647B7C /* dailyCellTopBarLand@2x.png */; };
@@ -129,9 +124,6 @@
 		1E07CBEB1748F31100C5F83A /* dailyCellTopBar2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dailyCellTopBar2@2x.png"; sourceTree = "<group>"; };
 		1E07CBEC1748F31100C5F83A /* bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg1.png; sourceTree = "<group>"; };
 		1E07CBED1748F31100C5F83A /* bg1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg1@2x.png"; sourceTree = "<group>"; };
-		1E07CBF51748F58100C5F83A /* AddDailyItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDailyItemViewController.h; sourceTree = "<group>"; };
-		1E07CBF61748F58100C5F83A /* AddDailyItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDailyItemViewController.m; sourceTree = "<group>"; };
-		1E07CBF71748F58100C5F83A /* AddDailyItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDailyItemViewController.xib; sourceTree = "<group>"; };
 		1E07CBFB1748FA6900C5F83A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		1E07CBFC1748FA6900C5F83A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		1E07CBFD1748FA6900C5F83A /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -187,7 +179,6 @@
 		1E3816981795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		1E3816991795D10100D39CB9 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
 		1E38169A1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
-		1E3940741754355300A5DC86 /* CategoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryView.xib; sourceTree = "<group>"; };
 		1E3BAB6117A85BD4001FF44F /* FilterItens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterItens.h; sourceTree = "<group>"; };
 		1E3BAB6217A85BD4001FF44F /* FilterItens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterItens.m; sourceTree = "<group>"; };
 		1E6098231783B74300491251 /* ItemCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCollection.h; sourceTree = "<group>"; };
@@ -199,9 +190,6 @@
 		1E682F8317C3203100FBCCB2 /* MonthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthViewController.m; sourceTree = "<group>"; };
 		1E682F8517C3204200FBCCB2 /* MonthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthViewController.xib; sourceTree = "<group>"; };
 		1E735BAF178BB9D300D2527C /* itemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = itemList.plist; sourceTree = "<group>"; };
-		1EA2969E179F1DEC00C646B0 /* DailyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyView.h; sourceTree = "<group>"; };
-		1EA2969F179F1DEC00C646B0 /* DailyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyView.m; sourceTree = "<group>"; };
-		1EA296A7179F1E2400C646B0 /* DailyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyView.xib; sourceTree = "<group>"; };
 		1EA686E117A6F30C002D437C /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		1EA686E217A6F30C002D437C /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		1ECEE05D1796354200647B7C /* dailyCellTopBarLand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dailyCellTopBarLand.png; sourceTree = "<group>"; };
@@ -286,7 +274,6 @@
 			isa = PBXGroup;
 			children = (
 				1EA2969C179F1DB300C646B0 /* Month */,
-				1EA2969B179F1D8E00C646B0 /* Daily */,
 				1E27988C1746BA3800DD4AAF /* MainView.h */,
 				1E27988D1746BA3800DD4AAF /* MainView.m */,
 				1E27988E1746BA3800DD4AAF /* MainView.xib */,
@@ -381,7 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				1EA686E017A6F2E5002D437C /* Utility */,
-				1E33C179178CC8A300F37B62 /* Config */,
 				1E6098221783B72400491251 /* ItemCollection */,
 				1E20860B176AA19F00EACD6A /* SpendItem */,
 			);
@@ -402,7 +388,6 @@
 			children = (
 				1EEAC901178FA4D6000DD075 /* PopoverViewDaily */,
 				1EEAC8EE178F9111000DD075 /* ExternalClasses */,
-				1E33C17F178CDA5400F37B62 /* ETC */,
 				1E20860A176AA18900EACD6A /* MainClasses */,
 				1E07CBFA1748FA4100C5F83A /* SettingsView */,
 				1E07CBF41748F52600C5F83A /* AddDailyItem */,
@@ -412,6 +397,7 @@
 				1E2798911746C31700DD4AAF /* Images */,
 				1E2798681746B90F00DD4AAF /* Frameworks */,
 				1E2798671746B90F00DD4AAF /* Products */,
+				1E33C179178CC8A300F37B62 /* Config */,
 			);
 			sourceTree = "<group>";
 		};
@@ -498,17 +484,6 @@
 			name = Config;
 			sourceTree = "<group>";
 		};
-		1E33C17F178CDA5400F37B62 /* ETC */ = {
-			isa = PBXGroup;
-			children = (
-				1E07CBF51748F58100C5F83A /* AddDailyItemViewController.h */,
-				1E07CBF61748F58100C5F83A /* AddDailyItemViewController.m */,
-				1E07CBF71748F58100C5F83A /* AddDailyItemViewController.xib */,
-				1E3940741754355300A5DC86 /* CategoryView.xib */,
-			);
-			name = ETC;
-			sourceTree = "<group>";
-		};
 		1E6098221783B72400491251 /* ItemCollection */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,16 +494,6 @@
 				1E3BAB6217A85BD4001FF44F /* FilterItens.m */,
 			);
 			name = ItemCollection;
-			sourceTree = "<group>";
-		};
-		1EA2969B179F1D8E00C646B0 /* Daily */ = {
-			isa = PBXGroup;
-			children = (
-				1EA2969E179F1DEC00C646B0 /* DailyView.h */,
-				1EA2969F179F1DEC00C646B0 /* DailyView.m */,
-				1EA296A7179F1E2400C646B0 /* DailyView.xib */,
-			);
-			name = Daily;
 			sourceTree = "<group>";
 		};
 		1EA2969C179F1DB300C646B0 /* Month */ = {
@@ -738,9 +703,7 @@
 				1E07CBEF1748F31100C5F83A /* dailyCellTopBar2@2x.png in Resources */,
 				1E07CBF01748F31100C5F83A /* bg1.png in Resources */,
 				1E07CBF11748F31100C5F83A /* bg1@2x.png in Resources */,
-				1E07CBF91748F58100C5F83A /* AddDailyItemViewController.xib in Resources */,
 				1E07CBFF1748FA6900C5F83A /* SettingsViewController.xib in Resources */,
-				1E3940751754355300A5DC86 /* CategoryView.xib in Resources */,
 				1E60982A1783C9AA00491251 /* AddDailyItemFormViewController.xib in Resources */,
 				1E735BB0178BB9D300D2527C /* itemList.plist in Resources */,
 				1E33C17B178CC8C300F37B62 /* defaultConfig.plist in Resources */,
@@ -748,7 +711,6 @@
 				1EEAC906178FA526000DD075 /* PopoverDaily.xib in Resources */,
 				1ECEE05F1796354200647B7C /* dailyCellTopBarLand.png in Resources */,
 				1ECEE0601796354200647B7C /* dailyCellTopBarLand@2x.png in Resources */,
-				1EA296A8179F1E2400C646B0 /* DailyView.xib in Resources */,
 				1E682F8617C3204200FBCCB2 /* MonthViewController.xib in Resources */,
 				1E0AE9D117CD928A0043170F /* cb_box_off.png in Resources */,
 				1E0AE9D217CD928A0043170F /* cb_box_off@2x.png in Resources */,
@@ -784,7 +746,6 @@
 				1E27987A1746B90F00DD4AAF /* AppDelegate.m in Sources */,
 				1E27988F1746BA3800DD4AAF /* MainView.m in Sources */,
 				1EDEEFBE1748694300A03BE2 /* DailyTableViewCell.m in Sources */,
-				1E07CBF81748F58100C5F83A /* AddDailyItemViewController.m in Sources */,
 				1E07CBFE1748FA6900C5F83A /* SettingsViewController.m in Sources */,
 				1E20860E176AA47800EACD6A /* SpendItem.m in Sources */,
 				1E6098251783B74300491251 /* ItemCollection.m in Sources */,
@@ -796,7 +757,6 @@
 				1E38169B1795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				1E38169C1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m in Sources */,
 				1ECEE063179635A700647B7C /* DailyTableViewHeaderCell.m in Sources */,
-				1EA296A0179F1DEC00C646B0 /* DailyView.m in Sources */,
 				1EA686E317A6F30C002D437C /* Utility.m in Sources */,
 				1E3BAB6317A85BD4001FF44F /* FilterItens.m in Sources */,
 				1E682F8417C3203100FBCCB2 /* MonthViewController.m in Sources */,

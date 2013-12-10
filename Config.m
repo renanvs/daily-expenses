@@ -9,10 +9,10 @@
 #import "Config.h"
 
 @implementation Config
+
 @synthesize categoryList;
 
 static id _instance;
-
 + (Config *) sharedInstance{
     @synchronized(self){
         if (!_instance) {
@@ -33,24 +33,25 @@ static id _instance;
 }
 
 -(void)loadData{
-    //NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    //NSString *documentFolder = [documentPath objectAtIndex:0];
-    NSString *bundlePathOfPlist = [[NSBundle mainBundle] pathForResource:@"defaultConfig" ofType:@"plist"];
-    NSDictionary *arrayPlist = [NSDictionary dictionaryWithContentsOfFile:bundlePathOfPlist];
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"defaultConfig" ofType:@"plist"];
     
-    categoryList = [[NSDictionary alloc]initWithDictionary:[arrayPlist objectForKey:@"categories"]];
+    NSDictionary *plistContent = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    
+    categoryList = [[NSDictionary alloc]initWithDictionary:[plistContent objectForKey:@"categories"]];
 }
 
 
 -(UIImage*)getImageByCategoryLabel:(NSString*)label{
-    NSString *value;
+    
+    NSString *imageName;
+    
     for (NSString *key in categoryList) {
-        value = [categoryList objectForKey:key];
+        imageName = [categoryList objectForKey:key];
         if ([key isEqualToString:label]) {
             break;
         }
     }
     
-    return [UIImage imageNamed:value];
+    return [UIImage imageNamed:imageName];
 }
 @end

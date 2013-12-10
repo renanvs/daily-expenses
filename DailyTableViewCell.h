@@ -13,10 +13,12 @@
 @interface DailyTableViewCell : UITableViewCell{
     CGPoint point;
 }
+
 @property (assign) IBOutlet UILabel *price;
 @property (assign) IBOutlet UILabel *label;
 @property (assign) IBOutlet UIImageView *icon;
 @property (assign) IBOutlet UIView *popoverView;
 @property (retain, nonatomic) IBOutlet UIView *typeView;
 @property (assign) SpendItem *item;
+
 @end

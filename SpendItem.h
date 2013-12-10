@@ -21,13 +21,7 @@
 @property BOOL isSpent;
 @property BOOL isCredit;
 
-
 @property (strong) NSString *dateCreated;
 @property (strong) NSString *dateUpdated;
-
-
-
-//cartao
-  //if cartao ->
 
 @end

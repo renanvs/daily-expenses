@@ -11,6 +11,7 @@
 @interface SettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong) IBOutlet UITableView *tableView;
+
 -(IBAction)done:(id)sender;
 
 @end

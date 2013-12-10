@@ -22,7 +22,6 @@
     return self;
 }
 
-
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -33,8 +32,6 @@
 
 -(void)addGesture{
     UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-//    [tap setMinimumPressDuration:6];
-    //UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
     [self addGestureRecognizer:[tap autorelease]];
 }
 
@@ -44,7 +41,6 @@
 {
     if (tap.state == UIGestureRecognizerStateEnded) {
         NSLog(@"UIGestureRecognizerStateEnded");
-        //Do Whatever You want on End of Gesture
     }
     else if (tap.state == UIGestureRecognizerStateBegan){
         NSLog(@"UIGestureRecognizerStateBegan.");
@@ -57,8 +53,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-	
-    // Configure the view for the selected state
 }
 
 - (void)dealloc {

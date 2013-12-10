@@ -32,15 +32,9 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)sharingBt:(id)sender {
-}
 - (void)dealloc {
     [_fullTable release];
     [super dealloc];
-}
-- (void)viewDidUnload {
-    [self setFullTable:nil];
-    [super viewDidUnload];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

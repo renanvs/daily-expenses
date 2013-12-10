@@ -8,42 +8,36 @@
 
 #import "MainView.h"
 #import "DailyTableViewCell.h"
-#import "AddDailyItemViewController.h"
 #import "AddDailyItemFormViewController.h"
 #import "SettingsViewController.h"
 #import "ItemCollection.h"
 #import "DailyTableViewHeaderCell.h"
 #import "Utility.h"
 
-
-@interface MainView ()
-
-@end
-
 @implementation MainView
+
 @synthesize dailyTableView;
 @synthesize listItens, allItens;
-@synthesize changeViewTypeSegmentControl;
 @synthesize totalValue;
 
 #pragma mark - init, view...
 
 -(id)init{
     self = [super init];
+    
     if (self){
         listItens = [[ItemCollection sharedInstance] listItens];
         allItens = [[ItemCollection sharedInstance] allItens];
         dateValue = [[NSString alloc] initWithString:[[Utility sharedInstance]getCurrentDate]];
-        
-        
     }
+    
     return self;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     totalValueStr = [[ItemCollection sharedInstance] totalValueStr];
-    //totalValue.text = [NSString stringWithFormat:@"R$ %@", totalValueStr];
     totalValue.text = totalValueStr;
     [dailyTableView reloadData];
     
@@ -56,15 +50,6 @@
 
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -72,19 +57,6 @@
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
         
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc {
-    [super dealloc];
-}
-- (void)viewDidUnload {
-    [super viewDidUnload];
 }
 
 #pragma mark - tableView delegate
@@ -113,7 +85,6 @@
 
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    //UIViewController *view = [[UIViewController alloc] initWithNibName:@"DailyTableViewHeaderCell" bundle:nil];
     DailyTableViewHeaderCell *headerView = [[DailyTableViewHeaderCell alloc] init];
     return headerView.view;
 }
@@ -127,15 +98,15 @@
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (editingStyle == UITableViewCellEditingStyleDelete){
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        //[[ItemCollection sharedInstance] removeItemByIndexPath:indexPath.row];
         DailyTableViewCell *cell = (DailyTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
         [[ItemCollection sharedInstance] removeItemBySpendItem:cell.item];
         [tableView endUpdates];
         [tableView reloadData];
-        ////NSString * totalValueStr = [[[ItemCollection sharedInstance] totalValue] stringValue];
+        
         self.totalValue.text = totalValueStr;
     }
 }
@@ -156,26 +127,6 @@
 -(IBAction)settings:(id)sender{
 	SettingsViewController *settingsView = [[SettingsViewController alloc] init];
     [self presentViewController:settingsView animated:YES completion:nil];
-}
-
--(IBAction)changeView:(id)sender{
-	switch (self.changeViewTypeSegmentControl.selectedSegmentIndex) {
-		case 0:{
-			[self alertTest:@"First View"];
-			break;
-		}
-		case 1:{
-			[self alertTest:@"Second View"];
-			break;
-		}
-		case 2:{
-			[self alertTest:@"Third View"];
-			break;
-		}
-		default:
-			break;
-	}
-	
 }
 
 - (IBAction)goToDayBefore:(id)sender {
@@ -205,13 +156,6 @@
     [self presentViewController:mvc animated:YES completion:nil];
 }
 
-#pragma mark - other methods
-
--(void)alertTest:(NSString*)text{
-	UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"TESTE" message:text delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alert show];
-}
-
 #pragma mark - rotate methods
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
@@ -231,4 +175,5 @@
 		self.view = landscapeView;
 	}
 }
+
 @end

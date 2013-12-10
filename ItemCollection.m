@@ -121,8 +121,6 @@ static id _instance;
     [self updatePlistFileBasedOnList];
     
     [self getTotalValue];
-    
-    
 }
 
 -(void)removeItemBySpendItem :(SpendItem*)item{
@@ -220,9 +218,6 @@ static id _instance;
 -(void)saveItemToPlist{
     NSMutableArray *addData = [NSMutableArray arrayWithContentsOfFile:newPlistFile];
 	
-//    for (SpendItem *itemR in listItens) {
-//		[addData addObject:[self addItem:itemR]];
-//	}
 	[addData addObject:[self addItem:[allItens lastObject]]];
     [addData writeToFile:newPlistFile atomically:YES];
 }
@@ -290,11 +285,10 @@ static id _instance;
 
 -(void)filterItensByCurrentDate{
 	FilterItens* filter = [[FilterItens alloc] init];
-	//listItens = [NSMutableArray arrayWithArray:[filter filterBySpentDate:allItens ascending:NO]];
+
     if (listItens) {
         [listItens removeAllObjects];
         [listItens addObjectsFromArray :[NSMutableArray arrayWithArray:[filter filterByDate:[[Utility sharedInstance] getCurrentDate] onList:allItens]]];
-        //listItens = [NSMutableArray arrayWithArray:[filter filterByDate:[[Utility sharedInstance] getCurrentDate] onList:allItens]];
     }else{
         listItens = [[NSMutableArray alloc] initWithArray:[filter filterByDate:[[Utility sharedInstance] getCurrentDate] onList:allItens]];
     }
@@ -349,6 +343,5 @@ static id _instance;
     
     return monthsItensList;
 }
-
 
 @end

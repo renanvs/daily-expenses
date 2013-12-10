@@ -13,7 +13,7 @@
     NSDictionary* itemByMonthDictionary;
 }
 - (IBAction)backBt:(id)sender;
-- (IBAction)sharingBt:(id)sender;
+
 @property (retain, nonatomic) IBOutlet UITableView *fullTable;
 
 @end

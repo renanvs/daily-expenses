@@ -24,18 +24,10 @@
 
 #pragma mark - init, view...
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self setBackground];
     
     CGRect spendRect = CGRectMake(0, 0, 240, 30);
@@ -56,10 +48,6 @@
         self.add.title = @"Cadastrar";
         self.dateStr.text = [[Utility sharedInstance] getCurrentDate];
     }
-    
-    
-    
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void) checkBoxViewChangedState:(SSCheckBoxView *)checkBox
@@ -76,12 +64,6 @@
         [self.value setTextColor:[UIColor redColor]];
     }
     
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidUnload {
@@ -375,11 +357,6 @@
 }
 
 -(void)categoryTableDone:(id)event{
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:2];
-//    CGAffineTransform transform = CGAffineTransformMakeTranslation(0, 480);
-//    categoryTableView.transform = transform;
-//    [UIView commitAnimations];
 	CGRect categoryRect = categoryTableView.frame;
 	[UIView animateWithDuration:.5 animations:^{
 		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];

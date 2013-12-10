@@ -7,15 +7,6 @@
 //
 
 #import "Utility.h"
-@implementation NSString (custom)
-
--(BOOL)test{
-
-    return YES;
-}
-
-@end
-
 
 @implementation Utility
 
@@ -32,7 +23,8 @@ static id _instance;
 -(id)init{
     self = [super init];
     if (self) {
-        monthList =[[NSArray alloc]initWithObjects:@"janeiro",
+        monthList =[[NSArray alloc]initWithObjects:
+                    @"janeiro",
                     @"fevereiro",
                     @"março",
                     @"abril",
@@ -45,6 +37,7 @@ static id _instance;
                     @"novembro",
                     @"dezembro",nil];
     }
+    
     return self;
 }
 
@@ -129,7 +122,6 @@ static id _instance;
     
     NSInteger monthIndex = [components month];
     NSString* monthStr = [monthList objectAtIndex:(monthIndex-1)];
-    [monthStr test];
     return monthStr;
 }
 
