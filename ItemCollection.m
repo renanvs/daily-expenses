@@ -36,7 +36,6 @@ static id _instance;
 }
 
 -(void)inicialize{
-    //listItens = [[NSMutableArray alloc]init];
     monthList =[NSArray arrayWithObjects:@"janeiro",
                       @"fevereiro",
                       @"março",
@@ -49,11 +48,13 @@ static id _instance;
                       @"outubro",
                       @"novembro",
                       @"dezembro",nil];
+    
     hasLog = [Config sharedInstance].hasLog;
     allItens = [[NSMutableArray alloc]init];
     self.totalValue = [[NSNumber alloc] init];
     self.totalValueStr = [[NSMutableString alloc] init];
     dateInCurrentView = [[NSString alloc] initWithString:[[Utility sharedInstance] getCurrentDate]];
+    
     [self loadData];
 }
 
@@ -103,7 +104,6 @@ static id _instance;
 
 -(void)addItemToList:(SpendItem*)item{
     int addId = [self getBiggerId] +1;
-    //int addId = [[[listItens lastObject] item_id] intValue] +1;
     item.item_id = [NSString stringWithFormat:@"%d",addId];
 	item.dateCreated = [[Utility sharedInstance] getCurrentDate];
 	item.typeImg = [self getTypeImage:item.type];
@@ -124,7 +124,6 @@ static id _instance;
 }
 
 -(void)removeItemBySpendItem :(SpendItem*)item{
-    
     [allItens removeObject:item];
     [listItens removeObject:item];
     [self removePlistFileBasedOnList];
@@ -133,7 +132,6 @@ static id _instance;
 #pragma mark - auxiliar methods
 
 -(NSInteger)findIndexById:(NSString*)item_id{
-    
     for (int i=0; i<allItens.count; i++) {
         if ([[[allItens objectAtIndex:i] item_id] isEqualToString:item_id]){
             return i;

@@ -270,15 +270,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1E07CBF21748F4A500C5F83A /* Main */ = {
+		1E07CBF21748F4A500C5F83A /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				1EA2969C179F1DB300C646B0 /* Month */,
 				1E27988C1746BA3800DD4AAF /* MainView.h */,
 				1E27988D1746BA3800DD4AAF /* MainView.m */,
 				1E27988E1746BA3800DD4AAF /* MainView.xib */,
 			);
-			name = Main;
+			name = MainView;
 			sourceTree = "<group>";
 		};
 		1E07CBF31748F4D300C5F83A /* DailyViewTableCell */ = {
@@ -364,16 +363,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		1E20860A176AA18900EACD6A /* MainClasses */ = {
-			isa = PBXGroup;
-			children = (
-				1EA686E017A6F2E5002D437C /* Utility */,
-				1E6098221783B72400491251 /* ItemCollection */,
-				1E20860B176AA19F00EACD6A /* SpendItem */,
-			);
-			name = MainClasses;
-			sourceTree = "<group>";
-		};
 		1E20860B176AA19F00EACD6A /* SpendItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,18 +375,15 @@
 		1E27985D1746B90F00DD4AAF = {
 			isa = PBXGroup;
 			children = (
-				1EEAC901178FA4D6000DD075 /* PopoverViewDaily */,
-				1EEAC8EE178F9111000DD075 /* ExternalClasses */,
-				1E20860A176AA18900EACD6A /* MainClasses */,
-				1E07CBFA1748FA4100C5F83A /* SettingsView */,
-				1E07CBF41748F52600C5F83A /* AddDailyItem */,
-				1E07CBF31748F4D300C5F83A /* DailyViewTableCell */,
-				1E07CBF21748F4A500C5F83A /* Main */,
-				1E27986F1746B90F00DD4AAF /* AppDelegate */,
-				1E2798911746C31700DD4AAF /* Images */,
-				1E2798681746B90F00DD4AAF /* Frameworks */,
-				1E2798671746B90F00DD4AAF /* Products */,
+				1EC80C881856ADE000D46320 /* Models */,
+				1EC80C871856AD6E00D46320 /* Views */,
+				1E6098221783B72400491251 /* Controllers */,
+				1EA686E017A6F2E5002D437C /* Utility */,
 				1E33C179178CC8A300F37B62 /* Config */,
+				1E27986F1746B90F00DD4AAF /* AppDelegate */,
+				1EEAC8EE178F9111000DD075 /* ExternalClasses */,
+				1E2798681746B90F00DD4AAF /* Frameworks */,
+				1E2798911746C31700DD4AAF /* Images */,
 			);
 			sourceTree = "<group>";
 		};
@@ -407,6 +393,7 @@
 				1E2798661746B90F00DD4AAF /* daily Expenses.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		1E2798681746B90F00DD4AAF /* Frameworks */ = {
@@ -423,6 +410,7 @@
 		1E27986F1746B90F00DD4AAF /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
+				1E2798671746B90F00DD4AAF /* Products */,
 				1E2798781746B90F00DD4AAF /* AppDelegate.h */,
 				1E2798791746B90F00DD4AAF /* AppDelegate.m */,
 				1E2798701746B90F00DD4AAF /* Supporting Files */,
@@ -484,7 +472,7 @@
 			name = Config;
 			sourceTree = "<group>";
 		};
-		1E6098221783B72400491251 /* ItemCollection */ = {
+		1E6098221783B72400491251 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				1E6098231783B74300491251 /* ItemCollection.h */,
@@ -493,7 +481,7 @@
 				1E3BAB6117A85BD4001FF44F /* FilterItens.h */,
 				1E3BAB6217A85BD4001FF44F /* FilterItens.m */,
 			);
-			name = ItemCollection;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		1EA2969C179F1DB300C646B0 /* Month */ = {
@@ -513,6 +501,27 @@
 				1EA686E217A6F30C002D437C /* Utility.m */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		1EC80C871856AD6E00D46320 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1EEAC901178FA4D6000DD075 /* PopoverViewDaily */,
+				1E07CBFA1748FA4100C5F83A /* SettingsView */,
+				1E07CBF41748F52600C5F83A /* AddDailyItem */,
+				1E07CBF31748F4D300C5F83A /* DailyViewTableCell */,
+				1EA2969C179F1DB300C646B0 /* Month */,
+				1E07CBF21748F4A500C5F83A /* MainView */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		1EC80C881856ADE000D46320 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1E20860B176AA19F00EACD6A /* SpendItem */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		1EDEEFD11748705300A03BE2 /* categories_icon */ = {

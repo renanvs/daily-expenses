@@ -13,14 +13,6 @@
 @implementation DailyTableViewCell
 
 #pragma mark - init methods
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self addGesture];
-    }
-    return self;
-}
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];

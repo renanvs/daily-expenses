@@ -64,11 +64,9 @@ static id _instance;
 }
 
 -(BOOL)stringToBool:(NSString*)value{
-    if ([value isEqualToString:@"0"]) {
-        return NO;
-    }else if ([value isEqualToString:@"1"]) {
+    if ([value isEqualToString:@"1"]) {
         return YES;
-    }else{
+    }else {
         return NO;
     }
 }
@@ -76,9 +74,7 @@ static id _instance;
 -(NSString*)boolToString:(BOOL)value{
     if (value) {
         return @"1";
-    }else if (!value) {
-        return @"0";
-    }else{
+    }else {
         return @"0";
     }
 }
