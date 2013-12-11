@@ -8,11 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ItemFilter : NSObject
+@interface ItemFilter : NSObject{
+    NSArray *monthList;
+}
+
+@property (strong, nonatomic) NSArray *monthList;
 
 -(NSArray*)filterByLabel:(NSMutableArray*)list ascending:(BOOL)asc;
 -(NSArray*)filterByCreatedDate:(NSMutableArray*)list ascending:(BOOL)asc;
 -(NSArray*)filterBySpentDate:(NSMutableArray*)list ascending:(BOOL)asc;
 
 -(NSArray*)filterByDate:(NSString*)date onList:(NSMutableArray*)list;
+
++(ItemFilter*) sharedInstance;
+
 @end

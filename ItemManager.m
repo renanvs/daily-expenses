@@ -30,32 +30,20 @@ static id _instance;
     
     if (self) {
         [self inicialize];
+        [self loadData];
     }
     
     return self;
 }
 
 -(void)inicialize{
-    monthList =[NSArray arrayWithObjects:@"janeiro",
-                      @"fevereiro",
-                      @"março",
-                      @"abril",
-                      @"maio",
-                      @"junho",
-                      @"julho",
-                      @"agosto",
-                      @"setembro",
-                      @"outubro",
-                      @"novembro",
-                      @"dezembro",nil];
+    monthList = [[ItemFilter sharedInstance] monthList];
     
     hasLog = [Config sharedInstance].hasLog;
     allItens = [[NSMutableArray alloc]init];
     self.totalValue = [[NSNumber alloc] init];
     self.totalValueStr = [[NSMutableString alloc] init];
     dateInCurrentView = [[NSString alloc] initWithString:[[Utility sharedInstance] getCurrentDate]];
-    
-    [self loadData];
 }
 
 -(void)loadData{
@@ -282,7 +270,7 @@ static id _instance;
 #pragma mark - filter itens
 
 -(void)filterItensByCurrentDate{
-	ItemFilter* filter = [[ItemFilter alloc] init];
+	ItemFilter* filter = [ItemFilter sharedInstance];
 
     if (listItens) {
         [listItens removeAllObjects];
@@ -295,7 +283,7 @@ static id _instance;
 }
 
 -(void)getListDayBefore{
-    ItemFilter* filter = [[ItemFilter alloc] init];
+    ItemFilter* filter = [ItemFilter sharedInstance];
     [listItens removeAllObjects];
     
    dateInCurrentView = [[NSString alloc] initWithString:[[Utility sharedInstance] getDayBefore:dateInCurrentView]] ;
@@ -305,7 +293,7 @@ static id _instance;
 }
 
 -(void)getListDayAfter{
-    ItemFilter* filter = [[ItemFilter alloc] init];
+    ItemFilter* filter = [ItemFilter sharedInstance];
     [listItens removeAllObjects];
     
     dateInCurrentView = [[NSString alloc] initWithString:[[Utility sharedInstance] getDayAfter:dateInCurrentView]] ;

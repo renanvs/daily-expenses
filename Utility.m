@@ -7,6 +7,7 @@
 //
 
 #import "Utility.h"
+#import "ItemFilter.h"
 
 @implementation Utility
 
@@ -23,19 +24,7 @@ static id _instance;
 -(id)init{
     self = [super init];
     if (self) {
-        monthList =[[NSArray alloc]initWithObjects:
-                    @"janeiro",
-                    @"fevereiro",
-                    @"março",
-                    @"abril",
-                    @"maio",
-                    @"junho",
-                    @"julho",
-                    @"agosto",
-                    @"setembro",
-                    @"outubro",
-                    @"novembro",
-                    @"dezembro",nil];
+        monthList = [[ItemFilter sharedInstance] monthList];
     }
     
     return self;

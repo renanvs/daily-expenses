@@ -10,6 +10,27 @@
 #import "ItemModel.h"
 
 @implementation ItemFilter
+@synthesize monthList;
+
+static id _instance;
+
++ (ItemFilter *) sharedInstance{
+    @synchronized(self){
+        if (!_instance) {
+            _instance = [[self alloc] init];
+        }
+    }
+    return _instance;
+}
+
+-(id)init{
+    self = [super init];
+    
+    if (self) {
+        [self getMonthList];
+    }
+    return self;
+}
 
 -(NSArray*)filterByLabel:(NSMutableArray*)list ascending:(BOOL)asc{
 	NSArray *newList;
@@ -51,6 +72,22 @@
     newList = [NSArray arrayWithArray:tempList];
 	
 	return newList;
+}
+
+-(void)getMonthList{
+    self.monthList = [NSArray arrayWithObjects:
+                      @"janeiro",
+                      @"fevereiro",
+                      @"março",
+                      @"abril",
+                      @"maio",
+                      @"junho",
+                      @"julho",
+                      @"agosto",
+                      @"setembro",
+                      @"outubro",
+                      @"novembro",
+                      @"dezembro",nil];
 }
 
 @end
