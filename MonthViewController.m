@@ -8,8 +8,8 @@
 
 #import "MonthViewController.h"
 #import "Utility.h"
-#import "ItemCollection.h"
-#import "SpendItem.h"
+#import "ItemManager.h"
+#import "ItemModel.h"
 
 @implementation MonthViewController
 
@@ -24,8 +24,8 @@
 }
 
 -(void)initialize{
-    monthCollection = [[ItemCollection sharedInstance] getAvailableMonths];
-    itemByMonthDictionary = [[ItemCollection sharedInstance] getItensByMonthList:monthCollection];
+    monthCollection = [[ItemManager sharedInstance] getAvailableMonths];
+    itemByMonthDictionary = [[ItemManager sharedInstance] getItensByMonthList:monthCollection];
 }
 
 - (IBAction)backBt:(id)sender {
@@ -56,7 +56,7 @@
     
     NSString* keyR = [monthCollection objectAtIndex:indexPath.section];
     NSArray* listR = [itemByMonthDictionary objectForKey:keyR];
-    SpendItem* itemR = [listR objectAtIndex:indexPath.row];
+    ItemModel* itemR = [listR objectAtIndex:indexPath.row];
     NSString* labelR = [NSString stringWithFormat:@"Value: %@",itemR.value];
     cell.textLabel.text = labelR;
     

@@ -1,15 +1,15 @@
 //
-//  FilterItens.m
+//  ItemFilter.m
 //  daily Expenses
 //
 //  Created by Renan Veloso Silva on 30/07/13.
 //  Copyright (c) 2013 renan veloso silva. All rights reserved.
 //
 
-#import "FilterItens.h"
-#import "SpendItem.h"
+#import "ItemFilter.h"
+#import "ItemModel.h"
 
-@implementation FilterItens
+@implementation ItemFilter
 
 -(NSArray*)filterByLabel:(NSMutableArray*)list ascending:(BOOL)asc{
 	NSArray *newList;
@@ -42,7 +42,7 @@
     NSArray *newList;
     NSMutableArray *tempList = [[NSMutableArray alloc] init];
     
-	for (SpendItem *itemR in list) {
+	for (ItemModel *itemR in list) {
         if ([itemR.dateSpent isEqualToString:date]) {
             [tempList addObject:itemR];
         }

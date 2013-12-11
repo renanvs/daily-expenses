@@ -1,5 +1,5 @@
 //
-//  SpendItem.h
+//  ItemModel.h
 //  daily Expenses
 //
 //  Created by renan veloso silva on 13/06/13.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SpendItem : NSObject
+@interface ItemModel : NSObject
 
 @property (strong) NSString *item_id;
 @property (strong) NSString *label;

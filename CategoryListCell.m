@@ -1,14 +1,14 @@
 //
-//  categoryChooseCell.m
+//  CategoryListCell.m
 //  daily Expenses
 //
 //  Created by renan veloso silva on 09/07/13.
 //  Copyright (c) 2013 renan veloso silva. All rights reserved.
 //
 
-#import "CategoryChooseCell.h"
+#import "CategoryListCell.h"
 
-@implementation CategoryChooseCell
+@implementation CategoryListCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

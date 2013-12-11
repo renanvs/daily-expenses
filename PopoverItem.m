@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 renan veloso silva. All rights reserved.
 //
 
-#import "PopoverDaily.h"
-#import "ItemCollection.h"
+#import "PopoverItem.h"
+#import "ItemManager.h"
 
 
-@implementation PopoverDaily
+@implementation PopoverItem
 
 -(id)initWithId:(NSString*)idValue{
     self = [super init];
     if(self){
-        item = [[ItemCollection sharedInstance] getSpendItemById:idValue];
+        item = [[ItemManager sharedInstance] getSpendItemById:idValue];
     }
     return self;
 }

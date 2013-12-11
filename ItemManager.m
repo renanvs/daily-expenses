@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 renan veloso silva. All rights reserved.
 //
 
-#import "ItemCollection.h"
+#import "ItemManager.h"
 #import "Utility.h"
 
-@implementation ItemCollection
+@implementation ItemManager
 
 static id _instance;
 @synthesize listItens, allItens, dateInCurrentView;
 
-+ (ItemCollection *) sharedInstance{
++ (ItemManager *) sharedInstance{
     @synchronized(self){
         if (!_instance) {
             _instance = [[self alloc] init];
@@ -81,7 +81,7 @@ static id _instance;
     }
 	
     for (NSDictionary *dict in arrayPlist) {
-        SpendItem *item = [[SpendItem alloc] init];
+        ItemModel *item = [[ItemModel alloc] init];
         item.item_id = [dict objectForKey:@"id"];
         item.label = [dict objectForKey:@"label"];
         item.type = [dict objectForKey:@"type"];
@@ -102,7 +102,7 @@ static id _instance;
 
 #pragma mark - add, update, remove Item
 
--(void)addItemToList:(SpendItem*)item{
+-(void)addItemToList:(ItemModel*)item{
     int addId = [self getBiggerId] +1;
     item.item_id = [NSString stringWithFormat:@"%d",addId];
 	item.dateCreated = [[Utility sharedInstance] getCurrentDate];
@@ -113,7 +113,7 @@ static id _instance;
     [self filterItensByCurrentDate];
 }
 
--(void)updateItemToList:(SpendItem*)item{
+-(void)updateItemToList:(ItemModel*)item{
     item.dateUpdated = [[Utility sharedInstance] getCurrentDate];
 	item = [self verifyAllFields:item];
     item.typeImg = [self getTypeImage:item.type];
@@ -123,7 +123,7 @@ static id _instance;
     [self getTotalValue];
 }
 
--(void)removeItemBySpendItem :(SpendItem*)item{
+-(void)removeItemBySpendItem :(ItemModel*)item{
     [allItens removeObject:item];
     [listItens removeObject:item];
     [self removePlistFileBasedOnList];
@@ -148,9 +148,9 @@ static id _instance;
     return image;
 }
 
--(SpendItem*)getSpendItemById:(NSString*)idValue{
-    SpendItem *itemToReturn;
-    for (SpendItem* item in allItens) {
+-(ItemModel*)getSpendItemById:(NSString*)idValue{
+    ItemModel *itemToReturn;
+    for (ItemModel* item in allItens) {
         if ([item.item_id isEqualToString:idValue]){
             itemToReturn = item;
             break;
@@ -160,7 +160,7 @@ static id _instance;
 }
 
 -(int)getBiggerId{
-    SpendItem *itemR = [allItens objectAtIndex:0];
+    ItemModel *itemR = [allItens objectAtIndex:0];
     int biggerId = [itemR.item_id intValue];
     for (int i=1; i<allItens.count; i++) {
         itemR = [allItens objectAtIndex:i];
@@ -173,7 +173,7 @@ static id _instance;
 
 -(void)getTotalValue{
     self.totalValue = 0;
-    for (SpendItem *itemR in listItens) {
+    for (ItemModel *itemR in listItens) {
         
         self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [self getValue:itemR.value isChecked:itemR.isCredit]];
     }
@@ -196,7 +196,7 @@ static id _instance;
 
 #pragma mark - verify method
 
--(SpendItem*)verifyAllFields:(SpendItem*)item{
+-(ItemModel*)verifyAllFields:(ItemModel*)item{
     if ([[Utility sharedInstance]isEmptyString:item.label]) item.label = @"";
 	if ([[Utility sharedInstance]isEmptyString:item.type]) item.type = @"label";
 	if ([[Utility sharedInstance]isEmptyString:item.dateSpent]) item.dateSpent = @"";
@@ -225,7 +225,7 @@ static id _instance;
     
 	[addData removeAllObjects];
 	
-    for (SpendItem *itemR in allItens) {
+    for (ItemModel *itemR in allItens) {
 		[addData addObject:[self addItem:itemR]];
 	}
 	
@@ -239,7 +239,7 @@ static id _instance;
     NSMutableArray *itensToRemove = [[NSMutableArray alloc] init];
     
     for (NSDictionary *item in addData) {
-        for (SpendItem *itemC in allItens) {
+        for (ItemModel *itemC in allItens) {
             NSString *itemId = [item objectForKey:@"id"];
             NSString *itemCId = itemC.item_id;
             if ([itemId isEqualToString:itemCId]) {
@@ -262,7 +262,7 @@ static id _instance;
     [addData writeToFile:newPlistFile atomically:YES];
 }
 
--(NSDictionary*)addItem:(SpendItem*)item{
+-(NSDictionary*)addItem:(ItemModel*)item{
     NSDictionary* itemDict = [[NSDictionary alloc]initWithObjectsAndKeys:
                               item.item_id, @"id",
                               item.dateSpent, @"dateSpent",
@@ -282,7 +282,7 @@ static id _instance;
 #pragma mark - filter itens
 
 -(void)filterItensByCurrentDate{
-	FilterItens* filter = [[FilterItens alloc] init];
+	ItemFilter* filter = [[ItemFilter alloc] init];
 
     if (listItens) {
         [listItens removeAllObjects];
@@ -295,7 +295,7 @@ static id _instance;
 }
 
 -(void)getListDayBefore{
-    FilterItens* filter = [[FilterItens alloc] init];
+    ItemFilter* filter = [[ItemFilter alloc] init];
     [listItens removeAllObjects];
     
    dateInCurrentView = [[NSString alloc] initWithString:[[Utility sharedInstance] getDayBefore:dateInCurrentView]] ;
@@ -305,7 +305,7 @@ static id _instance;
 }
 
 -(void)getListDayAfter{
-    FilterItens* filter = [[FilterItens alloc] init];
+    ItemFilter* filter = [[ItemFilter alloc] init];
     [listItens removeAllObjects];
     
     dateInCurrentView = [[NSString alloc] initWithString:[[Utility sharedInstance] getDayAfter:dateInCurrentView]] ;
@@ -316,7 +316,7 @@ static id _instance;
 
 -(NSArray*)getAvailableMonths{
     NSMutableArray* months = [[NSMutableArray alloc] init];
-    for (SpendItem* itemR in allItens) {
+    for (ItemModel* itemR in allItens) {
         NSString*currentMonth = [[Utility sharedInstance] getMonthByDate:itemR.dateSpent];
         if (![months containsObject:currentMonth]) {
             [months addObject:currentMonth];
@@ -330,7 +330,7 @@ static id _instance;
     NSMutableArray* tempItemList = [[NSMutableArray alloc] init];
     
     for (NSString* monthR in monthListR) {
-        for (SpendItem* itemR in allItens) {
+        for (ItemModel* itemR in allItens) {
             if ([[[Utility sharedInstance] getMonthByDate:itemR.dateSpent] isEqualToString:monthR]) {
                 [tempItemList addObject:itemR];
             }

@@ -1,5 +1,5 @@
 //
-//  categoryChooseCell.h
+//  CategoryListCell.h
 //  daily Expenses
 //
 //  Created by renan veloso silva on 09/07/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CategoryChooseCell : UITableViewCell
+@interface CategoryListCell : UITableViewCell
 
 @property (assign) IBOutlet UILabel *label;
 @property (assign) IBOutlet UIImageView *icon;

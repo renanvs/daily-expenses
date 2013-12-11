@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "PopoverView.h"
-#import "SpendItem.h"
+#import "ItemModel.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "SSCheckBoxView.h"
 
-@interface AddDailyItemFormViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, PopoverViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
+@interface ItemFormViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, PopoverViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     
-    SpendItem *item;
+    ItemModel *item;
     
     UIDatePicker *datePicker;
     UIButton *dataPickerDoneBt;

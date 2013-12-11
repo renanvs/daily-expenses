@@ -6,19 +6,13 @@
 //  Copyright (c) 2013 renan veloso silva. All rights reserved.
 //
 
-#import "AddDailyItemFormViewController.h"
-#import "ItemCollection.h"
-#import "CategoryChooseCell.h"
+#import "ItemFormViewController.h"
+#import "ItemManager.h"
+#import "CategoryListCell.h"
 #import "Config.h"
 #import "Utility.h"
 
-#import "PopoverDaily.h"
-
-@interface AddDailyItemFormViewController ()
-
-@end
-
-@implementation AddDailyItemFormViewController
+@implementation ItemFormViewController
 
 @synthesize label, typeLabel, parcel, value, dateStr, note, typeBt, add;
 
@@ -93,7 +87,7 @@
     
 	if (self) {
 		state = @"update";
-        item = [[ItemCollection sharedInstance] getSpendItemById:itemId];
+        item = [[ItemManager sharedInstance] getSpendItemById:itemId];
         [self initialize];
     }
     
@@ -158,8 +152,8 @@
 #pragma mark - tableViewDelegate Methods
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"categoryChooseCell";
-    CategoryChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    static NSString *cellIdentifier = @"CategoryListCell";
+    CategoryListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     NSInteger row = indexPath.row;
     NSArray *allKeys = [categoryList allKeys];
     NSString *key = [allKeys objectAtIndex:row];
@@ -169,8 +163,8 @@
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         
         for (id currentObject in topLevelObjects) {
-            if ([currentObject isKindOfClass:[CategoryChooseCell class]]) {
-                cell = (CategoryChooseCell*)currentObject;
+            if ([currentObject isKindOfClass:[CategoryListCell class]]) {
+                cell = (CategoryListCell*)currentObject;
                 cell.icon.image = [UIImage imageNamed:objectValue];
                 cell.label.text = key;
                 break;
@@ -318,7 +312,7 @@
 
 -(void)addItem{
     if (!item) {
-		item = [[SpendItem alloc] init];
+		item = [[ItemModel alloc] init];
 	}
 	
     item.label = self.label.text;
@@ -332,9 +326,9 @@
     item.isSpent = spent.checked;
     
     if ([state isEqualToString:@"update"]) {
-        [[ItemCollection sharedInstance] updateItemToList:item];
+        [[ItemManager sharedInstance] updateItemToList:item];
     }else{
-        [[ItemCollection sharedInstance] addItemToList:item];
+        [[ItemManager sharedInstance] addItemToList:item];
     }
     
     [self back:nil];

@@ -1,16 +1,16 @@
 //
-//  DailyTableViewCell.m
+//  ItemCell.m
 //  daily Expenses
 //
 //  Created by renan veloso silva on 18/05/13.
 //  Copyright (c) 2013 renan veloso silva. All rights reserved.
 //
 
-#import "DailyTableViewCell.h"
+#import "ItemCell.h"
 #import "PopoverView.h"
-#import "PopoverDaily.h"
+#import "PopoverItem.h"
 
-@implementation DailyTableViewCell
+@implementation ItemCell
 
 #pragma mark - init methods
 
@@ -37,7 +37,7 @@
     else if (tap.state == UIGestureRecognizerStateBegan){
         NSLog(@"UIGestureRecognizerStateBegan.");
         point = [tap locationInView:self.popoverView];
-        PopoverDaily *test = [[PopoverDaily alloc] initWithId:_item.item_id];
+        PopoverItem *test = [[PopoverItem alloc] initWithId:_item.item_id];
         [PopoverView showPopoverAtPoint:point inView:self.popoverView withContentView:test.view delegate:nil];    }
 
 }

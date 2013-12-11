@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MainView.h"
+#import "MainViewController.h"
 #import "Config.h"
 
 
@@ -18,7 +18,7 @@
     [self config];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    MainView *mainView = [[MainView alloc]init];
+    MainViewController *mainView = [[MainViewController alloc]init];
     
     self.window.rootViewController = mainView;
     [[UIApplication sharedApplication] setStatusBarHidden:YES];

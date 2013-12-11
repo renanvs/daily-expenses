@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DailyTableViewHeaderCell : UIViewController{
+@interface ItemHeaderCell : UIViewController{
     UIImage *landImg;
     UIImage *portImg;
 }

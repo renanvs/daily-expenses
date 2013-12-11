@@ -6,15 +6,14 @@
 //  Copyright (c) 2013 renan veloso silva. All rights reserved.
 //
 
-#import "MainView.h"
-#import "DailyTableViewCell.h"
-#import "AddDailyItemFormViewController.h"
-#import "SettingsViewController.h"
-#import "ItemCollection.h"
-#import "DailyTableViewHeaderCell.h"
+#import "MainViewController.h"
+#import "ItemCell.h"
+#import "ItemFormViewController.h"
+#import "ItemManager.h"
+#import "ItemHeaderCell.h"
 #import "Utility.h"
 
-@implementation MainView
+@implementation MainViewController
 
 @synthesize dailyTableView;
 @synthesize listItens, allItens;
@@ -26,8 +25,8 @@
     self = [super init];
     
     if (self){
-        listItens = [[ItemCollection sharedInstance] listItens];
-        allItens = [[ItemCollection sharedInstance] allItens];
+        listItens = [[ItemManager sharedInstance] listItens];
+        allItens = [[ItemManager sharedInstance] allItens];
         dateValue = [[NSString alloc] initWithString:[[Utility sharedInstance]getCurrentDate]];
     }
     
@@ -37,11 +36,11 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    totalValueStr = [[ItemCollection sharedInstance] totalValueStr];
+    totalValueStr = [[ItemManager sharedInstance] totalValueStr];
     totalValue.text = totalValueStr;
     [dailyTableView reloadData];
     
-    self.currentDate.text = [[ItemCollection sharedInstance] dateInCurrentView];
+    self.currentDate.text = [[ItemManager sharedInstance] dateInCurrentView];
     
     if ([self.currentDate.text isEqualToString:[[Utility sharedInstance] getCurrentDate]]){
         self.goNextButton.enabled = NO;
@@ -66,10 +65,10 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"DailyTableViewCell";
-    DailyTableViewCell *cell = (DailyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    static NSString *cellIdentifier = @"ItemCell";
+    ItemCell *cell = (ItemCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     NSInteger row = indexPath.row;
-    SpendItem *currentSpendItem = [listItens objectAtIndex:row];
+    ItemModel *currentSpendItem = [listItens objectAtIndex:row];
     
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil] objectAtIndex:0];
@@ -85,7 +84,7 @@
 
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    DailyTableViewHeaderCell *headerView = [[DailyTableViewHeaderCell alloc] init];
+    ItemHeaderCell *headerView = [[ItemHeaderCell alloc] init];
     return headerView.view;
 }
 
@@ -102,8 +101,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete){
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        DailyTableViewCell *cell = (DailyTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-        [[ItemCollection sharedInstance] removeItemBySpendItem:cell.item];
+        ItemCell *cell = (ItemCell*)[tableView cellForRowAtIndexPath:indexPath];
+        [[ItemManager sharedInstance] removeItemBySpendItem:cell.item];
         [tableView endUpdates];
         [tableView reloadData];
         
@@ -112,27 +111,22 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DailyTableViewCell *cell = (DailyTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-    AddDailyItemFormViewController *dailyViewItem = [[AddDailyItemFormViewController alloc] initWithId:cell.item.item_id];
+    ItemCell *cell = (ItemCell*)[tableView cellForRowAtIndexPath:indexPath];
+    ItemFormViewController *dailyViewItem = [[ItemFormViewController alloc] initWithId:cell.item.item_id];
     [self presentViewController:dailyViewItem animated:YES completion:nil];
 }
 
 #pragma mark - IBAction
 
 -(IBAction)addDailyItem:(id)sender{
-    AddDailyItemFormViewController *dailyViewItem = [[AddDailyItemFormViewController alloc] init];
+    ItemFormViewController *dailyViewItem = [[ItemFormViewController alloc] init];
     [self presentViewController:dailyViewItem animated:YES completion:nil];
 }
 
--(IBAction)settings:(id)sender{
-	SettingsViewController *settingsView = [[SettingsViewController alloc] init];
-    [self presentViewController:settingsView animated:YES completion:nil];
-}
-
 - (IBAction)goToDayBefore:(id)sender {
-    [[ItemCollection sharedInstance] getListDayBefore];
+    [[ItemManager sharedInstance] getListDayBefore];
     [dailyTableView reloadData];
-    self.currentDate.text = [[ItemCollection sharedInstance] dateInCurrentView];
+    self.currentDate.text = [[ItemManager sharedInstance] dateInCurrentView];
     if (![self.currentDate.text isEqualToString:[[Utility sharedInstance] getCurrentDate]]){
         self.goNextButton.enabled = YES;
         self.goNextButton.alpha = 1;
@@ -141,9 +135,9 @@
 }
 
 - (IBAction)goToDayAfter:(id)sender {
-    [[ItemCollection sharedInstance] getListDayAfter];
+    [[ItemManager sharedInstance] getListDayAfter];
     [dailyTableView reloadData];
-    self.currentDate.text = [[ItemCollection sharedInstance] dateInCurrentView];
+    self.currentDate.text = [[ItemManager sharedInstance] dateInCurrentView];
     if ([self.currentDate.text isEqualToString:[[Utility sharedInstance] getCurrentDate]]){
         self.goNextButton.enabled = NO;
         self.goNextButton.alpha = .5;

@@ -1,5 +1,5 @@
 //
-//  itemCollection.h
+//  ItemManager.h
 //  daily Expenses
 //
 //  Created by renan veloso silva on 02/07/13.
@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SpendItem.h"
+#import "ItemModel.h"
 #import "Config.h"
-#import "FilterItens.h"
+#import "ItemFilter.h"
 
-@interface ItemCollection : NSObject{
+@interface ItemManager : NSObject{
     NSString *newPlistFile;
     bool hasLog;
     NSArray* monthList;
@@ -23,15 +23,15 @@
 @property (strong) NSMutableString *totalValueStr;
 @property (strong) NSString *dateInCurrentView;
 
-+(ItemCollection *) sharedInstance;
++(ItemManager *) sharedInstance;
 
--(void)addItemToList:(SpendItem*)item;
+-(void)addItemToList:(ItemModel*)item;
 
--(SpendItem*)getSpendItemById:(NSString*)idValue;
+-(ItemModel*)getSpendItemById:(NSString*)idValue;
 
--(void)removeItemBySpendItem :(SpendItem*)item;
+-(void)removeItemBySpendItem :(ItemModel*)item;
 
--(void)updateItemToList:(SpendItem*)item;
+-(void)updateItemToList:(ItemModel*)item;
 
 -(void)getListDayBefore;
 

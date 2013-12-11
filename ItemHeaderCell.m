@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 renan veloso silva. All rights reserved.
 //
 
-#import "DailyTableViewHeaderCell.h"
+#import "ItemHeaderCell.h"
 
-@implementation DailyTableViewHeaderCell
+@implementation ItemHeaderCell
 @synthesize headerImg;
 
 - (id)init

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MonthViewController.h"
 
-@interface MainView : UIViewController <UITableViewDelegate, UITableViewDataSource>{
+@interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
 	IBOutlet UIView *portraitView;
 	IBOutlet UIView *landscapeView;
     NSString *dateValue;
@@ -27,7 +27,6 @@
 @property (strong) IBOutlet UIButton *goBeforeButton;
 
 - (IBAction)addDailyItem:(id)sender;
-- (IBAction)settings:(id)sender;
 - (IBAction)goToDayBefore:(id)sender;
 - (IBAction)goToDayAfter:(id)sender;
 - (IBAction)showRelatorio:(id)sender;

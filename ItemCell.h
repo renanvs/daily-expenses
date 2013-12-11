@@ -1,5 +1,5 @@
 //
-//  DailyTableViewCell.h
+//  ItemCell.h
 //  daily Expenses
 //
 //  Created by renan veloso silva on 18/05/13.
@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SpendItem.h"
+#import "ItemModel.h"
 
 
-@interface DailyTableViewCell : UITableViewCell{
+@interface ItemCell : UITableViewCell{
     CGPoint point;
 }
 
@@ -19,6 +19,6 @@
 @property (assign) IBOutlet UIImageView *icon;
 @property (assign) IBOutlet UIView *popoverView;
 @property (retain, nonatomic) IBOutlet UIView *typeView;
-@property (assign) SpendItem *item;
+@property (assign) ItemModel *item;
 
 @end

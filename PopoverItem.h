@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SpendItem.h"
+#import "ItemModel.h"
 
-@interface PopoverDaily : UIViewController{
-    SpendItem * item;
+@interface PopoverItem : UIViewController{
+    ItemModel * item;
 }
 
 @property (retain, nonatomic) IBOutlet UILabel *name;
