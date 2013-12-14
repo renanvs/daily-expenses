@@ -35,6 +35,7 @@
     [self.typeView addSubview:spent];
     [self.typeView addSubview:credit];
     
+    //TODO: criar método para cada tipo de ajuste
     if ([state isEqualToString:@"update"]){
         [self populateToForm];
         [add setTitle:@"Atualizar"];
@@ -94,6 +95,7 @@
     return self;
 }
 
+//TODO: "Parcelas" dentro de uma classe statica
 -(void)initialize{
 	categoryList = [[NSDictionary alloc] initWithDictionary:[[Config sharedInstance] categoryList]];
 	parcelDatasource = [[NSArray alloc] initWithObjects:@"1x", @"2x", @"3x", @"4x", @"5x", @"6x", @"7x", @"8x",
@@ -190,6 +192,7 @@
 
 #pragma mark - create dataPicker and pickerView
 
+//TODO: Criar Class de criação de views
 -(void)createDatePicker{
 	[[Utility sharedInstance] removeElementsFromView:bgView];
 	datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, (480-216), 320, 216)];
@@ -279,7 +282,7 @@
 }
 
 #pragma mark - other methods
-
+//r// analisar a necessidade desse método
 -(void)setBackground{
     bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     [bgView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:.5]];
@@ -287,6 +290,7 @@
     [self.view addSubview:bgView];
     
 }
+
 
 -(void)populateToForm{
 	UIImage *categoryImage;
@@ -325,6 +329,7 @@
     item.isCredit = credit.checked;
     item.isSpent = spent.checked;
     
+    //TODO: o controler tem que identificar se o item é novo ou atualizado
     if ([state isEqualToString:@"update"]) {
         [[ItemManager sharedInstance] updateItemToList:item];
     }else{

@@ -17,7 +17,6 @@
 }
 
 @property (strong) NSMutableArray *listItens;
-@property (strong) NSMutableArray *allItens;
 
 @property (strong) IBOutlet UIButton *addDailyItemButton;
 @property (strong) IBOutlet UITableView *dailyTableView;

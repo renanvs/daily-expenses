@@ -42,10 +42,11 @@ static id _instance;
     hasLog = [Config sharedInstance].hasLog;
     allItens = [[NSMutableArray alloc]init];
     self.totalValue = [[NSNumber alloc] init];
-    self.totalValueStr = [[NSMutableString alloc] init];
     dateInCurrentView = [[NSString alloc] initWithString:[[Utility sharedInstance] getCurrentDate]];
 }
 
+//TODO: criar um Manager para Criar, Consultar, Apagar arquivos
+//TODO: criar método para pegar dados de um dicionario e criar item
 -(void)loadData{
 	NSFileManager *filemgr;
 	filemgr = [NSFileManager defaultManager];
@@ -89,7 +90,7 @@ static id _instance;
 }
 
 #pragma mark - add, update, remove Item
-
+//TODO: mudar nome de método verifyAllFields para setDefautItemAttributes
 -(void)addItemToList:(ItemModel*)item{
     int addId = [self getBiggerId] +1;
     item.item_id = [NSString stringWithFormat:@"%d",addId];
@@ -147,6 +148,7 @@ static id _instance;
     return itemToReturn;
 }
 
+//TODO: Mudar nome do método
 -(int)getBiggerId{
     ItemModel *itemR = [allItens objectAtIndex:0];
     int biggerId = [itemR.item_id intValue];
@@ -162,14 +164,7 @@ static id _instance;
 -(void)getTotalValue{
     self.totalValue = 0;
     for (ItemModel *itemR in listItens) {
-        
         self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [self getValue:itemR.value isChecked:itemR.isCredit]];
-    }
-    
-    if ([[Utility sharedInstance] isEmptyString:[self.totalValue stringValue]]) {
-        [self.totalValueStr setString:@"0"];
-    }else{
-        [self.totalValueStr setString:[self.totalValue stringValue]];
     }
 }
 
@@ -209,9 +204,7 @@ static id _instance;
 }
 
 -(void)updatePlistFileBasedOnList{
-    NSMutableArray *addData = [NSMutableArray arrayWithContentsOfFile:newPlistFile];
-    
-	[addData removeAllObjects];
+    NSMutableArray *addData = [[NSMutableArray alloc] init];
 	
     for (ItemModel *itemR in allItens) {
 		[addData addObject:[self addItem:itemR]];
@@ -220,6 +213,7 @@ static id _instance;
 	[addData writeToFile:newPlistFile atomically:YES];
 }
 
+//TODO: Verificar a possibilidade de trocar o value por um boleano
 -(void)removePlistFileBasedOnList{
     NSMutableArray *addData = [NSMutableArray arrayWithContentsOfFile:newPlistFile];
     
@@ -240,7 +234,6 @@ static id _instance;
             float total = [self.totalValue floatValue];
             float itemToRemoveVelu = [[item objectForKey:@"value"] floatValue];
             self.totalValue = [NSNumber numberWithFloat: (total - itemToRemoveVelu)];
-            [self.totalValueStr setString:[self.totalValue stringValue]];
         }
         
         verify = 0;

@@ -20,22 +20,21 @@
 @property (strong) NSMutableArray *listItens;
 @property (strong) NSMutableArray *allItens;
 @property (strong) NSNumber *totalValue;
-@property (strong) NSMutableString *totalValueStr;
 @property (strong) NSString *dateInCurrentView;
 
 +(ItemManager *) sharedInstance;
 
 -(void)addItemToList:(ItemModel*)item;
 
--(ItemModel*)getSpendItemById:(NSString*)idValue;
-
--(void)removeItemBySpendItem :(ItemModel*)item;
+-(void)removeItemBySpendItem:(ItemModel*)item;
 
 -(void)updateItemToList:(ItemModel*)item;
 
 -(void)getListDayBefore;
 
 -(void)getListDayAfter;
+
+-(ItemModel*)getSpendItemById:(NSString*)idValue;
 
 -(NSArray*)getAvailableMonths;
 

@@ -16,7 +16,7 @@
 @implementation MainViewController
 
 @synthesize dailyTableView;
-@synthesize listItens, allItens;
+@synthesize listItens;
 @synthesize totalValue;
 
 #pragma mark - init, view...
@@ -26,7 +26,6 @@
     
     if (self){
         listItens = [[ItemManager sharedInstance] listItens];
-        allItens = [[ItemManager sharedInstance] allItens];
         dateValue = [[NSString alloc] initWithString:[[Utility sharedInstance]getCurrentDate]];
     }
     
@@ -36,7 +35,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    totalValueStr = [[ItemManager sharedInstance] totalValueStr];
+    totalValueStr = [[[ItemManager sharedInstance] totalValue] stringValue];
     totalValue.text = totalValueStr;
     [dailyTableView reloadData];
     
