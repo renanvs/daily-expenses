@@ -95,13 +95,9 @@
     return self;
 }
 
-//TODO: "Parcelas" dentro de uma classe statica
 -(void)initialize{
 	categoryList = [[NSDictionary alloc] initWithDictionary:[[Config sharedInstance] categoryList]];
-	parcelDatasource = [[NSArray alloc] initWithObjects:@"1x", @"2x", @"3x", @"4x", @"5x", @"6x", @"7x", @"8x",
-						@"9x", @"10x", @"11x", @"12x", @"13x", @"14x", @"15x",
-						@"16x", @"17x", @"18x", @"19x", @"20x", @"21x", @"22x",
-						@"23x", @"24x", nil];
+	parcelDatasource = [[ItemFilter sharedInstance] getParcelList];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];

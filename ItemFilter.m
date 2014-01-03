@@ -10,7 +10,7 @@
 #import "ItemModel.h"
 
 @implementation ItemFilter
-@synthesize monthList;
+@synthesize  monthList;
 
 static id _instance;
 
@@ -74,7 +74,7 @@ static id _instance;
 	return newList;
 }
 
--(void)getMonthList{
+-(NSArray*)getMonthList{
     self.monthList = [NSArray arrayWithObjects:
                       @"janeiro",
                       @"fevereiro",
@@ -88,6 +88,15 @@ static id _instance;
                       @"outubro",
                       @"novembro",
                       @"dezembro",nil];
+    return monthList;
 }
 
+-(NSArray*)getParcelList{
+    parcelList = [[NSArray alloc] initWithObjects:@"1x", @"2x", @"3x", @"4x", @"5x", @"6x", @"7x", @"8x",
+     @"9x", @"10x", @"11x", @"12x", @"13x", @"14x", @"15x",
+     @"16x", @"17x", @"18x", @"19x", @"20x", @"21x", @"22x",
+     @"23x", @"24x", nil];
+    
+    return parcelList;
+}
 @end

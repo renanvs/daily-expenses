@@ -46,7 +46,6 @@ static id _instance;
 }
 
 //TODO: criar um Manager para Criar, Consultar, Apagar arquivos
-//TODO: criar método para pegar dados de um dicionario e criar item
 -(void)loadData{
 	NSFileManager *filemgr;
 	filemgr = [NSFileManager defaultManager];
@@ -70,33 +69,41 @@ static id _instance;
     }
 	
     for (NSDictionary *dict in arrayPlist) {
-        ItemModel *item = [[ItemModel alloc] init];
-        item.item_id = [dict objectForKey:@"id"];
-        item.label = [dict objectForKey:@"label"];
-        item.type = [dict objectForKey:@"type"];
-        item.parcel = [dict objectForKey:@"parcel"];
-        item.isCredit = [[Utility sharedInstance] stringToBool:[dict objectForKey:@"isCredit"]];
-        item.isSpent = [[Utility sharedInstance] stringToBool:[dict objectForKey:@"isSpent"]];
-        item.value = [dict objectForKey:@"value"];
-        item.dateSpent = [dict objectForKey:@"dateSpent"];
-        item.dateUpdated = [dict objectForKey:@"dateUpdated"];
-        item.dateCreated = [dict objectForKey:@"dateCreated"];
-        item.notes = [dict objectForKey:@"notes"];
-        item.typeImg = [self getTypeImage:item.type];
+        ItemModel *item = [self convertDicToItemModel:dict];
         
         [allItens addObject:item];
     }
 	[self filterItensByCurrentDate];
 }
 
+-(ItemModel*)convertDicToItemModel:(NSDictionary*)dict{
+    
+    ItemModel *item = [[ItemModel alloc] init];
+    
+    item.item_id = [dict objectForKey:@"id"];
+    item.label = [dict objectForKey:@"label"];
+    item.type = [dict objectForKey:@"type"];
+    item.parcel = [dict objectForKey:@"parcel"];
+    item.isCredit = [[Utility sharedInstance] stringToBool:[dict objectForKey:@"isCredit"]];
+    item.isSpent = [[Utility sharedInstance] stringToBool:[dict objectForKey:@"isSpent"]];
+    item.value = [dict objectForKey:@"value"];
+    item.dateSpent = [dict objectForKey:@"dateSpent"];
+    item.dateUpdated = [dict objectForKey:@"dateUpdated"];
+    item.dateCreated = [dict objectForKey:@"dateCreated"];
+    item.notes = [dict objectForKey:@"notes"];
+    item.typeImg = [self getTypeImage:item.type];
+    
+    return item;
+    
+}
+
 #pragma mark - add, update, remove Item
-//TODO: mudar nome de método verifyAllFields para setDefautItemAttributes
 -(void)addItemToList:(ItemModel*)item{
-    int addId = [self getBiggerId] +1;
+    int addId = [self getHighestId] +1;
     item.item_id = [NSString stringWithFormat:@"%d",addId];
 	item.dateCreated = [[Utility sharedInstance] getCurrentDate];
 	item.typeImg = [self getTypeImage:item.type];
-    item = [self verifyAllFields:item];
+    item = [self setDefautItemAttributes:item];
     [allItens addObject:item];
     [self saveItemToPlist];
     [self filterItensByCurrentDate];
@@ -104,7 +111,7 @@ static id _instance;
 
 -(void)updateItemToList:(ItemModel*)item{
     item.dateUpdated = [[Utility sharedInstance] getCurrentDate];
-	item = [self verifyAllFields:item];
+	item = [self setDefautItemAttributes:item];
     item.typeImg = [self getTypeImage:item.type];
     [allItens setObject:item atIndexedSubscript:[self findIndexById:item.item_id]];
     [self updatePlistFileBasedOnList];
@@ -148,17 +155,16 @@ static id _instance;
     return itemToReturn;
 }
 
-//TODO: Mudar nome do método
--(int)getBiggerId{
+-(int)getHighestId{
     ItemModel *itemR = [allItens objectAtIndex:0];
-    int biggerId = [itemR.item_id intValue];
+    int highestId = [itemR.item_id intValue];
     for (int i=1; i<allItens.count; i++) {
         itemR = [allItens objectAtIndex:i];
-        if ([itemR.item_id intValue] > biggerId){
-            biggerId = [itemR.item_id intValue];
+        if ([itemR.item_id intValue] > highestId){
+            highestId = [itemR.item_id intValue];
         }
     }
-    return biggerId;
+    return highestId;
 }
 
 -(void)getTotalValue{
@@ -179,7 +185,7 @@ static id _instance;
 
 #pragma mark - verify method
 
--(ItemModel*)verifyAllFields:(ItemModel*)item{
+-(ItemModel*)setDefautItemAttributes:(ItemModel*)item{
     if ([[Utility sharedInstance]isEmptyString:item.label]) item.label = @"";
 	if ([[Utility sharedInstance]isEmptyString:item.type]) item.type = @"label";
 	if ([[Utility sharedInstance]isEmptyString:item.dateSpent]) item.dateSpent = @"";
@@ -213,11 +219,10 @@ static id _instance;
 	[addData writeToFile:newPlistFile atomically:YES];
 }
 
-//TODO: Verificar a possibilidade de trocar o value por um boleano
 -(void)removePlistFileBasedOnList{
     NSMutableArray *addData = [NSMutableArray arrayWithContentsOfFile:newPlistFile];
     
-    NSInteger verify = 0;
+    BOOL verify = NO;
     NSMutableArray *itensToRemove = [[NSMutableArray alloc] init];
     
     for (NSDictionary *item in addData) {
@@ -225,18 +230,18 @@ static id _instance;
             NSString *itemId = [item objectForKey:@"id"];
             NSString *itemCId = itemC.item_id;
             if ([itemId isEqualToString:itemCId]) {
-                verify++;
+                verify = YES;
             }
         }
         
-        if (verify == 0) {
+        if (!verify) {
             [itensToRemove addObject:item];
             float total = [self.totalValue floatValue];
             float itemToRemoveVelu = [[item objectForKey:@"value"] floatValue];
             self.totalValue = [NSNumber numberWithFloat: (total - itemToRemoveVelu)];
         }
         
-        verify = 0;
+        verify = NO;
     }
     
 	[addData removeObjectsInArray:itensToRemove];

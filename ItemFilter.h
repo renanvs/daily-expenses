@@ -10,6 +10,7 @@
 
 @interface ItemFilter : NSObject{
     NSArray *monthList;
+    NSArray *parcelList;
 }
 
 @property (strong, nonatomic) NSArray *monthList;
@@ -21,5 +22,8 @@
 -(NSArray*)filterByDate:(NSString*)date onList:(NSMutableArray*)list;
 
 +(ItemFilter*) sharedInstance;
+
+-(NSArray*)getParcelList;
+-(NSArray*)getMonthList;
 
 @end
