@@ -7,38 +7,41 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ItemModel.h"
 #import "Config.h"
 #import "ItemFilter.h"
+#import "ItemModelC.h"
 
 @interface ItemManager : NSObject{
     NSString *newPlistFile;
     bool hasLog;
     NSArray* monthList;
+    
+    NSManagedObjectContext *context;
 }
+
+@property (readonly ,strong) NSManagedObjectContext *context;
 
 @property (strong) NSMutableArray *listItens;
 @property (strong) NSMutableArray *allItens;
 @property (strong) NSNumber *totalValue;
 @property (strong) NSString *dateInCurrentView;
 
-+(ItemManager *) sharedInstance;
+-(void)addItemToList:(ItemModelC*)item;
 
--(void)addItemToList:(ItemModel*)item;
+-(void)removeItemBySpendItem:(ItemModelC*)item;
 
--(void)removeItemBySpendItem:(ItemModel*)item;
-
--(void)updateItemToList:(ItemModel*)item;
+-(void)updateItemToList:(ItemModelC*)item;
 
 -(void)getListDayBefore;
 
 -(void)getListDayAfter;
 
--(ItemModel*)getSpendItemById:(NSString*)idValue;
+-(ItemModelC*)getSpendItemById:(NSString*)idValue;
 
 -(NSArray*)getAvailableMonths;
 
 -(NSDictionary*)getItensByMonthList:(NSArray*)monthListR;
 
++(ItemManager *) sharedInstance;
 
 @end

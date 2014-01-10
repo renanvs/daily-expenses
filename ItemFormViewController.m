@@ -291,16 +291,16 @@
 -(void)populateToForm{
 	UIImage *categoryImage;
     self.label.text = item.label;
-	self.typeLabel.text = item.type;
+	self.typeLabel.text = [NSString stringWithFormat:@"%@", item.type];
 	self.parcel.text = [NSString stringWithFormat:@"%@x",item.parcel];
 	self.value.text = item.value;
 	self.dateStr.text = item.dateSpent;
 	self.note.text = item.notes;
-    categoryImage = [[Config sharedInstance] getImageByCategoryLabel:item.type];
+    categoryImage = [[Config sharedInstance] getImageByCategoryLabel:[NSString stringWithFormat:@"%@", item.type]];
 	[self.typeBt setImage:categoryImage forState:UIControlStateNormal];
     
-    credit.checked = item.isCredit;
-    spent.checked = item.isSpent;
+    credit.checked = [item.isCredit boolValue];
+    spent.checked = [item.isSpent boolValue];
     
     if (credit.checked) {
         [self.value setTextColor:[UIColor greenColor]];
@@ -312,18 +312,20 @@
 
 -(void)addItem{
     if (!item) {
-		item = [[ItemModel alloc] init];
+		item = [[ItemModelC alloc] init];
 	}
 	
     item.label = self.label.text;
-    item.type = self.typeLabel.text;
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    item.type = [formatter numberFromString:self.typeLabel.text];
     item.parcel = [self.parcel.text stringByReplacingOccurrencesOfString:@"x" withString:@""];
     item.value = self.value.text;
     item.dateSpent = self.dateStr.text;
     item.notes = self.note.text;
-    item.typeImg = [UIImage imageNamed:item.type];
-    item.isCredit = credit.checked;
-    item.isSpent = spent.checked;
+    //item.typeImg = [UIImage imageNamed:item.type];
+    item.isCredit = [NSNumber numberWithBool:credit.checked];
+    item.isSpent = [NSNumber numberWithBool:spent.checked];
     
     //TODO: o controler tem que identificar se o item é novo ou atualizado
     if ([state isEqualToString:@"update"]) {

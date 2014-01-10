@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ItemModel.h"
+#import "ItemModelC.h"
 
 
 @interface ItemCell : UITableViewCell{
@@ -19,6 +19,6 @@
 @property (assign) IBOutlet UIImageView *icon;
 @property (assign) IBOutlet UIView *popoverView;
 @property (retain, nonatomic) IBOutlet UIView *typeView;
-@property (assign) ItemModel *item;
+@property (assign) ItemModelC *item;
 
 @end

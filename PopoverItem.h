@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ItemModel.h"
+#import "ItemModelC.h"
 
 @interface PopoverItem : UIViewController{
-    ItemModel * item;
+    ItemModelC * item;
 }
 
 @property (retain, nonatomic) IBOutlet UILabel *name;

@@ -67,12 +67,12 @@
     static NSString *cellIdentifier = @"ItemCell";
     ItemCell *cell = (ItemCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     NSInteger row = indexPath.row;
-    ItemModel *currentSpendItem = [listItens objectAtIndex:row];
+    ItemModelC *currentSpendItem = [listItens objectAtIndex:row];
     
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil] objectAtIndex:0];
     }
-    cell.icon.image = currentSpendItem.typeImg;
+    //cell.icon.image = currentSpendItem.typeImg;
     cell.label.text = currentSpendItem.label;
     [cell.typeView setBackgroundColor:currentSpendItem.isCredit ? [UIColor greenColor] : [UIColor redColor]];
     cell.price.text = [NSString stringWithFormat:@"%@",currentSpendItem.value];

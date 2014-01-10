@@ -33,7 +33,6 @@
 		1E0AE9E417CD928A0043170F /* cb_mono_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E0AE9CB17CD928A0043170F /* cb_mono_on@2x.png */; };
 		1E0AE9E517CD928A0043170F /* UIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E0AE9CE17CD928A0043170F /* UIHelpers.m */; };
 		1E0AE9E617CD928A0043170F /* SSCheckBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E0AE9D017CD928A0043170F /* SSCheckBoxView.m */; };
-		1E20860E176AA47800EACD6A /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E20860D176AA47800EACD6A /* ItemModel.m */; };
 		1E27986A1746B90F00DD4AAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2798691746B90F00DD4AAF /* UIKit.framework */; };
 		1E27986C1746B90F00DD4AAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E27986B1746B90F00DD4AAF /* Foundation.framework */; };
 		1E27986E1746B90F00DD4AAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E27986D1746B90F00DD4AAF /* CoreGraphics.framework */; };
@@ -52,6 +51,9 @@
 		1E38169B1795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3816981795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m */; };
 		1E38169C1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E38169A1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m */; };
 		1E3BAB6317A85BD4001FF44F /* ItemFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BAB6217A85BD4001FF44F /* ItemFilter.m */; };
+		1E4661EF1880442600E73C0A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4661EE1880442600E73C0A /* CoreData.framework */; };
+		1E4661F3188044F700E73C0A /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E4661F1188044F700E73C0A /* CoreDataModel.xcdatamodeld */; };
+		1E4661F918806CB000E73C0A /* ItemModelC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4661F818806CB000E73C0A /* ItemModelC.m */; };
 		1E6098251783B74300491251 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098241783B74300491251 /* ItemManager.m */; };
 		1E6098291783C9AA00491251 /* ItemFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098271783C9AA00491251 /* ItemFormViewController.m */; };
 		1E60982A1783C9AA00491251 /* ItemFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E6098281783C9AA00491251 /* ItemFormViewController.xib */; };
@@ -146,8 +148,6 @@
 		1E0AE9CE17CD928A0043170F /* UIHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHelpers.m; sourceTree = "<group>"; };
 		1E0AE9CF17CD928A0043170F /* SSCheckBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSCheckBoxView.h; sourceTree = "<group>"; };
 		1E0AE9D017CD928A0043170F /* SSCheckBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCheckBoxView.m; sourceTree = "<group>"; };
-		1E20860C176AA47800EACD6A /* ItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemModel.h; sourceTree = "<group>"; };
-		1E20860D176AA47800EACD6A /* ItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemModel.m; sourceTree = "<group>"; };
 		1E2798661746B90F00DD4AAF /* daily Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "daily Expenses.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E2798691746B90F00DD4AAF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1E27986B1746B90F00DD4AAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -176,6 +176,10 @@
 		1E38169A1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		1E3BAB6117A85BD4001FF44F /* ItemFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemFilter.h; sourceTree = "<group>"; };
 		1E3BAB6217A85BD4001FF44F /* ItemFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemFilter.m; sourceTree = "<group>"; };
+		1E4661EE1880442600E73C0A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1E4661F2188044F700E73C0A /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		1E4661F718806CB000E73C0A /* ItemModelC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemModelC.h; sourceTree = "<group>"; };
+		1E4661F818806CB000E73C0A /* ItemModelC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemModelC.m; sourceTree = "<group>"; };
 		1E6098231783B74300491251 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		1E6098241783B74300491251 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
 		1E6098261783C9AA00491251 /* ItemFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemFormViewController.h; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E4661EF1880442600E73C0A /* CoreData.framework in Frameworks */,
 				1EEAC8FC178F9B62000DD075 /* QuartzCore.framework in Frameworks */,
 				1E27986A1746B90F00DD4AAF /* UIKit.framework in Frameworks */,
 				1E27986C1746B90F00DD4AAF /* Foundation.framework in Frameworks */,
@@ -348,19 +353,10 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		1E20860B176AA19F00EACD6A /* ItemModel */ = {
-			isa = PBXGroup;
-			children = (
-				1E20860C176AA47800EACD6A /* ItemModel.h */,
-				1E20860D176AA47800EACD6A /* ItemModel.m */,
-			);
-			name = ItemModel;
-			sourceTree = "<group>";
-		};
 		1E27985D1746B90F00DD4AAF = {
 			isa = PBXGroup;
 			children = (
-				1EC80C881856ADE000D46320 /* Models */,
+				1E4661F0188044D700E73C0A /* CoreData */,
 				1EC80C871856AD6E00D46320 /* Views */,
 				1E6098221783B72400491251 /* Controllers */,
 				1EA686E017A6F2E5002D437C /* Utility */,
@@ -384,6 +380,7 @@
 		1E2798681746B90F00DD4AAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1E4661EE1880442600E73C0A /* CoreData.framework */,
 				1EEAC8FB178F9B62000DD075 /* QuartzCore.framework */,
 				1E2798691746B90F00DD4AAF /* UIKit.framework */,
 				1E27986B1746B90F00DD4AAF /* Foundation.framework */,
@@ -457,6 +454,16 @@
 			name = Config;
 			sourceTree = "<group>";
 		};
+		1E4661F0188044D700E73C0A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				1E4661F1188044F700E73C0A /* CoreDataModel.xcdatamodeld */,
+				1E4661F718806CB000E73C0A /* ItemModelC.h */,
+				1E4661F818806CB000E73C0A /* ItemModelC.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		1E6098221783B72400491251 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,14 +505,6 @@
 				1E07CBF21748F4A500C5F83A /* MainViewController */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		1EC80C881856ADE000D46320 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				1E20860B176AA19F00EACD6A /* ItemModel */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		1EDEEFD11748705300A03BE2 /* categories_icon */ = {
@@ -738,7 +737,6 @@
 				1E27987A1746B90F00DD4AAF /* AppDelegate.m in Sources */,
 				1E27988F1746BA3800DD4AAF /* MainViewController.m in Sources */,
 				1EDEEFBE1748694300A03BE2 /* ItemCell.m in Sources */,
-				1E20860E176AA47800EACD6A /* ItemModel.m in Sources */,
 				1E6098251783B74300491251 /* ItemManager.m in Sources */,
 				1E6098291783C9AA00491251 /* ItemFormViewController.m in Sources */,
 				1E33C17E178CCC1000F37B62 /* Config.m in Sources */,
@@ -748,6 +746,8 @@
 				1E38169B1795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				1E38169C1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m in Sources */,
 				1ECEE063179635A700647B7C /* ItemHeaderCell.m in Sources */,
+				1E4661F918806CB000E73C0A /* ItemModelC.m in Sources */,
+				1E4661F3188044F700E73C0A /* CoreDataModel.xcdatamodeld in Sources */,
 				1EA686E317A6F30C002D437C /* Utility.m in Sources */,
 				1E3BAB6317A85BD4001FF44F /* ItemFilter.m in Sources */,
 				1E682F8417C3203100FBCCB2 /* MonthViewController.m in Sources */,
@@ -875,6 +875,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1E4661F1188044F700E73C0A /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1E4661F2188044F700E73C0A /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 1E4661F2188044F700E73C0A /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1E27985E1746B90F00DD4AAF /* Project object */;
 }

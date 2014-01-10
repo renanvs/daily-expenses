@@ -22,7 +22,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     _name.text = item.label;
-    _category.text = item.type;
+    _category.text = [NSString stringWithFormat:@"%@", item.type];
     _parcel.text = item.parcel;
     _value.text = item.value;
     _date.text = item.dateSpent;
