@@ -13,7 +13,6 @@
 	IBOutlet UIView *portraitView;
 	IBOutlet UIView *landscapeView;
     NSString *dateValue;
-    NSString * totalValueStr;
 }
 
 @property (strong) NSMutableArray *listItens;

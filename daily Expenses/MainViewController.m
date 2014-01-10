@@ -34,9 +34,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    totalValueStr = [[[ItemManager sharedInstance] totalValue] stringValue];
-    totalValue.text = totalValueStr;
+
+    totalValue.text = [[[ItemManager sharedInstance] totalValue] stringValue];;
     [dailyTableView reloadData];
     
     self.currentDate.text = [[ItemManager sharedInstance] dateInCurrentView];
@@ -105,7 +104,7 @@
         [tableView endUpdates];
         [tableView reloadData];
         
-        self.totalValue.text = totalValueStr;
+        self.totalValue.text = [[[ItemManager sharedInstance] totalValue] stringValue];;
     }
 }
 
@@ -130,7 +129,7 @@
         self.goNextButton.enabled = YES;
         self.goNextButton.alpha = 1;
     }
-    self.totalValue.text = totalValueStr;
+    self.totalValue.text = [[[ItemManager sharedInstance] totalValue] stringValue];;
 }
 
 - (IBAction)goToDayAfter:(id)sender {
@@ -141,7 +140,7 @@
         self.goNextButton.enabled = NO;
         self.goNextButton.alpha = .5;
     }
-    self.totalValue.text = totalValueStr;
+    self.totalValue.text = [[[ItemManager sharedInstance] totalValue] stringValue];;
 }
 
 - (IBAction)showRelatorio:(id)sender {

@@ -78,7 +78,8 @@ static id _instance;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"ItemModelC" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = entity;
-    allItens = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:nil]];
+    NSArray *result = [context executeFetchRequest:request error:nil];
+    allItens = [[NSMutableArray alloc] initWithArray:result];
     
 	[self filterItensByCurrentDate];
 }
@@ -136,7 +137,7 @@ static id _instance;
     
     [context deleteObject:item];
     [self loadData];
-    
+    [self getTotalValue];
     //[allItens removeObject:item];
     //r//[listItens removeObject:item];
     //[self removePlistFileBasedOnList];
@@ -173,6 +174,10 @@ static id _instance;
 }
 
 -(int)getHighestId{
+    if (allItens.count == 0) {
+        return 0;
+    }
+    
     ItemModelC *itemR = [allItens objectAtIndex:0];
     int highestId = [itemR.item_id intValue];
     for (int i=1; i<allItens.count; i++) {
@@ -185,7 +190,7 @@ static id _instance;
 }
 
 -(void)getTotalValue{
-    self.totalValue = 0;
+    self.totalValue = [NSNumber numberWithInt:0];
     for (ItemModelC *itemR in listItens) {
         self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [self getValue:itemR.value isChecked:[itemR.isCredit boolValue]]];
     }
@@ -319,6 +324,11 @@ static id _instance;
 
 -(NSArray*)getAvailableMonths{
     NSMutableArray* months = [[NSMutableArray alloc] init];
+    
+    if (allItens.count == 0) {
+        return months;
+    }
+    
     for (ItemModelC *itemR in allItens) {
         NSString *currentMonth = [[Utility sharedInstance] getMonthByDate:itemR.dateSpent];
         if (![months containsObject:currentMonth]) {
