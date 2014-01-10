@@ -287,7 +287,6 @@
     
 }
 
-
 -(void)populateToForm{
 	UIImage *categoryImage;
     self.label.text = item.label;
@@ -324,7 +323,6 @@
     item.value = self.value.text;
     item.dateSpent = self.dateStr.text;
     item.notes = self.note.text;
-    //item.typeImg = [UIImage imageNamed:item.type];
     item.isCredit = [NSNumber numberWithBool:credit.checked];
     item.isSpent = [NSNumber numberWithBool:spent.checked];
     

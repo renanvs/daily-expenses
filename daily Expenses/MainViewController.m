@@ -71,7 +71,7 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil] objectAtIndex:0];
     }
-    //cell.icon.image = currentSpendItem.typeImg;
+    
     cell.label.text = currentSpendItem.label;
     [cell.typeView setBackgroundColor:currentSpendItem.isCredit ? [UIColor greenColor] : [UIColor redColor]];
     cell.price.text = [NSString stringWithFormat:@"%@",currentSpendItem.value];
