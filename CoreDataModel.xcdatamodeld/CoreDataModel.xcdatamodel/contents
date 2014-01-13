@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="1.0" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="ItemModelC" representedClassName="ItemModelC" syncable="YES">
+    <entity name="ItemModel" representedClassName="ItemModel" syncable="YES">
         <attribute name="dateCreated" attributeType="String" syncable="YES"/>
         <attribute name="dateSpent" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateUpdated" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,6 +14,6 @@
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ItemModelC" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ItemModel" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

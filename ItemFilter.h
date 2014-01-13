@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ItemModel.h"
 
 @interface ItemFilter : NSObject{
     NSArray *monthList;

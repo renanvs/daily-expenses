@@ -1,27 +1,27 @@
 //
-//  ItemModel.h
+//  ItemModelC.h
 //  daily Expenses
 //
-//  Created by renan veloso silva on 13/06/13.
-//  Copyright (c) 2013 renan veloso silva. All rights reserved.
+//  Created by Renan Veloso Silva on 10/01/14.
+//  Copyright (c) 2014 renan veloso silva. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface ItemModel : NSObject
 
-@property (strong) NSString *item_id;
-@property (strong) NSString *label;
-@property (strong) NSString *type;
-@property (strong) NSString *parcel;
-@property (strong) NSString *value;
-@property (strong) NSString *dateSpent;
-@property (strong) NSString *notes;
-@property (strong) UIImage *typeImg;
-@property BOOL isSpent;
-@property BOOL isCredit;
+@interface ItemModel : NSManagedObject
 
-@property (strong) NSString *dateCreated;
-@property (strong) NSString *dateUpdated;
+@property (nonatomic, retain) NSString * item_id;
+@property (nonatomic, retain) NSString * label;
+@property (nonatomic, retain) NSNumber * type;
+@property (nonatomic, retain) NSString * parcel;
+@property (nonatomic, retain) NSString * value;
+@property (nonatomic, retain) NSString * dateSpent;
+@property (nonatomic, retain) NSString * notes;
+@property (nonatomic, retain) NSNumber * isSpent;
+@property (nonatomic, retain) NSNumber * isCredit;
+@property (nonatomic, retain) NSString * dateCreated;
+@property (nonatomic, retain) NSString * dateUpdated;
 
 @end

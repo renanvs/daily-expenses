@@ -66,7 +66,7 @@
     static NSString *cellIdentifier = @"ItemCell";
     ItemCell *cell = (ItemCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     NSInteger row = indexPath.row;
-    ItemModelC *currentSpendItem = [listItens objectAtIndex:row];
+    ItemModel *currentSpendItem = [listItens objectAtIndex:row];
     
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil] objectAtIndex:0];

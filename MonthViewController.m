@@ -9,7 +9,6 @@
 #import "MonthViewController.h"
 #import "Utility.h"
 #import "ItemManager.h"
-#import "ItemModel.h"
 
 @implementation MonthViewController
 

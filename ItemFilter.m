@@ -7,7 +7,6 @@
 //
 
 #import "ItemFilter.h"
-#import "ItemModel.h"
 
 @implementation ItemFilter
 @synthesize  monthList;

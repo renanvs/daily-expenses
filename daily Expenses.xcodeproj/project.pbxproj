@@ -53,7 +53,7 @@
 		1E3BAB6317A85BD4001FF44F /* ItemFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BAB6217A85BD4001FF44F /* ItemFilter.m */; };
 		1E4661EF1880442600E73C0A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4661EE1880442600E73C0A /* CoreData.framework */; };
 		1E4661F3188044F700E73C0A /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E4661F1188044F700E73C0A /* CoreDataModel.xcdatamodeld */; };
-		1E4661F918806CB000E73C0A /* ItemModelC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4661F818806CB000E73C0A /* ItemModelC.m */; };
+		1E4661F918806CB000E73C0A /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4661F818806CB000E73C0A /* ItemModel.m */; };
 		1E6098251783B74300491251 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098241783B74300491251 /* ItemManager.m */; };
 		1E6098291783C9AA00491251 /* ItemFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098271783C9AA00491251 /* ItemFormViewController.m */; };
 		1E60982A1783C9AA00491251 /* ItemFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E6098281783C9AA00491251 /* ItemFormViewController.xib */; };
@@ -178,8 +178,8 @@
 		1E3BAB6217A85BD4001FF44F /* ItemFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemFilter.m; sourceTree = "<group>"; };
 		1E4661EE1880442600E73C0A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1E4661F2188044F700E73C0A /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		1E4661F718806CB000E73C0A /* ItemModelC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemModelC.h; sourceTree = "<group>"; };
-		1E4661F818806CB000E73C0A /* ItemModelC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemModelC.m; sourceTree = "<group>"; };
+		1E4661F718806CB000E73C0A /* ItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemModel.h; sourceTree = "<group>"; };
+		1E4661F818806CB000E73C0A /* ItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemModel.m; sourceTree = "<group>"; };
 		1E6098231783B74300491251 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		1E6098241783B74300491251 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
 		1E6098261783C9AA00491251 /* ItemFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemFormViewController.h; sourceTree = "<group>"; };
@@ -458,8 +458,8 @@
 			isa = PBXGroup;
 			children = (
 				1E4661F1188044F700E73C0A /* CoreDataModel.xcdatamodeld */,
-				1E4661F718806CB000E73C0A /* ItemModelC.h */,
-				1E4661F818806CB000E73C0A /* ItemModelC.m */,
+				1E4661F718806CB000E73C0A /* ItemModel.h */,
+				1E4661F818806CB000E73C0A /* ItemModel.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -746,7 +746,7 @@
 				1E38169B1795D10100D39CB9 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				1E38169C1795D10100D39CB9 /* TPKeyboardAvoidingTableView.m in Sources */,
 				1ECEE063179635A700647B7C /* ItemHeaderCell.m in Sources */,
-				1E4661F918806CB000E73C0A /* ItemModelC.m in Sources */,
+				1E4661F918806CB000E73C0A /* ItemModel.m in Sources */,
 				1E4661F3188044F700E73C0A /* CoreDataModel.xcdatamodeld in Sources */,
 				1EA686E317A6F30C002D437C /* Utility.m in Sources */,
 				1E3BAB6317A85BD4001FF44F /* ItemFilter.m in Sources */,

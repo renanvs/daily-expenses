@@ -312,7 +312,7 @@
 -(void)addItem{
     if (!item) {
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"ItemModelC" inManagedObjectContext:[ItemManager sharedInstance].context];
-		item = (ItemModelC*)[[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:[ItemManager sharedInstance].context];
+		item = (ItemModel*)[[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:[ItemManager sharedInstance].context];
 	}
 	
     item.label = self.label.text;

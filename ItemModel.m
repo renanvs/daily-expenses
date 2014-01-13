@@ -1,19 +1,26 @@
 //
-//  ItemModel.m
+//  ItemModelC.m
 //  daily Expenses
 //
-//  Created by renan veloso silva on 13/06/13.
-//  Copyright (c) 2013 renan veloso silva. All rights reserved.
+//  Created by Renan Veloso Silva on 10/01/14.
+//  Copyright (c) 2014 renan veloso silva. All rights reserved.
 //
 
 #import "ItemModel.h"
 
+
 @implementation ItemModel
 
--(NSString *)description{
-	NSString *desc = [NSString stringWithFormat:@"ID: %@,\nLabel: %@,\nType: %@,\nParcel: %@,\nValue: %@,\nDateSpent: %@,\nDateCreated: %@,\nDateUpdated: %@ \nisSpent: %d \nisCredit: %d \n",self.item_id, self.label, self.type, self.parcel, self.value, self.dateSpent, self.dateCreated, self.dateUpdated, self.isSpent, self.isCredit];
-	
-	return desc;
-}
+@dynamic item_id;
+@dynamic label;
+@dynamic type;
+@dynamic parcel;
+@dynamic value;
+@dynamic dateSpent;
+@dynamic notes;
+@dynamic isSpent;
+@dynamic isCredit;
+@dynamic dateCreated;
+@dynamic dateUpdated;
 
 @end

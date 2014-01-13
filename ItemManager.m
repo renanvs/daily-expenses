@@ -59,7 +59,7 @@ static id _instance;
 }
 
 #pragma mark - add, update, remove Item
--(void)addItemToList:(ItemModelC*)item{
+-(void)addItemToList:(ItemModel*)item{
     int addId = [self getHighestId] +1;
     item.item_id = [NSString stringWithFormat:@"%d",addId];
 	item.dateCreated = [[Utility sharedInstance] getCurrentDate];
@@ -70,14 +70,14 @@ static id _instance;
     [self saveContext];
 }
 
--(void)updateItemToList:(ItemModelC*)item{
+-(void)updateItemToList:(ItemModel*)item{
     item.dateUpdated = [[Utility sharedInstance] getCurrentDate];
     
     [self getTotalValue];
     [self saveContext];
 }
 
--(void)removeItemBySpendItem :(ItemModelC*)item{
+-(void)removeItemBySpendItem :(ItemModel*)item{
     
     [context deleteObject:item];
     [self loadData];
@@ -103,9 +103,9 @@ static id _instance;
     return image;
 }
 
--(ItemModelC*)getSpendItemById:(NSString*)idValue{
-    ItemModelC *itemToReturn;
-    for (ItemModelC *item in allItens) {
+-(ItemModel*)getSpendItemById:(NSString*)idValue{
+    ItemModel *itemToReturn;
+    for (ItemModel *item in allItens) {
         if ([item.item_id isEqualToString:idValue]){
             itemToReturn = item;
             break;
@@ -119,7 +119,7 @@ static id _instance;
         return 0;
     }
     
-    ItemModelC *itemR = [allItens objectAtIndex:0];
+    ItemModel *itemR = [allItens objectAtIndex:0];
     int highestId = [itemR.item_id intValue];
     for (int i=1; i<allItens.count; i++) {
         itemR = [allItens objectAtIndex:i];
@@ -132,7 +132,7 @@ static id _instance;
 
 -(void)getTotalValue{
     self.totalValue = [NSNumber numberWithInt:0];
-    for (ItemModelC *itemR in listItens) {
+    for (ItemModel *itemR in listItens) {
         self.totalValue = [NSNumber numberWithFloat:[self.totalValue floatValue] + [self getValue:itemR.value isChecked:[itemR.isCredit boolValue]]];
     }
 }
@@ -188,7 +188,7 @@ static id _instance;
         return months;
     }
     
-    for (ItemModelC *itemR in allItens) {
+    for (ItemModel *itemR in allItens) {
         NSString *currentMonth = [[Utility sharedInstance] getMonthByDate:itemR.dateSpent];
         if (![months containsObject:currentMonth]) {
             [months addObject:currentMonth];
@@ -202,7 +202,7 @@ static id _instance;
     NSMutableArray* tempItemList = [[NSMutableArray alloc] init];
     
     for (NSString* monthR in monthListR) {
-        for (ItemModelC *itemR in allItens) {
+        for (ItemModel *itemR in allItens) {
             if ([[[Utility sharedInstance] getMonthByDate:itemR.dateSpent] isEqualToString:monthR]) {
                 [tempItemList addObject:itemR];
             }

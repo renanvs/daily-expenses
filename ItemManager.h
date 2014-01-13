@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Config.h"
 #import "ItemFilter.h"
-#import "ItemModelC.h"
+#import "ItemModel.h"
 
 @interface ItemManager : NSObject{
     NSString *newPlistFile;
@@ -26,17 +26,17 @@
 @property (strong) NSNumber *totalValue;
 @property (strong) NSString *dateInCurrentView;
 
--(void)addItemToList:(ItemModelC*)item;
+-(void)addItemToList:(ItemModel*)item;
 
--(void)removeItemBySpendItem:(ItemModelC*)item;
+-(void)removeItemBySpendItem:(ItemModel*)item;
 
--(void)updateItemToList:(ItemModelC*)item;
+-(void)updateItemToList:(ItemModel*)item;
 
 -(void)getListDayBefore;
 
 -(void)getListDayAfter;
 
--(ItemModelC*)getSpendItemById:(NSString*)idValue;
+-(ItemModel*)getSpendItemById:(NSString*)idValue;
 
 -(NSArray*)getAvailableMonths;
 
