@@ -31,6 +31,7 @@ static id _instance;
     return self;
 }
 
+//not used
 -(NSArray*)filterByLabel:(NSMutableArray*)list ascending:(BOOL)asc{
 	NSArray *newList;
 	NSSortDescriptor *descriptor;
@@ -40,6 +41,7 @@ static id _instance;
 	return newList;
 }
 
+//not used
 -(NSArray*)filterByCreatedDate:(NSMutableArray*)list ascending:(BOOL)asc{
 	NSArray *newList;
 	NSSortDescriptor *descriptor;
@@ -49,6 +51,7 @@ static id _instance;
 	return newList;
 }
 
+//not used
 -(NSArray*)filterBySpentDate:(NSMutableArray*)list ascending:(BOOL)asc{
 	NSArray *newList;
 	NSSortDescriptor *descriptor;

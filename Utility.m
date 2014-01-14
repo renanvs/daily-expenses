@@ -31,7 +31,7 @@ static id _instance;
 }
 
 #pragma mark - validate
-
+//not used
 - (BOOL)isEmptyString:(NSString *) aString{
     
     if ((NSNull *) aString == [NSNull null]) {
@@ -50,22 +50,6 @@ static id _instance;
     }
     
     return NO;
-}
-
--(BOOL)stringToBool:(NSString*)value{
-    if ([value isEqualToString:@"1"]) {
-        return YES;
-    }else {
-        return NO;
-    }
-}
-
--(NSString*)boolToString:(BOOL)value{
-    if (value) {
-        return @"1";
-    }else {
-        return @"0";
-    }
 }
 
 #pragma mark - get methods
