@@ -49,13 +49,13 @@ static id _instance;
 //TODO: criar um Manager para Criar, Consultar, Apagar arquivos
 -(void)loadData{
 
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ItemModelC" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ItemModel" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = entity;
     NSArray *result = [context executeFetchRequest:request error:nil];
     allItens = [[NSMutableArray alloc] initWithArray:result];
-    
-	[self filterItensByCurrentDate];
+    [self filterItensByDate:dateInCurrentView];
+	//[self filterItensByCurrentDate];
 }
 
 #pragma mark - add, update, remove Item
@@ -64,7 +64,7 @@ static id _instance;
     item.item_id = [NSString stringWithFormat:@"%d",addId];
 	item.dateCreated = [[Utility sharedInstance] getCurrentDate];
 	
-    [context insertObject:item];
+    //[context insertObject:item];
     [self loadData];
     
     [self saveContext];
@@ -85,16 +85,7 @@ static id _instance;
 }
 
 #pragma mark - auxiliar methods
-
--(NSInteger)findIndexById:(NSString*)item_id{
-    for (int i=0; i<allItens.count; i++) {
-        if ([[[allItens objectAtIndex:i] item_id] isEqualToString:item_id]){
-            return i;
-        }
-    }
-    return 0;
-}
-
+//not used
 -(UIImage*)getTypeImage:(NSString*)type{
     NSDictionary *catategoryList = [[Config sharedInstance] categoryList];
     
@@ -156,6 +147,19 @@ static id _instance;
         [listItens addObjectsFromArray :[NSMutableArray arrayWithArray:[filter filterByDate:[[Utility sharedInstance] getCurrentDate] onList:allItens]]];
     }else{
         listItens = [[NSMutableArray alloc] initWithArray:[filter filterByDate:[[Utility sharedInstance] getCurrentDate] onList:allItens]];
+    }
+    
+    [self getTotalValue];
+}
+
+-(void)filterItensByDate:(NSString*)date{
+	ItemFilter* filter = [ItemFilter sharedInstance];
+    
+    if (listItens) {
+        [listItens removeAllObjects];
+        [listItens addObjectsFromArray :[NSMutableArray arrayWithArray:[filter filterByDate:date onList:allItens]]];
+    }else{
+        listItens = [[NSMutableArray alloc] initWithArray:[filter filterByDate:date onList:allItens]];
     }
     
     [self getTotalValue];

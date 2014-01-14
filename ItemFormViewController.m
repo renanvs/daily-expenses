@@ -311,14 +311,14 @@
 
 -(void)addItem{
     if (!item) {
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"ItemModelC" inManagedObjectContext:[ItemManager sharedInstance].context];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"ItemModel" inManagedObjectContext:[ItemManager sharedInstance].context];
 		item = (ItemModel*)[[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:[ItemManager sharedInstance].context];
 	}
 	
     item.label = self.label.text;
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    item.type = [formatter numberFromString:self.typeLabel.text];
+    item.type = self.typeLabel.text;
     item.parcel = [self.parcel.text stringByReplacingOccurrencesOfString:@"x" withString:@""];
     item.value = self.value.text;
     item.dateSpent = self.dateStr.text;

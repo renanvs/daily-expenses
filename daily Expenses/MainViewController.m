@@ -73,8 +73,10 @@
     }
     
     cell.label.text = currentSpendItem.label;
-    [cell.typeView setBackgroundColor:currentSpendItem.isCredit ? [UIColor greenColor] : [UIColor redColor]];
+    [cell.typeView setBackgroundColor:[currentSpendItem.isCredit boolValue] ? [UIColor greenColor] : [UIColor redColor]];
     cell.price.text = [NSString stringWithFormat:@"%@",currentSpendItem.value];
+    NSString *type = currentSpendItem.type;
+    cell.icon.image = [[Config sharedInstance] getImageByCategoryLabel:type];
     cell.item = currentSpendItem;
     
     return cell;

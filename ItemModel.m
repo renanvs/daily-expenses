@@ -1,8 +1,8 @@
 //
-//  ItemModelC.m
+//  ItemModel.m
 //  daily Expenses
 //
-//  Created by Renan Veloso Silva on 10/01/14.
+//  Created by Renan Veloso Silva on 14/01/14.
 //  Copyright (c) 2014 renan veloso silva. All rights reserved.
 //
 
@@ -11,16 +11,16 @@
 
 @implementation ItemModel
 
+@dynamic dateCreated;
+@dynamic dateSpent;
+@dynamic dateUpdated;
+@dynamic isCredit;
+@dynamic isSpent;
 @dynamic item_id;
 @dynamic label;
-@dynamic type;
-@dynamic parcel;
-@dynamic value;
-@dynamic dateSpent;
 @dynamic notes;
-@dynamic isSpent;
-@dynamic isCredit;
-@dynamic dateCreated;
-@dynamic dateUpdated;
+@dynamic parcel;
+@dynamic type;
+@dynamic value;
 
 @end
