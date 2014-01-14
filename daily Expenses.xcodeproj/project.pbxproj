@@ -57,6 +57,7 @@
 		1E6098291783C9AA00491251 /* ItemFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6098271783C9AA00491251 /* ItemFormViewController.m */; };
 		1E60982A1783C9AA00491251 /* ItemFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E6098281783C9AA00491251 /* ItemFormViewController.xib */; };
 		1E63E02B18857B770028D069 /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E63E02A18857B770028D069 /* ItemModel.m */; };
+		1E63E02D1885CC7F0028D069 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E63E02C1885CC7F0028D069 /* index.html */; };
 		1E682F8417C3203100FBCCB2 /* MonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E682F8317C3203100FBCCB2 /* MonthViewController.m */; };
 		1E682F8617C3204200FBCCB2 /* MonthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E682F8517C3204200FBCCB2 /* MonthViewController.xib */; };
 		1E735BB0178BB9D300D2527C /* itemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E735BAF178BB9D300D2527C /* itemList.plist */; };
@@ -185,6 +186,7 @@
 		1E6098281783C9AA00491251 /* ItemFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemFormViewController.xib; sourceTree = "<group>"; };
 		1E63E02918857B770028D069 /* ItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemModel.h; sourceTree = "<group>"; };
 		1E63E02A18857B770028D069 /* ItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemModel.m; sourceTree = "<group>"; };
+		1E63E02C1885CC7F0028D069 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		1E682F8217C3203100FBCCB2 /* MonthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthViewController.h; sourceTree = "<group>"; };
 		1E682F8317C3203100FBCCB2 /* MonthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthViewController.m; sourceTree = "<group>"; };
 		1E682F8517C3204200FBCCB2 /* MonthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthViewController.xib; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 		1E27985D1746B90F00DD4AAF = {
 			isa = PBXGroup;
 			children = (
+				1E63E02C1885CC7F0028D069 /* index.html */,
 				1E4661F0188044D700E73C0A /* CoreData */,
 				1EC80C871856AD6E00D46320 /* Views */,
 				1E6098221783B72400491251 /* Controllers */,
@@ -645,6 +648,7 @@
 				1E2798901746BA3800DD4AAF /* MainViewController.xib in Resources */,
 				1EDEEFC01748699400A03BE2 /* ItemCell.xib in Resources */,
 				1EDEEFC91748704A00A03BE2 /* dailyBar.png in Resources */,
+				1E63E02D1885CC7F0028D069 /* index.html in Resources */,
 				1EDEEFCA1748704A00A03BE2 /* dailyBar@2x.png in Resources */,
 				1EDEEFCB1748704A00A03BE2 /* plus.png in Resources */,
 				1EDEEFCC1748704A00A03BE2 /* plus@2x.png in Resources */,

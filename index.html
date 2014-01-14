@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+
+<script>
+  $(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: false,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Grafico de 2010'
+        },
+        tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<p style="font-size:14px;font-weight:bolder">{point.name}</p> : R$ {point.y:.2f}'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Test Name',
+            data: [
+                ['Janeiro',   45.0],
+                ['Fevereiro',       26.8],
+                {
+                    name: 'Março',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                },
+                ['Abril',    8.5],
+                ['Maio',     6.2],
+                ['Junho',   0.7]
+            ]
+        }]
+    });
+});
+</script>
+
+</head>
+
+<body >
+  <div id="container" style="width:80%; height:80%;"></div>
+</body>
+
+</html>

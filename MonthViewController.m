@@ -31,6 +31,19 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+-(void)graphic:(id)sender{
+    UIWebView *webView = [[UIWebView alloc] init];
+    
+    NSURL *paintUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]];
+    
+    NSString *html = [NSString stringWithContentsOfURL:paintUrl encoding:NSUTF8StringEncoding error:nil];
+    
+    [webView setFrame:self.view.frame];
+    [webView loadHTMLString:html baseURL:nil];
+    [self.view addSubview:webView];
+    
+}
+
 - (void)dealloc {
     [_fullTable release];
     [super dealloc];
