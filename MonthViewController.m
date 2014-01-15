@@ -9,6 +9,7 @@
 #import "MonthViewController.h"
 #import "Utility.h"
 #import "ItemManager.h"
+#import "GraphicalCircle.h"
 
 @implementation MonthViewController
 
@@ -32,15 +33,14 @@
 }
 
 -(void)graphic:(id)sender{
-    UIWebView *webView = [[UIWebView alloc] init];
-    
-    NSURL *paintUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]];
-    
-    NSString *html = [NSString stringWithContentsOfURL:paintUrl encoding:NSUTF8StringEncoding error:nil];
-    
-    [webView setFrame:self.view.frame];
-    [webView loadHTMLString:html baseURL:nil];
-    [self.view addSubview:webView];
+    GraphicalCircle *graph = [[GraphicalCircle alloc] init];
+    graph.width = @"300";
+    graph.height = @"300";
+    graph.title = @"2014";
+    graph.type = @"percent";
+    graph.data = [[ItemManager sharedInstance] getDataInYear:[[Utility sharedInstance] getYearByDate:[ItemManager sharedInstance].dateInCurrentView]];
+    [graph initGraphCreation];
+    [self.view addSubview:graph];
     
 }
 

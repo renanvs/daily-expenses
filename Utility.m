@@ -94,6 +94,17 @@ static id _instance;
     return monthStr;
 }
 
+-(NSString*)getYearByDate:(NSString*)dateS{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate* dateFromString = [dateFormatter dateFromString:dateS];
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:(NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit) fromDate:dateFromString];
+    
+    NSInteger YearInt = [components year];
+    NSString* YearStr = [NSString stringWithFormat:@"%ld",(long)YearInt];
+    return YearStr;
+}
 
 #pragma mark - remove
 

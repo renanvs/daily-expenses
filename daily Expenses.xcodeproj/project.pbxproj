@@ -58,10 +58,13 @@
 		1E60982A1783C9AA00491251 /* ItemFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E6098281783C9AA00491251 /* ItemFormViewController.xib */; };
 		1E63E02B18857B770028D069 /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E63E02A18857B770028D069 /* ItemModel.m */; };
 		1E63E02D1885CC7F0028D069 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E63E02C1885CC7F0028D069 /* index.html */; };
+		1E63E0311885D8200028D069 /* GraphicalCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E63E0301885D8200028D069 /* GraphicalCircle.m */; };
 		1E682F8417C3203100FBCCB2 /* MonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E682F8317C3203100FBCCB2 /* MonthViewController.m */; };
 		1E682F8617C3204200FBCCB2 /* MonthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E682F8517C3204200FBCCB2 /* MonthViewController.xib */; };
 		1E735BB0178BB9D300D2527C /* itemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E735BAF178BB9D300D2527C /* itemList.plist */; };
 		1EA686E317A6F30C002D437C /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA686E217A6F30C002D437C /* Utility.m */; };
+		1EB6D7211886BA2D002EBE4A /* highcharts.js in Resources */ = {isa = PBXBuildFile; fileRef = 1EB6D71F1886BA2D002EBE4A /* highcharts.js */; };
+		1EB6D7221886BA2D002EBE4A /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1EB6D7201886BA2D002EBE4A /* jquery.min.js */; };
 		1ECEE05F1796354200647B7C /* dailyCellTopBarLand.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECEE05D1796354200647B7C /* dailyCellTopBarLand.png */; };
 		1ECEE0601796354200647B7C /* dailyCellTopBarLand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECEE05E1796354200647B7C /* dailyCellTopBarLand@2x.png */; };
 		1ECEE063179635A700647B7C /* ItemHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECEE062179635A700647B7C /* ItemHeaderCell.m */; };
@@ -187,12 +190,16 @@
 		1E63E02918857B770028D069 /* ItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemModel.h; sourceTree = "<group>"; };
 		1E63E02A18857B770028D069 /* ItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemModel.m; sourceTree = "<group>"; };
 		1E63E02C1885CC7F0028D069 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		1E63E02F1885D8200028D069 /* GraphicalCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicalCircle.h; sourceTree = "<group>"; };
+		1E63E0301885D8200028D069 /* GraphicalCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicalCircle.m; sourceTree = "<group>"; };
 		1E682F8217C3203100FBCCB2 /* MonthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthViewController.h; sourceTree = "<group>"; };
 		1E682F8317C3203100FBCCB2 /* MonthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthViewController.m; sourceTree = "<group>"; };
 		1E682F8517C3204200FBCCB2 /* MonthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthViewController.xib; sourceTree = "<group>"; };
 		1E735BAF178BB9D300D2527C /* itemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = itemList.plist; sourceTree = "<group>"; };
 		1EA686E117A6F30C002D437C /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		1EA686E217A6F30C002D437C /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		1EB6D71F1886BA2D002EBE4A /* highcharts.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = highcharts.js; sourceTree = "<group>"; };
+		1EB6D7201886BA2D002EBE4A /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
 		1ECEE05D1796354200647B7C /* dailyCellTopBarLand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dailyCellTopBarLand.png; sourceTree = "<group>"; };
 		1ECEE05E1796354200647B7C /* dailyCellTopBarLand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dailyCellTopBarLand@2x.png"; sourceTree = "<group>"; };
 		1ECEE061179635A700647B7C /* ItemHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemHeaderCell.h; sourceTree = "<group>"; };
@@ -358,7 +365,10 @@
 		1E27985D1746B90F00DD4AAF = {
 			isa = PBXGroup;
 			children = (
+				1E63E02E1885D31B0028D069 /* GraphCircle */,
 				1E63E02C1885CC7F0028D069 /* index.html */,
+				1EB6D71F1886BA2D002EBE4A /* highcharts.js */,
+				1EB6D7201886BA2D002EBE4A /* jquery.min.js */,
 				1E4661F0188044D700E73C0A /* CoreData */,
 				1EC80C871856AD6E00D46320 /* Views */,
 				1E6098221783B72400491251 /* Controllers */,
@@ -477,6 +487,15 @@
 				1E3BAB6217A85BD4001FF44F /* ItemFilter.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1E63E02E1885D31B0028D069 /* GraphCircle */ = {
+			isa = PBXGroup;
+			children = (
+				1E63E02F1885D8200028D069 /* GraphicalCircle.h */,
+				1E63E0301885D8200028D069 /* GraphicalCircle.m */,
+			);
+			name = GraphCircle;
 			sourceTree = "<group>";
 		};
 		1EA2969C179F1DB300C646B0 /* MonthViewController */ = {
@@ -642,6 +661,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E2798741746B90F00DD4AAF /* InfoPlist.strings in Resources */,
+				1EB6D7211886BA2D002EBE4A /* highcharts.js in Resources */,
+				1EB6D7221886BA2D002EBE4A /* jquery.min.js in Resources */,
 				1E27987C1746B91000DD4AAF /* Default.png in Resources */,
 				1E27987E1746B91000DD4AAF /* Default@2x.png in Resources */,
 				1E2798801746B91000DD4AAF /* Default-568h@2x.png in Resources */,
@@ -739,6 +760,7 @@
 			files = (
 				1E2798761746B90F00DD4AAF /* main.m in Sources */,
 				1E27987A1746B90F00DD4AAF /* AppDelegate.m in Sources */,
+				1E63E0311885D8200028D069 /* GraphicalCircle.m in Sources */,
 				1E27988F1746BA3800DD4AAF /* MainViewController.m in Sources */,
 				1EDEEFBE1748694300A03BE2 /* ItemCell.m in Sources */,
 				1E6098251783B74300491251 /* ItemManager.m in Sources */,

@@ -218,6 +218,12 @@ static id _instance;
     return monthsItensList;
 }
 
+-(NSDictionary*)getDataInYear:(NSString*)year{
+    NSDictionary *data = nil;
+    return data;
+}
+
+
 #pragma mark - coreData
 
 -(NSManagedObjectModel*)managedObjectModel{

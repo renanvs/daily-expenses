@@ -42,6 +42,8 @@
 
 -(NSDictionary*)getItensByMonthList:(NSArray*)monthListR;
 
+-(NSDictionary*)getDataInYear:(NSString*)year;
+
 +(ItemManager *) sharedInstance;
 
 @end

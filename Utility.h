@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum{
+    GraphCircle,
+    
+}GraphType;
+
 @interface Utility : NSObject{
     NSArray* monthList;
 }
@@ -21,6 +26,8 @@
 -(NSString*)getDayAfter:(NSString*)currentDate;
 
 -(NSString*)getMonthByDate:(NSString*)dateS;
+
+-(NSString*)getYearByDate:(NSString*)dateS;
 
 - (BOOL)isEmptyString:(NSString *) aString;
 
